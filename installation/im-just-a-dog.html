@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm just a dog - KIYOMI+TETSUHIRO UOZUM</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        main {
+            margin-top: 70px;
+            padding: 0;
+            min-height: calc(100vh - 70px - 200px);
+        }
+        .back-link {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+            margin-left: 50px;
+            margin-top: 40px; 
+        }
+
+        .back-link:hover {
+            color: #333;
+        }
+
+        .project-header {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 50px 20px 50px;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .project-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left center;
+            margin: 0;
+        }
+
+        .project-content {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0;
+        }
+
+        .project-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .project-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 80px;
+            white-space: pre-line;
+        }
+
+        .project-places {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .place-item {
+            margin-bottom: 30px;
+        }
+
+        .place-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: opacity 0.3s;
+        }
+
+        .place-item a:hover {
+            opacity: 0.8;
+        }
+
+        .place-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .place-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .place-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .place-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .other-installations {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .other-installations h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .thumbnails-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .thumbnail-item {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+
+        .thumbnail-item:hover {
+            opacity: 0.8;
+        }
+
+        .thumbnail-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .thumbnail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left center;
+        }
+
+        .thumbnail-title {
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 1400px) {
+            .project-header {
+                max-width: 100%;
+                margin: 0 50px 20px 50px;
+                aspect-ratio: 16/9;
+            }
+
+            .project-content {
+                max-width: 100%;
+                padding: 0 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                margin-left: 20px;
+            }
+            
+            .project-header {
+                aspect-ratio: 16/9;
+                margin: 0 20px 20px 20px;
+                width: calc(100% - 40px);
+            }
+
+            .project-content {
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+
+            .project-title {
+                font-size: 24px;
+            }
+
+            .place-title {
+                font-size: 20px;
+            }
+
+            .thumbnails-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .thumbnail-title {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .thumbnails-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">KIYOMI+TETSUHIRO UOZUM</div>
+        <nav class="nav-desktop">
+            <a href="../index.html">TOP</a>
+            <a href="../project.html">PROJECT</a>
+            <a href="../installation.html" class="active">INSTALLATION</a>
+            <a href="../sculpture.html">SCULPTURE</a>
+            <a href="../drawing.html">DRAWING</a>
+            <a href="../about.html">ABOUT US</a>
+        </nav>
+        <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <a href="../index.html">TOP</a>
+        <a href="../project.html">PROJECT</a>
+        <a href="../installation.html" class="active">INSTALLATION</a>
+        <a href="../sculpture.html">SCULPTURE</a>
+        <a href="../drawing.html">DRAWING</a>
+        <a href="../about.html">ABOUT US</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <a href="../installation.html" class="back-link">← Back to INSTALLATION</a>
+        <div class="project-header">
+            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
+        </div>
+
+        <div class="project-content">
+            <p class="project-description">Exploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life, presenting a unique observational viewpoint of life.
+
+This work invites viewers to experience the world from a canine perspective, challenging our assumptions about consciousness, loyalty, and the simple joys found in everyday moments. Through carefully arranged domestic objects and interactive elements, the installation creates an intimate space for reflection on our relationships with our animal companions.</p>
+
+            <div class="project-places">
+                <div class="place-item">
+                    <a href="dog-place1.html">
+                        <div class="place-image">
+                            <img src="../images/installation/im%20just%20a%20dog/1449_webpic_IMG_1510.jpg" alt="Place 1">
+                        </div>
+                        <h2 class="place-title">place 1</h2>
+                    </a>
+                </div>
+
+                <div class="place-item">
+                    <a href="dog-place2.html">
+                        <div class="place-image">
+                            <img src="../images/installation/im%20just%20a%20dog/1449_webpic_IMG_1636.jpg" alt="Place 2">
+                        </div>
+                        <h2 class="place-title">place 2</h2>
+                    </a>
+                </div>
+            </div>
+
+            <div class="other-installations">
+                <h3>Other Installations</h3>
+                <div class="thumbnails-grid">
+                    <a href="../installation/chasing-little-past.html" class="thumbnail-item">
+                        <div class="thumbnail-image">
+                            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
+                        </div>
+                        <p class="thumbnail-title">chasing little past</p>
+                    </a>
+                    <a href="../installation/in-the-bush.html" class="thumbnail-item">
+                        <div class="thumbnail-image">
+                            <img src="../images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="In the bush">
+                        </div>
+                        <p class="thumbnail-title">in the bush</p>
+                    </a>
+                    <a href="../installation/still-sigh-with-water.html" class="thumbnail-item">
+                        <div class="thumbnail-image">
+                            <img src="../images/installation/still sign with water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sigh with water">
+                        </div>
+                        <p class="thumbnail-title">still sigh with water</p>
+                    </a>
+                    <a href="../installation/blink-blink-blink-toforget.html" class="thumbnail-item">
+                        <div class="thumbnail-image">
+                            <img src="../images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink,blink,blink,to forget">
+                        </div>
+                        <p class="thumbnail-title">blink,blink,blink,to forget</p>
+                    </a>
+                    <a href="../installation/never-talk-in-the-garden.html" class="thumbnail-item">
+                        <div class="thumbnail-image">
+                            <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden">
+                        </div>
+                        <p class="thumbnail-title">never talk in the garden</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html> 

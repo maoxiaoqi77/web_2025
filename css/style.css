@@ -1,0 +1,394 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 导航栏样式 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 50px;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.nav-desktop {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.nav-desktop a {
+    text-decoration: none;
+    color: #999;
+    margin-left: 30px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-desktop a:hover,
+.nav-desktop a.active:hover {
+    color: #999;
+}
+
+.nav-desktop a.active {
+    color: #333;
+}
+
+/* 移动端菜单按钮 */
+.menu-btn {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-btn span {
+    width: 20px;
+    height: 2px;
+    background: #999;
+    margin: 2px 0;
+    transition: 0.3s;
+}
+
+/* 移动端导航菜单 */
+.nav-mobile {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.nav-mobile a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #999;
+    border-bottom: 1px solid #eee;
+    transition: color 0.3s;
+}
+
+.nav-mobile a:hover,
+.nav-mobile a.active:hover {
+    color: #333;
+}
+
+.nav-mobile a.active {
+    color: #999;
+}
+
+/* 主要内容区域 */
+main {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px - 200px);
+    max-width: 1400px;
+    margin: 70px auto 0;
+    padding: 20px 50px;
+}
+
+/* 轮播图样式 */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 56.25%;
+    overflow: visible;
+}
+
+.slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* 第一张和最后一张图片特殊处理 */
+.slide:first-child img,
+.slide:last-child img {
+    object-position: center top;
+}
+
+/* 轮播图导航按钮 */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.slider:hover .slider-nav {
+    opacity: 1;
+}
+
+.slider-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-nav.prev {
+    left: -50px;
+}
+
+.slider-nav.next {
+    right: -50px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1400px) {
+    main {
+        max-width: 100%;
+    }
+
+    .slider {
+        max-width: 100%;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .news {
+        max-width: 100%;
+        padding: 50px 50px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-desktop {
+        display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 20px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-mobile.active {
+        display: block;
+    }
+
+    main {
+        padding: 20px 20px;
+    }
+
+    .slider {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .news {
+        padding: 30px 20px;
+    }
+
+    .news h2 {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 18px;
+    }
+}
+
+/* 新闻部分样式 */
+.news {
+    padding: 50px 0;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.news h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 400;
+    color: #333;
+    padding: 0 20px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+    padding: 0;
+}
+
+.news-item {
+    background: white;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+    transition: opacity 0.3s;
+}
+
+.news-item:hover {
+    opacity: 0.8;
+    transform: none;
+}
+
+.news-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+.news-content {
+    padding: 15px 0;
+    width: 100%;
+}
+
+.news-content time {
+    color: #999;
+    font-size: 14px;
+    display: block;
+}
+
+.news-content h3 {
+    margin: 8px 0;
+    font-weight: 400;
+    color: #333;
+}
+
+.news-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 8px 0 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .news h2 {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0;
+    }
+
+    .news-item img {
+        height: 56.25vw;
+    }
+
+    .news-content {
+        padding: 15px 0;
+    }
+}
+
+/* 页脚样式 */
+.footer {
+    padding: 30px 0 50px;
+}
+
+.footer-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social a {
+    color: #333;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    opacity: 0.7;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 0 40px;
+    }
+
+    .footer-content {
+        padding: 0 15px;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+} 
