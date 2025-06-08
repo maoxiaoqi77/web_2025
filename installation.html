@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - KIYOMI+TETSUHIRO UOZUM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Installation page specific styles */
+        main {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px - 200px);
+            padding: 20px 50px;
+        }
+
+        .installation-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 40px;
+            padding: 40px 0;
+        }
+
+        .installation-item {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+            height: 100%;
+        }
+
+        .installation-item:hover {
+            opacity: 0.8;
+        }
+
+        .installation-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            margin-bottom: 15px;
+        }
+
+        .installation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left center;
+        }
+
+        .installation-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .installation-title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .installation-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .see-more {
+            color: #666;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+
+        .see-more:hover,
+        .see-more:active {
+            color: #999;
+        }
+
+        .see-more::after {
+            content: " >>";
+            font-family: monospace;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            .installation-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 20px 0;
+            }
+
+            .installation-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">KIYOMI+TETSUHIRO UOZUM</div>
+        <nav class="nav-desktop">
+            <a href="index.html">TOP</a>
+            <a href="project.html">PROJECT</a>
+            <a href="installation.html" class="active">INSTALLATION</a>
+            <a href="sculpture.html">SCULPTURE</a>
+            <a href="drawing.html">DRAWING</a>
+            <a href="about.html">ABOUT US</a>
+        </nav>
+        <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <a href="index.html">TOP</a>
+        <a href="project.html">PROJECT</a>
+        <a href="installation.html" class="active">INSTALLATION</a>
+        <a href="sculpture.html">SCULPTURE</a>
+        <a href="drawing.html">DRAWING</a>
+        <a href="about.html">ABOUT US</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="installation-grid">
+            <a href="installation/chasing-little-past.html" class="installation-item">
+                <div class="installation-image">
+                    <img src="images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
+                </div>
+                <div class="installation-content">
+                    <h2 class="installation-title">Chasing Little Past</h2>
+                    <p class="installation-description">
+                        An installation artwork about chasing fragments of memories. Through the interweaving of light and shadow,
+                        it reveals forgotten moments in the flow of time, guiding viewers to reconsider the connection between past and present.
+                    </p>
+                    <span class="see-more">See More</span>
+                </div>
+            </a>
+
+            <a href="installation/im-just-a-dog.html" class="installation-item">
+                <div class="installation-image">
+                    <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
+                </div>
+                <div class="installation-content">
+                    <h2 class="installation-title">i'm just a dog</h2>
+                    <p class="installation-description">
+                        Exploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life,
+                        presenting a unique observational viewpoint of life.
+                    </p>
+                    <span class="see-more">See More</span>
+                </div>
+            </a>
+
+            <a href="installation/in-the-bush.html" class="installation-item">
+                <div class="installation-image">
+                    <img src="images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="In the bush">
+                </div>
+                <div class="installation-content">
+                    <h2 class="installation-title">in the bush</h2>
+                    <p class="installation-description">
+                        An installation that merges natural and artificial spaces. Through the reconstruction of jungle environments,
+                        it creates a spatial experience between reality and illusion, reflecting on the relationship between humans and nature.
+                    </p>
+                    <span class="see-more">See More</span>
+                </div>
+            </a>
+
+            <a href="installation/still-sigh-with-water.html" class="installation-item">
+                <div class="installation-image">
+                    <img src="images/installation/still sign with water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sigh with water">
+                </div>
+                <div class="installation-content">
+                    <h2 class="installation-title">still sigh with water</h2>
+                    <p class="installation-description">
+                        Using water as a medium to explore the fluidity of life and time. Through the flow and stagnation of water,
+                        it presents a poetic visual experience, revealing the balance between stillness and motion in life.
+                    </p>
+                    <span class="see-more">See More</span>
+                </div>
+            </a>
+
+            <a href="installation/blink-blink-blink-to-forget.html" class="installation-item">
+                <div class="installation-image">
+                    <img src="images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink,blink,blink,to forget">
+                </div>
+                <div class="installation-content">
+                    <h2 class="installation-title">blink,blink,blink,to forget</h2>
+                    <p class="installation-description">
+                        An interactive installation about memory and forgetting. Through flickering lights and transforming spaces,
+                        it simulates the process of memory fading, exploring the significance of forgetting in human cognition.
+                    </p>
+                    <span class="see-more">See More</span>
+                </div>
+            </a>
+
+            <a href="installation/never-talk-in-the-garden.html" class="installation-item">
+                <div class="installation-image">
+                    <img src="images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden">
+                </div>
+                <div class="installation-content">
+                    <h2 class="installation-title">never talk in the garden</h2>
+                    <p class="installation-description">
+                        A spatial installation about silence and dialogue. In the quietness of the garden,
+                        it explores the possibilities of wordless communication, revealing perception and understanding beyond language.
+                    </p>
+                    <span class="see-more">See More</span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
