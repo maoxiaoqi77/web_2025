@@ -124,23 +124,21 @@
         }
 
         .lightbox-content {
-            max-width: 95%;
-            max-height: 95%;
-            width: auto;
+            max-width: 100vw;
+            max-height: 98vh;
+            width: 100%;
             height: auto;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
         .lightbox-content img {
             max-width: 100%;
             max-height: 100%;
-            width: auto;
-            height: auto;
             object-fit: contain;
-            display: block;
         }
 
         .lightbox-close {
@@ -160,14 +158,15 @@
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 30px;
+            font-size: 28px;
             cursor: pointer;
-            background: none;
+            background: rgba(0,0,0,0.5);
             border: none;
-            padding: 15px 20px;
-            transition: opacity 0.3s, color 0.3s;
+            border-radius: 50%;
+            padding: 10px 14px;
             z-index: 10;
-            opacity: 0.7;
+            opacity: 0.8;
+            transition: opacity 0.3s, color 0.3s;
         }
 
         .lightbox-nav:hover {
@@ -176,11 +175,11 @@
         }
 
         .lightbox-prev {
-            left: -70px;
+            left: 10px;
         }
 
         .lightbox-next {
-            right: -70px;
+            right: 10px;
         }
 
         @media (max-width: 1200px) {
@@ -259,25 +258,132 @@
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
+            .lightbox-content {
+                max-width: 100vw !important;
+                max-height: 98vh !important;
+                padding: 0 !important;
+                position: relative;
+            }
+            .lightbox-content img {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-width: 100vw;
+                max-height: 98vh;
+                margin: 0 auto;
+            }
+            .lightbox-nav {
+                font-size: 22px !important;
+                padding: 8px 10px !important;
+                background: rgba(0,0,0,0.5);
+                border-radius: 50%;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 20;
+            }
             .lightbox-prev {
-                left: 10px;
+                left: 0 !important;
+                right: auto !important;
             }
-
             .lightbox-next {
-                right: 10px;
+                right: 0 !important;
+                left: auto !important;
             }
+            .lightbox-close {
+                top: 10px !important;
+                right: 10px !important;
+                font-size: 24px !important;
+            }
+            body, html {
+                overflow-x: hidden !important;
+            }
+        }
 
-            .video-grid {
-                gap: 15px;
-            }
+        /* 视频幻灯片样式 */
+        .slide.video-slide {
+            position: relative;
+        }
+        
+        .slide.video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 轮播图样式 */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            padding-top: 56.25%; /* 16:9 宽高比 */
+            overflow: hidden;
+        }
+
+        .slides {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .slider-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-nav.prev {
+            left: 10px;
+        }
+
+        .slider-nav.next {
+            right: 10px;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <header class="header">
-        <div class="logo">KIYOMI+TETSUHIRO UOZUM</div>
+        <div class="logo" onclick="window.location.href='../index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUM</div>
         <nav class="nav-desktop">
             <a href="../index.html">TOP</a>
             <a href="../project.html">PROJECT</a>
@@ -308,6 +414,35 @@
         <div class="gallery-container">
             <a href="im-just-a-dog.html" class="back-link">← Back to I'm just a dog</a>
             <h1 class="gallery-title">place 1</h1>
+            
+            <!-- 添加轮播图 -->
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide active">
+                        <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="Installation Image 1">
+                    </div>
+                    <div class="slide">
+                        <img src="../images/installation/im%20just%20a%20dog/1449_webpic_IMG_1510.jpg" alt="Installation Image 2">
+                    </div>
+                    <div class="slide video-slide">
+                        <video id="slideVideo" muted playsinline>
+                            <source src="../images/installation/im%20just%20a%20dog/imjustadog_web.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide">
+                        <img src="../images/installation/im%20just%20a%20dog/1449_webpic_IMG_1588.jpg" alt="Installation Image 3">
+                    </div>
+                    <div class="slide">
+                        <img src="../images/installation/im%20just%20a%20dog/1449_webpic_IMG_1600.jpg" alt="Installation Image 4">
+                    </div>
+                </div>
+                <button class="slider-nav prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
             
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox(0)">
@@ -397,9 +532,6 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-facebook"></i>
-                </a>
                 <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
                 </a>
@@ -461,6 +593,40 @@
                 }
             }
         });
+
+        // 添加触摸滑动切换功能
+        (function() {
+            let startX = 0;
+            let endX = 0;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            if (lightbox && lightboxImg) {
+                lightboxImg.addEventListener('touchstart', function(e) {
+                    if (e.touches.length === 1) {
+                        startX = e.touches[0].clientX;
+                    }
+                });
+                lightboxImg.addEventListener('touchmove', function(e) {
+                    if (e.touches.length === 1) {
+                        endX = e.touches[0].clientX;
+                    }
+                });
+                lightboxImg.addEventListener('touchend', function(e) {
+                    if (startX && endX) {
+                        let diff = endX - startX;
+                        if (Math.abs(diff) > 40) { // 滑动距离大于40px才触发
+                            if (diff < 0) {
+                                changeImage(1); // 向左滑，下一张
+                            } else {
+                                changeImage(-1); // 向右滑，上一张
+                            }
+                        }
+                    }
+                    startX = 0;
+                    endX = 0;
+                });
+            }
+        })();
     </script>
 </body>
 </html> 

@@ -252,11 +252,39 @@ main {
         padding: 0;
         margin-bottom: 20px;
     }
+
+    .slider-nav.prev {
+        left: 10px !important;
+    }
+    .slider-nav.next {
+        right: 10px !important;
+    }
+    .slider-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        padding: 0;
+        opacity: 1;
+    }
 }
 
 @media (max-width: 480px) {
     .logo {
         font-size: 18px;
+    }
+
+    .slider-nav.prev {
+        left: 6px !important;
+    }
+    .slider-nav.next {
+        right: 6px !important;
+    }
+    .slider-nav {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        padding: 0;
+        opacity: 1;
     }
 }
 
