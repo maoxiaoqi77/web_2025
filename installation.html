@@ -88,6 +88,107 @@
             font-family: monospace;
         }
 
+        /* 轮播图样式 */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 56.25%;
+            overflow: visible;
+        }
+
+        .slides {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .slider:hover .slider-nav {
+            opacity: 1;
+        }
+
+        .slider-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-nav.prev {
+            left: -50px;
+        }
+
+        .slider-nav.next {
+            right: -50px;
+        }
+
+        /* 视频幻灯片样式 */
+        .slide.video-slide {
+            position: relative;
+        }
+        
+        .slide.video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 轮播图描述样式 */
+        .slider-description {
+            max-width: 1300px;
+            margin: 10px auto 25px;
+            text-align: left;
+            padding: 0;
+        }
+        
+        .slider-description p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+            margin: 0;
+        }
+
         @media (max-width: 768px) {
             main {
                 padding: 20px;
@@ -136,6 +237,47 @@
 
     <!-- Main Content -->
     <main>
+        <!-- 添加轮播图 -->
+        <div class="slider">
+            <div class="slides">
+                <div class="slide active">
+                    <img src="images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
+                </div>
+                <div class="slide">
+                    <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
+                </div>
+                <div class="slide video-slide">
+                    <video id="slideVideo" muted playsinline>
+                        <source src="images/installation/still sign with water/stillsignwithwater_web.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <img src="images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="In the bush">
+                </div>
+                <div class="slide">
+                    <img src="images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink,blink,blink,to forget">
+                </div>
+                <div class="slide">
+                    <img src="images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden">
+                </div>
+            </div>
+            <button class="slider-nav prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-nav next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="slider-description">
+            <p>
+                An installation artwork about chasing fragments of memories. Through the interweaving of light and shadow,
+                        it reveals forgotten moments in the flow of time, guiding vieExploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life,
+                        presenting a unique observational viewpoint of life.Exploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life,
+                        presenting a unique observational viewpoint of life.
+            </p>
+        </div>
+
         <div class="installation-grid">
             <a href="installation/chasing-little-past.html" class="installation-item">
                 <div class="installation-image">
@@ -227,9 +369,6 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-facebook"></i>
-                </a>
                 <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
                 </a>

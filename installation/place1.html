@@ -202,7 +202,7 @@
 <body>
     <!-- Navigation -->
     <header class="header">
-        <div class="logo">KIYOMI+TETSUHIRO UOZUM</div>
+        <div class="logo" onclick="window.location.href='../index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUM</div>
         <nav class="nav-desktop">
             <a href="../index.html">TOP</a>
             <a href="../project.html">PROJECT</a>
@@ -298,9 +298,6 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-facebook"></i>
-                </a>
                 <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
                 </a>
@@ -362,6 +359,40 @@
                 }
             }
         });
+
+        // 添加触摸滑动切换功能
+        (function() {
+            let startX = 0;
+            let endX = 0;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            if (lightbox && lightboxImg) {
+                lightboxImg.addEventListener('touchstart', function(e) {
+                    if (e.touches.length === 1) {
+                        startX = e.touches[0].clientX;
+                    }
+                });
+                lightboxImg.addEventListener('touchmove', function(e) {
+                    if (e.touches.length === 1) {
+                        endX = e.touches[0].clientX;
+                    }
+                });
+                lightboxImg.addEventListener('touchend', function(e) {
+                    if (startX && endX) {
+                        let diff = endX - startX;
+                        if (Math.abs(diff) > 40) { // 滑动距离大于40px才触发
+                            if (diff < 0) {
+                                changeImage(1); // 向左滑，下一张
+                            } else {
+                                changeImage(-1); // 向右滑，上一张
+                            }
+                        }
+                    }
+                    startX = 0;
+                    endX = 0;
+                });
+            }
+        })();
     </script>
 </body>
 </html> 

@@ -47,6 +47,16 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* 图片懒加载淡入效果 */
+        .gallery-item img.lazy-loading {
+            opacity: 0.2;
+        }
+        
+        .gallery-item img.lazy-loaded {
+            opacity: 1;
         }
 
         /* Slider image style update */
@@ -54,6 +64,18 @@
             width: 100%;
             height: 100%;
             object-fit: contain !important;
+            background: #f5f5f5;
+        }
+        
+        /* 视频幻灯片样式 */
+        .slide.video-slide {
+            position: relative;
+        }
+        
+        .slide.video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             background: #f5f5f5;
         }
 
@@ -262,7 +284,7 @@
 <body>
     <!-- Navigation -->
     <header class="header">
-        <div class="logo">KIYOMI+TETSUHIRO UOZUM</div>
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUM</div>
         <nav class="nav-desktop">
             <a href="index.html">TOP</a>
             <a href="project.html">PROJECT</a>
@@ -299,6 +321,11 @@
                 </div>
                 <div class="slide">
                     <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="Drawing 2">
+                </div>
+                <div class="slide video-slide">
+                    <video id="slideVideo" muted playsinline>
+                        <source src="images/installation/blink,blink,blink,to forget/00_blink3toforget_02_web.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="slide">
                     <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg" alt="Drawing 3">
@@ -439,34 +466,34 @@
                 <h3>Drawing 2025 - Swimmer</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg" alt="Swimmer drawing" onclick="openLightbox(0)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg" alt="Swimmer drawing" onclick="openLightbox(0)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.jpg" alt="Swimmer drawing" onclick="openLightbox(1)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.jpg" alt="Swimmer drawing" onclick="openLightbox(1)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.jpg" alt="Swimmer drawing" onclick="openLightbox(2)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.jpg" alt="Swimmer drawing" onclick="openLightbox(2)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.jpg" alt="Swimmer drawing" onclick="openLightbox(3)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.jpg" alt="Swimmer drawing" onclick="openLightbox(3)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="Swimmer drawing" onclick="openLightbox(4)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="Swimmer drawing" onclick="openLightbox(4)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.jpg" alt="Swimmer drawing" onclick="openLightbox(5)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.jpg" alt="Swimmer drawing" onclick="openLightbox(5)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.jpg" alt="Swimmer drawing" onclick="openLightbox(6)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.jpg" alt="Swimmer drawing" onclick="openLightbox(6)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg" alt="Swimmer drawing" onclick="openLightbox(7)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg" alt="Swimmer drawing" onclick="openLightbox(7)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg" alt="Swimmer drawing" onclick="openLightbox(8)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg" alt="Swimmer drawing" onclick="openLightbox(8)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.jpg" alt="Swimmer drawing" onclick="openLightbox(9)">
+                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.jpg" alt="Swimmer drawing" onclick="openLightbox(9)">
                     </div>
                 </div>
             </div>
@@ -982,9 +1009,6 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-facebook"></i>
-                </a>
                 <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
                 </a>
@@ -1412,6 +1436,109 @@
 
         // 初始化自动轮播
         resetAutoSlide();
+
+        // 图片懒加载功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有需要懒加载的图片
+            const lazyImages = document.querySelectorAll('img.lazy');
+            
+            // 如果浏览器支持Intersection Observer API
+            if ('IntersectionObserver' in window) {
+                // 创建观察者对象
+                const imageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        // 如果图片进入视口
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            // 添加加载中状态
+                            img.classList.add('lazy-loading');
+                            // 设置图片src为data-src的值
+                            img.src = img.dataset.src;
+                            
+                            // 图片加载完成后移除懒加载类
+                            img.onload = function() {
+                                img.classList.remove('lazy-loading');
+                                img.classList.add('lazy-loaded');
+                                // 图片加载完成后，取消对该图片的观察
+                                imageObserver.unobserve(img);
+                            };
+                        }
+                    });
+                }, {
+                    // 图片进入视口前100px时就开始加载
+                    rootMargin: '100px 0px',
+                    threshold: 0.01
+                });
+                
+                // 对每个懒加载图片进行观察
+                lazyImages.forEach(function(img) {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // 如果浏览器不支持Intersection Observer，则使用滚动事件
+                let lazyImagePositions = [];
+                let loaded = false;
+                
+                // 保存每个图片的位置信息
+                lazyImages.forEach(function(img) {
+                    lazyImagePositions.push({
+                        img: img,
+                        rect: img.getBoundingClientRect()
+                    });
+                });
+                
+                // 滚动时检查图片是否在视口内
+                function lazyLoad() {
+                    if (loaded) return;
+                    
+                    // 设置已加载标志，防止重复处理
+                    loaded = true;
+                    
+                    setTimeout(function() {
+                        let scroll = window.scrollY;
+                        let windowHeight = window.innerHeight;
+                        
+                        lazyImagePositions.forEach(function(obj, i) {
+                            // 如果图片进入视口
+                            if (obj.rect.top - windowHeight - 100 < scroll) {
+                                const img = obj.img;
+                                
+                                // 添加加载中状态
+                                img.classList.add('lazy-loading');
+                                // 设置图片src为data-src的值
+                                img.src = img.dataset.src;
+                                
+                                // 图片加载完成后移除懒加载类
+                                img.onload = function() {
+                                    img.classList.remove('lazy-loading');
+                                    img.classList.add('lazy-loaded');
+                                };
+                                
+                                // 从数组中移除已处理的图片
+                                lazyImagePositions.splice(i, 1);
+                            }
+                        });
+                        
+                        // 如果所有图片都已处理，则移除滚动事件监听
+                        if (lazyImagePositions.length === 0) {
+                            document.removeEventListener('scroll', lazyLoad);
+                            window.removeEventListener('resize', lazyLoad);
+                            window.removeEventListener('orientationChange', lazyLoad);
+                        } else {
+                            loaded = false;
+                        }
+                    }, 200);
+                }
+                
+                // 添加滚动事件监听
+                document.addEventListener('scroll', lazyLoad);
+                window.addEventListener('resize', lazyLoad);
+                window.addEventListener('orientationChange', lazyLoad);
+                
+                // 初始加载
+                lazyLoad();
+            }
+        });
     </script>
 </body>
 </html> 
