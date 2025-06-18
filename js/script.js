@@ -44,27 +44,51 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 暂停所有视频
         document.querySelectorAll('.slide video').forEach(v => {
-            v.pause();
-            // 如果视频有ended事件监听器，移除它
-            v.onended = null;
+            try {
+                v.pause();
+                // 如果视频有ended事件监听器，移除它
+                v.onended = null;
+            } catch (e) {
+                console.error("暂停视频时出错:", e);
+            }
         });
         
         // 如果当前幻灯片包含视频
         if (video) {
-            // 重置视频时间并播放
-            video.currentTime = 0;
-            video.play().catch(e => {
-                console.log("视频播放失败，恢复自动轮播", e);
-                // 如果视频播放失败，恢复自动轮播
+            try {
+                // 重置视频时间并播放
+                video.currentTime = 0;
+                
+                // 尝试播放视频
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // 视频成功播放
+                        console.log("视频成功播放");
+                    }).catch(e => {
+                        console.error("视频播放失败，恢复自动轮播", e);
+                        // 如果视频播放失败，恢复自动轮播
+                        resetAutoSlide();
+                    });
+                }
+                
+                // 视频结束时切换到下一张
+                video.onended = function() {
+                    nextSlide();
+                    // 视频播放完毕后，重新开始自动轮播
+                    resetAutoSlide();
+                };
+                
+                // 视频加载错误时处理
+                video.onerror = function() {
+                    console.error("视频加载错误");
+                    resetAutoSlide();
+                };
+            } catch (e) {
+                console.error("处理视频时出错:", e);
                 resetAutoSlide();
-            });
-            
-            // 视频结束时切换到下一张
-            video.onended = function() {
-                nextSlide();
-                // 视频播放完毕后，重新开始自动轮播
-                resetAutoSlide();
-            };
+            }
         } else {
             // 如果不是视频幻灯片，恢复自动轮播
             resetAutoSlide();
@@ -114,13 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 添加点击事件监听器
-    prevBtn.addEventListener('click', function() {
-        handleManualSlide('prev');
-    });
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', function() {
+            handleManualSlide('prev');
+        });
 
-    nextBtn.addEventListener('click', function() {
-        handleManualSlide('next');
-    });
+        nextBtn.addEventListener('click', function() {
+            handleManualSlide('next');
+        });
+    }
 
     // 为所有幻灯片添加点击事件，点击切换到下一张
     slides.forEach(slide => {
@@ -131,17 +157,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 鼠标悬停时暂停自动轮播
     const slider = document.querySelector('.slider');
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-        // 不暂停视频播放
-    });
-    slider.addEventListener('mouseleave', () => {
-        // 如果当前不是视频幻灯片，则恢复自动轮播
-        const currentSlideElement = slides[currentSlide];
-        if (!currentSlideElement.classList.contains('video-slide')) {
-            resetAutoSlide();
-        }
-    });
+    if (slider) {
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+            // 不暂停视频播放
+        });
+        slider.addEventListener('mouseleave', () => {
+            // 如果当前不是视频幻灯片，则恢复自动轮播
+            const currentSlideElement = slides[currentSlide];
+            if (!currentSlideElement.classList.contains('video-slide')) {
+                resetAutoSlide();
+            }
+        });
+    }
     
     // 初始化处理当前幻灯片（如果是视频）
     if (slides.length > 0) {
@@ -150,6 +178,36 @@ document.addEventListener('DOMContentLoaded', function() {
             handleVideoSlide(activeSlide);
         }
     }
+    
+    // 确保所有视频元素都已正确加载
+    document.querySelectorAll('video').forEach(video => {
+        // 添加加载元数据事件处理
+        video.addEventListener('loadedmetadata', function() {
+            console.log("视频元数据已加载");
+        });
+        
+        // 添加加载完成事件处理
+        video.addEventListener('loadeddata', function() {
+            console.log("视频数据已加载");
+        });
+        
+        // 添加播放事件处理
+        video.addEventListener('play', function() {
+            console.log("视频开始播放");
+        });
+        
+        // 添加错误事件处理
+        video.addEventListener('error', function(e) {
+            console.error("视频加载错误:", e);
+            // 尝试显示替代图像
+            const poster = video.getAttribute('poster');
+            if (poster) {
+                video.style.backgroundImage = `url(${poster})`;
+                video.style.backgroundSize = 'cover';
+                video.style.backgroundPosition = 'center';
+            }
+        });
+    });
 });
 
 // 移动端菜单功能
