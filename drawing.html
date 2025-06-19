@@ -1439,8 +1439,47 @@
         // 初始化自动轮播
         resetAutoSlide();
 
-        // 图片懒加载功能
+        // 图片预加载和懒加载功能
         document.addEventListener('DOMContentLoaded', function() {
+            // 优先预加载轮播图图片
+            function preloadSliderImages() {
+                const imageUrls = [];
+                
+                // 收集轮播图的图片
+                document.querySelectorAll('.slide:not(.video-slide) img').forEach(img => {
+                    if (img.src && !imageUrls.includes(img.src)) {
+                        imageUrls.push(img.src);
+                    }
+                });
+                
+                // 预加载视频的海报图片
+                document.querySelectorAll('video[poster]').forEach(video => {
+                    const posterUrl = video.getAttribute('poster');
+                    if (posterUrl && !imageUrls.includes(posterUrl)) {
+                        imageUrls.push(posterUrl);
+                    }
+                });
+                
+                // 预加载第一个画廊组的图片（可见区域）
+                const firstGalleryImages = document.querySelectorAll('.gallery-group:first-child img');
+                firstGalleryImages.forEach(img => {
+                    if (img.dataset.src && !imageUrls.includes(img.dataset.src)) {
+                        imageUrls.push(img.dataset.src);
+                        // 同时设置src以立即加载
+                        img.src = img.dataset.src;
+                        img.classList.add('lazy-loaded');
+                    }
+                });
+                
+                // 预加载所有收集到的图片
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                });
+                
+                console.log(`预加载了 ${imageUrls.length} 张图片`);
+            }
+            
             // 获取所有需要懒加载的图片
             const lazyImages = document.querySelectorAll('img.lazy');
             
@@ -1467,8 +1506,8 @@
                         }
                     });
                 }, {
-                    // 图片进入视口前100px时就开始加载
-                    rootMargin: '100px 0px',
+                    // 图片进入视口前150px时就开始加载，提前加载更多
+                    rootMargin: '150px 0px',
                     threshold: 0.01
                 });
                 
@@ -1502,7 +1541,7 @@
                         
                         lazyImagePositions.forEach(function(obj, i) {
                             // 如果图片进入视口
-                            if (obj.rect.top - windowHeight - 100 < scroll) {
+                            if (obj.rect.top - windowHeight - 150 < scroll) {
                                 const img = obj.img;
                                 
                                 // 添加加载中状态
@@ -1540,6 +1579,9 @@
                 // 初始加载
                 lazyLoad();
             }
+            
+            // 执行预加载
+            preloadSliderImages();
         });
     </script>
 </body>
