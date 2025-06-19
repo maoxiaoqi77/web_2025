@@ -863,6 +863,45 @@
             document.querySelectorAll('.project-slider').forEach(slider => {
                 initProjectSlider(slider);
             });
+            
+            // 图片预加载功能
+            function preloadSliderImages() {
+                // 收集所有轮播图的图片URL
+                const imageUrls = [];
+                
+                // 收集主轮播图的图片
+                document.querySelectorAll('.slide:not(.video-slide) img').forEach(img => {
+                    if (img.src && !imageUrls.includes(img.src)) {
+                        imageUrls.push(img.src);
+                    }
+                });
+                
+                // 收集项目轮播图的图片
+                document.querySelectorAll('.project-slide img').forEach(img => {
+                    if (img.src && !imageUrls.includes(img.src)) {
+                        imageUrls.push(img.src);
+                    }
+                });
+                
+                // 预加载视频的海报图片
+                document.querySelectorAll('video[poster]').forEach(video => {
+                    const posterUrl = video.getAttribute('poster');
+                    if (posterUrl && !imageUrls.includes(posterUrl)) {
+                        imageUrls.push(posterUrl);
+                    }
+                });
+                
+                // 预加载所有收集到的图片
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                });
+                
+                console.log(`预加载了 ${imageUrls.length} 张图片`);
+            }
+            
+            // 执行预加载
+            preloadSliderImages();
         });
     </script>
 </body>
