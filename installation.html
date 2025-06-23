@@ -207,6 +207,31 @@
             gap: 40px;
         }
 
+        /* 项目列表样式 */
+        .projects-section {
+            width: 100%;
+        }
+
+        .projects-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .installation-year {
+            color: #666;
+            font-size: 16px;
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .installation-location {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 5px 0 10px;
+        }
+
         @media (max-width: 768px) {
             main {
                 padding: 20px;
@@ -218,7 +243,7 @@
                 padding: 20px 0;
             }
 
-            .year-items {
+            .projects-items {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
@@ -304,137 +329,168 @@
         </div>
 
         <div class="installation-grid">
-            <!-- NEW -->
-            <div class="year-section">
-                <h2 class="year-title">NEW</h2>
-                <div class="year-items">
-                    <a href="installation/dog-place1.html" class="installation-item">
+            <!-- 按年份从新到旧排列的项目 -->
+            <div class="projects-section">
+                <div class="projects-items">
+                    <!-- 2020 -->
+                    <a href="installation/leading-to-k-shoppingstreat-kanazawa.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
+                            <img src="images/leading to K shoppingstreat.jpg" alt="leading to K shoppingstreat KANAZAWA">
                         </div>
                         <div class="installation-content">
-                            <h2 class="installation-title">I'm Just A Dog - Place 1</h2>
-                            <p class="installation-description">
-                                Exploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life,
-                                presenting a unique observational viewpoint of life.
-                            </p>
-                            <span class="see-more">See More</span>
+                            <h2 class="installation-title">leading to K shoppingstreat_KANAZAWA</h2>
+                            <p class="installation-year">2020</p>
+                            <p class="installation-location">KANAIWA ONO ART PROJECT, Artist in Residence, 21st Century Museum of Contemporary Art, Kanazawa JAPAN</p>
                         </div>
                     </a>
-                    
-                    <a href="installation/dog-place2.html" class="installation-item">
-                        <div class="installation-image">
-                            <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
-                        </div>
-                        <div class="installation-content">
-                            <h2 class="installation-title">I'm Just A Dog - Place 2</h2>
-                            <p class="installation-description">
-                                Exploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life,
-                                presenting a unique observational viewpoint of life.
-                            </p>
-                            <span class="see-more">See More</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
-            <!-- 2024 -->
-            <div class="year-section">
-                <h2 class="year-title">2024</h2>
-                <div class="year-items">
-                    <a href="installation/place1.html" class="installation-item">
+                    <!-- 2019 -->
+                    <a href="installation/im-just-a-dog-k51.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
+                            <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="im just a dog k51">
                         </div>
                         <div class="installation-content">
-                            <h2 class="installation-title">Chasing Little Past - Place 1</h2>
-                            <p class="installation-description">
-                                An installation artwork about chasing fragments of memories. Through the interweaving of light and shadow,
-                                it reveals forgotten moments in the flow of time, guiding viewers to reconsider the connection between past and present.
-                            </p>
-                            <span class="see-more">See More</span>
+                            <h2 class="installation-title">I'M JUST A DOG_k51</h2>
+                            <p class="installation-year">2019</p>
+                            <p class="installation-location">OPEN STUDIO, Berlin GERMANY</p>
                         </div>
                     </a>
-                    
-                    <a href="installation/place2.html" class="installation-item">
-                        <div class="installation-image">
-                            <img src="images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
-                        </div>
-                        <div class="installation-content">
-                            <h2 class="installation-title">Chasing Little Past - Place 2</h2>
-                            <p class="installation-description">
-                                An installation artwork about chasing fragments of memories. Through the interweaving of light and shadow,
-                                it reveals forgotten moments in the flow of time, guiding viewers to reconsider the connection between past and present.
-                            </p>
-                            <span class="see-more">See More</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
-            <!-- 2020 -->
-            <div class="year-section">
-                <h2 class="year-title">2020</h2>
-                <div class="year-items">
-                    <a href="installation/still-sigh-with-water.html" class="installation-item">
+                    <!-- 2018 -->
+                    <a href="installation/chasing-a-little-past-kanazawa.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sigh with water">
+                            <img src="images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing a little past KANAZAWA">
                         </div>
                         <div class="installation-content">
-                            <h2 class="installation-title">still sigh with water</h2>
-                            <p class="installation-description">
-                                Using water as a medium to explore the fluidity of life and time. Through the flow and stagnation of water,
-                                it presents a poetic visual experience, revealing the balance between stillness and motion in life.
-                            </p>
-                            <span class="see-more">See More</span>
+                            <h2 class="installation-title">chasing a little past_KANAZAWA</h2>
+                            <p class="installation-year">2018</p>
+                            <p class="installation-location">Culture City of East Asia 2018 Kanazawa "Altering Home", 21st Century Museum of Contemporary Art, Kanazawa JAPAN</p>
                         </div>
                     </a>
-                </div>
-            </div>
 
-            <!-- 2018 -->
-            <div class="year-section">
-                <h2 class="year-title">2018</h2>
-                <div class="year-items">
+                    <!-- 2017 -->
                     <a href="installation/in-the-bush.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="In the bush">
+                            <img src="images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="in the bush NAKANOJYO">
                         </div>
                         <div class="installation-content">
-                            <h2 class="installation-title">in the bush</h2>
-                            <p class="installation-description">
-                                An installation that merges natural and artificial spaces. Through the reconstruction of jungle environments,
-                                it creates a spatial experience between reality and illusion, reflecting on the relationship between humans and nature.
-                            </p>
-                            <span class="see-more">See More</span>
+                            <h2 class="installation-title">in the bush_NAKANOJYO</h2>
+                            <p class="installation-year">2017</p>
+                            <p class="installation-location">NAKANOJYO BIENNALE 2017, Gunma JAPAN</p>
                         </div>
                     </a>
-                    
+
+                    <a href="installation/chasing-a-little-past-openart.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/chasing little past/031_chasingalittlepastopenart/2236_web_IMG_5824_02_installation_000.jpg" alt="chasing a little past OPENART">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_OPENART</h2>
+                            <p class="installation-year">2017</p>
+                            <p class="installation-location">OPEN ART, Orebro SWEDEN</p>
+                        </div>
+                    </a>
+
+                    <!-- 2016 -->
+                    <a href="installation/place3.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/chasing little past/030_chasingalittlepastlad/1642_webpic_IMG_5270.jpg" alt="chasing a little past LAD">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_LAD</h2>
+                            <p class="installation-year">2016</p>
+                            <p class="installation-location">LAD Gallary, Aichi JAPAN</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/place4.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/chasing little past/030_chasingalittlepasttitanik/2236_web_IMG_4412_installation_000.jpg" alt="chasing a little past titanik">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_titanik</h2>
+                            <p class="installation-year">2016</p>
+                            <p class="installation-location">TITANIK Artist in Residence, Turuk FINLAND</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/place2.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/chasing little past/029_chasingalittlepastostrale/2236_webpic_IMG_3602_installation_000.jpg" alt="chasing a little past ostrale">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_ostrale</h2>
+                            <p class="installation-year">2016</p>
+                            <p class="installation-location">OSTRALE, Dresden GERMANY</p>
+                        </div>
+                    </a>
+
+                    <!-- 2015 -->
                     <a href="installation/blink-blink-blink-to-forget.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink,blink,blink,to forget">
+                            <img src="images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink3 to forget NAKANOJYO">
                         </div>
                         <div class="installation-content">
-                            <h2 class="installation-title">Blink,Blink,Blink,To Forget</h2>
-                            <p class="installation-description">
-                                An interactive installation about memory and forgetting. Through flickering lights and transforming spaces,
-                                it simulates the process of memory fading, exploring the significance of forgetting in human cognition.
-                            </p>
-                            <span class="see-more">See More</span>
+                            <h2 class="installation-title">blink3 to forget_NAKANOJYO</h2>
+                            <p class="installation-year">2015</p>
+                            <p class="installation-location">NAKANOJYO BIENNALE 2015, Gunma JAPAN</p>
                         </div>
                     </a>
-                    
+
                     <a href="installation/never-talk-in-the-garden.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden">
+                            <img src="images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden TWS HONGO">
                         </div>
                         <div class="installation-content">
-                            <h2 class="installation-title">never talk in the garden</h2>
-                            <p class="installation-description">
-                                A spatial installation about silence and dialogue. In the quietness of the garden,
-                                it explores the possibilities of wordless communication, revealing perception and understanding beyond language.
-                            </p>
-                            <span class="see-more">See More</span>
+                            <h2 class="installation-title">never talk in the garden_TWS_HONGO</h2>
+                            <p class="installation-year">2015</p>
+                            <p class="installation-location">TOKYO WONDER SITE, Tokyo JAPAN</p>
+                        </div>
+                    </a>
+
+                    <!-- 2014 -->
+                    <a href="installation/place1.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="charsing little pasts TWS">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing little pasts_TWS</h2>
+                            <p class="installation-year">2014</p>
+                            <p class="installation-location">Kunstraum Kreuzberg/Bethanien TWS artist in residence, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/dog-place1.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="i'm just a dog TWS">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">I'M JUST A DOG_TWS</h2>
+                            <p class="installation-year">2014</p>
+                            <p class="installation-location">Kunstraum Kreuzberg/Bethanien TWS artist in residence, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/still-sigh-with-water.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sign with water TWS">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">still sign with water_TWS</h2>
+                            <p class="installation-year">2014</p>
+                            <p class="installation-location">Kunstraum Kreuzberg/Bethanien TWS artist in residence, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <!-- 2013 -->
+                    <a href="installation/dog-place2.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="i'm just a dog superbien!">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">I'M JUST A DOG_superbien!</h2>
+                            <p class="installation-year">2013</p>
+                            <p class="installation-location">Superbien!, Berlin GERMANY</p>
                         </div>
                     </a>
                 </div>
@@ -476,8 +532,8 @@
                     }
                 });
                 
-                // 收集年份分组中的安装项目图片
-                document.querySelectorAll('.year-items .installation-image img').forEach(img => {
+                // 收集项目列表中的图片
+                document.querySelectorAll('.projects-items .installation-image img').forEach(img => {
                     if (img.src && !imageUrls.includes(img.src)) {
                         imageUrls.push(img.src);
                     }
