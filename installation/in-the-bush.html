@@ -339,7 +339,7 @@
 <body>
     <!-- Navigation -->
     <header class="header">
-        <div class="logo" onclick="window.location.href='../index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUM</div>
+        <div class="logo" onclick="window.location.href='../index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUMI</div>
         <nav class="nav-desktop">
             <a href="../index.html">TOP</a>
             <a href="../project.html">PROJECT</a>
@@ -367,12 +367,13 @@
 
     <!-- Main Content -->
     <main>
-        <a href="../installation.html" class="back-link">← Back to INSTALLATION</a>
+        <a href="../installation.html#in-the-bush" class="back-link">← Back to INSTALLATION</a>
         <div class="project-header">
             <img src="../images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="In the bush">
         </div>
 
         <div class="project-content">
+            <h1 class="project-title">in the bush_NAKANOJYO</h1>
             <p class="project-description">An installation that merges natural and artificial spaces. Through the reconstruction of jungle environments, it creates a spatial experience between reality and illusion, reflecting on the relationship between humans and nature.
 
 This work transforms the gallery space into an immersive environment where viewers can explore the boundaries between the wild and the cultivated, the organic and the constructed. Each element carefully placed to evoke the sensation of being lost in a dense forest, while simultaneously aware of the artifice of the installation.</p>
@@ -419,35 +420,35 @@ This work transforms the gallery space into an immersive environment where viewe
             <div class="other-installations">
                 <h3>Other Installations</h3>
                 <div class="thumbnails-grid">
-                    <a href="../installation/chasing-little-past.html" class="thumbnail-item">
+                    <a href="chasing-little-pasts-tws.html" class="thumbnail-item">
                         <div class="thumbnail-image">
-                            <img src="../images/installation/chasing%20little%20past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
+                            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing little pasts_TWS">
                         </div>
-                        <p class="thumbnail-title">chasing little past</p>
+                        <p class="thumbnail-title">chasing little pasts_TWS</p>
                     </a>
-                    <a href="../installation/im-just-a-dog.html" class="thumbnail-item">
+                    <a href="im-just-a-dog-tws.html" class="thumbnail-item">
                         <div class="thumbnail-image">
-                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
+                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'M JUST A DOG_TWS">
                         </div>
-                        <p class="thumbnail-title">i'm just a dog</p>
+                        <p class="thumbnail-title">I'M JUST A DOG_TWS</p>
                     </a>
-                    <a href="../installation/still-sigh-with-water.html" class="thumbnail-item">
+                    <a href="still-sigh-with-water.html" class="thumbnail-item">
                         <div class="thumbnail-image">
-                            <img src="../images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sigh with water">
+                            <img src="../images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sign with water_TWS">
                         </div>
-                        <p class="thumbnail-title">still sigh with water</p>
+                        <p class="thumbnail-title">still sign with water_TWS</p>
                     </a>
-                    <a href="../installation/blink-blink-blink-toforget.html" class="thumbnail-item">
+                    <a href="blink-blink-blink-to-forget.html" class="thumbnail-item">
                         <div class="thumbnail-image">
-                            <img src="../images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink,blink,blink,to forget">
+                            <img src="../images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink3 to forget_NAKANOJYO">
                         </div>
-                        <p class="thumbnail-title">blink,blink,blink,to forget</p>
+                        <p class="thumbnail-title">blink3 to forget_NAKANOJYO</p>
                     </a>
-                    <a href="../installation/never-talk-in-the-garden.html" class="thumbnail-item">
+                    <a href="never-talk-in-the-garden.html" class="thumbnail-item">
                         <div class="thumbnail-image">
-                            <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden">
+                            <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden_TWS_HONGO">
                         </div>
-                        <p class="thumbnail-title">never talk in the garden</p>
+                        <p class="thumbnail-title">never talk in the garden_TWS_HONGO</p>
                     </a>
                 </div>
             </div>
@@ -523,6 +524,40 @@ This work transforms the gallery space into an immersive environment where viewe
                 }
             }
         });
+
+        // 添加触摸滑动切换功能
+        (function() {
+            let startX = 0;
+            let endX = 0;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            if (lightbox && lightboxImg) {
+                lightboxImg.addEventListener('touchstart', function(e) {
+                    if (e.touches.length === 1) {
+                        startX = e.touches[0].clientX;
+                    }
+                });
+                lightboxImg.addEventListener('touchmove', function(e) {
+                    if (e.touches.length === 1) {
+                        endX = e.touches[0].clientX;
+                    }
+                });
+                lightboxImg.addEventListener('touchend', function(e) {
+                    if (startX && endX) {
+                        let diff = endX - startX;
+                        if (Math.abs(diff) > 40) { // 滑动距离大于40px才触发
+                            if (diff < 0) {
+                                changeImage(1); // 向左滑，下一张
+                            } else {
+                                changeImage(-1); // 向右滑，上一张
+                            }
+                        }
+                    }
+                    startX = 0;
+                    endX = 0;
+                });
+            }
+        })();
     </script>
 </body>
 </html> 
