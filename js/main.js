@@ -112,4 +112,70 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             behavior: 'smooth'
         });
     });
+});
+
+// Lightbox functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    let currentIndex = 0;
+    let images = [];
+
+    // 收集所有图片
+    galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        if (img) {
+            images.push(img.src);
+            
+            // 点击缩略图打开lightbox
+            item.addEventListener('click', function() {
+                currentIndex = index;
+                openLightboxWithImage(images[currentIndex]);
+            });
+        }
+    });
+
+    // 打开lightbox并加载图片
+    function openLightboxWithImage(src) {
+        // 显示lightbox（如果尚未显示）
+        if (!lightbox.classList.contains('active')) {
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+        
+        // 创建新图片对象预加载
+        const img = new Image();
+        img.onload = function() {
+            // 图片加载完成后设置src
+            lightboxImg.src = src;
+        };
+        img.src = src;
+    }
+
+    // 关闭lightbox
+    window.closeLightbox = function() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // 恢复滚动
+    };
+
+    // 切换图片
+    window.changeImage = function(step) {
+        currentIndex = (currentIndex + step + images.length) % images.length;
+        openLightboxWithImage(images[currentIndex]);
+        event.stopPropagation();
+    };
+
+    // 键盘导航
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            changeImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeImage(1);
+        }
+    });
 }); 

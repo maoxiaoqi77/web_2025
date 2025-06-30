@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chasing a little past_KANAZAWA - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/lightbox-fix.css">
     <style>
         main {
             margin-top: 70px;
@@ -112,7 +111,10 @@
         }
 
         /* Lightbox styles */
-        .lightbox {
+        .optimized-lightbox {
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
             display: none;
             position: fixed;
             top: 0;
@@ -125,11 +127,12 @@
             align-items: center;
         }
 
-        .lightbox.active {
+        .optimized-lightbox.active {
             display: flex;
         }
 
-        .lightbox-content {
+        .optimized-lightbox-content {
+            flex-direction: column;
             max-width: 95%;
             max-height: 95%;
             width: auto;
@@ -140,19 +143,19 @@
             align-items: center;
         }
 
-        .lightbox-content img {
+        .optimized-lightbox-content img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 85vh;
             width: auto;
             height: auto;
             object-fit: contain;
             display: block;
         }
 
-        .lightbox-close {
+        .optimized-lightbox-close {
             position: absolute;
-            top: -50px;
-            right: -10px;
+            top: -40px;
+            right: 0;
             color: white;
             font-size: 30px;
             cursor: pointer;
@@ -161,7 +164,7 @@
             z-index: 10;
         }
 
-        .lightbox-nav {
+        .optimized-lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -176,16 +179,16 @@
             opacity: 0.7;
         }
 
-        .lightbox-nav:hover {
+        .optimized-lightbox-nav:hover {
             opacity: 1;
             color: #fff;
         }
 
-        .lightbox-prev {
+        .optimized-lightbox-prev {
             left: -70px;
         }
 
-        .lightbox-next {
+        .optimized-lightbox-next {
             right: -70px;
         }
 
@@ -283,27 +286,28 @@
                 gap: 10px;
             }
 
-            .lightbox-content {
+            .optimized-lightbox-content {
+            flex-direction: column;
                 max-width: 98%;
                 max-height: 98%;
             }
 
-            .lightbox-close {
+            .optimized-lightbox-close {
                 top: -40px;
                 right: 0;
                 font-size: 24px;
             }
 
-            .lightbox-nav {
+            .optimized-lightbox-nav {
                 font-size: 24px;
                 padding: 10px 15px;
             }
 
-            .lightbox-prev {
+            .optimized-lightbox-prev {
                 left: -50px;
             }
 
-            .lightbox-next {
+            .optimized-lightbox-next {
                 right: -50px;
             }
 
@@ -326,16 +330,42 @@
                 grid-template-columns: 1fr;
             }
 
-            .lightbox-prev {
+            .optimized-lightbox-prev {
                 left: 10px;
             }
 
-            .lightbox-next {
+            .optimized-lightbox-next {
                 right: 10px;
             }
         }
     </style>
-</head>
+
+        <style>
+            @media (max-width: 768px) {
+                .optimized-lightbox-prev {
+                    left: 10px !important;
+                }
+                
+                .optimized-lightbox-next {
+                    right: 10px !important;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .optimized-lightbox-prev {
+                    left: 5px !important;
+                    font-size: 20px;
+                    z-index: 1002;
+                }
+                
+                .optimized-lightbox-next {
+                    right: 5px !important;
+                    font-size: 20px;
+                    z-index: 1002;
+                }
+            }
+        </style>
+    </head>
 <body>
     <!-- Navigation -->
     <header class="header">
@@ -369,69 +399,70 @@
     <main>
         <a href="../installation.html#chasing-a-little-past-kanazawa" class="back-link">← Back to INSTALLATION</a>
         <div class="project-header">
-            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing a little past KANAZAWA">
+            <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2523_webpic_18EA_kioku_MG_8228_installation_000.jpg" alt="chasing a little past kanazawa">
         </div>
 
         <div class="project-content">
-            <h1 class="project-title">chasing a little past_KANAZAWA</h1>
-            <p class="project-description">An installation artwork about chasing fragments of memories, presented at the Culture City of East Asia 2018 Kanazawa "Altering Home" exhibition at the 21st Century Museum of Contemporary Art in Kanazawa, Japan. Through the interweaving of light and shadow, it reveals forgotten moments in the flow of time, guiding viewers to reconsider the connection between past and present.
+            <h1 class="project-title">chasing a little past_kanazawa</h1>
+            <p class="project-description">An installation exploring memory and place, presented at Kanazawa, Japan. The work creates a spatial narrative where fragments of memories are captured and displayed, inviting viewers to reflect on the ephemeral nature of recollection.
 
-This work explores the ephemeral nature of memory and how we constantly try to grasp fleeting moments from our past. The installation creates a space where visitors can experience the sensation of memories slipping through their fingers, just as they attempt to hold onto them.</p>
+Through the interplay of light, shadow, and projection, the installation creates a dreamlike environment where past and present converge, suggesting that our memories are constantly being reconstructed and reinterpreted.</p>
 
             <div class="media-gallery">
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(0)">
-                        <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing a little past KANAZAWA detail">
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2523_webpic_18EA_kioku_MG_8228_installation_000.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(0)">
                     </div>
-                    <!-- 更多图片可以在这里添加 -->
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8221.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(1)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8226.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(2)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8228.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(3)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8234.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(4)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8238.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(5)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8253.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(6)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8255.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(7)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8258.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(8)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8263.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(9)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8267.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(10)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8275.jpg" alt="chasing a little past kanazawa detail" onclick="openLightbox(11)">
+                    </div>
                 </div>
             </div>
 
             <div class="other-installations">
                 <h3>Other Installations</h3>
-                <div class="thumbnails-grid">
-                    <a href="in-the-bush.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="in the bush_NAKANOJYO">
-                        </div>
-                        <p class="thumbnail-title">in the bush_NAKANOJYO</p>
-                    </a>
-                    <a href="im-just-a-dog-tws.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'M JUST A DOG_TWS">
-                        </div>
-                        <p class="thumbnail-title">I'M JUST A DOG_TWS</p>
-                    </a>
-                    <a href="still-sigh-with-water.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sign with water_TWS">
-                        </div>
-                        <p class="thumbnail-title">still sign with water_TWS</p>
-                    </a>
-                    <a href="blink-blink-blink-to-forget.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink3 to forget_NAKANOJYO">
-                        </div>
-                        <p class="thumbnail-title">blink3 to forget_NAKANOJYO</p>
-                    </a>
-                    <a href="chasing-little-pasts-tws.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing little pasts_TWS">
-                        </div>
-                        <p class="thumbnail-title">chasing little pasts_TWS</p>
-                    </a>
-                </div>
+                <!-- 此部分将由other-installations.js自动生成 -->
             </div>
         </div>
     </main>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
+    <div class="optimized-lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="optimized-lightbox-content" onclick="event.stopPropagation()">
+            <button class="optimized-lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
             <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-next" onclick="changeImage(1)">&#8250;</button>
         </div>
     </div>
 
@@ -447,10 +478,22 @@ This work explores the ephemeral nature of memory and how we constantly try to g
     </footer>
 
     <script src="../js/script.js"></script>
+    <script src="../js/installation-data.js"></script>
+    <script src="../js/other-installations.js"></script>
     <script>
         const images = [
-            "../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg"
-            // 更多图片可以在这里添加
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2523_webpic_18EA_kioku_MG_8228_installation_000.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8221.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8226.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8228.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8234.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8238.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8253.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8255.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8258.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8263.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8267.jpg",
+            "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8275.jpg"
         ];
 
         let currentImageIndex = 0;
@@ -523,4 +566,4 @@ This work explores the ephemeral nature of memory and how we constantly try to g
         })();
     </script>
 </body>
-</html> 
+</html>

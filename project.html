@@ -198,18 +198,31 @@
         .intro-item {
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .intro-image {
+            position: relative;
             width: 100%;
-            aspect-ratio: 4/3;
+            height: 0;
+            padding-bottom: 66.67%; /* 2:3 比例 */
+            overflow: hidden;
             margin-bottom: 20px;
         }
 
         .intro-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .intro-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .intro-title {
@@ -227,12 +240,13 @@
 
         .see-more {
             display: inline-block;
-            margin-top: 15px;
+            margin-top: auto;
             color: #666;
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
             cursor: pointer;
+            align-self: flex-start;
         }
 
         .see-more:hover,
@@ -269,6 +283,7 @@
             }
 
             .intro-image {
+                padding-bottom: 56.25%; /* 16:9 比例，适合移动设备 */
                 margin-bottom: 15px;
             }
 
@@ -279,6 +294,10 @@
 
             .intro-description {
                 margin-bottom: 12px;
+            }
+
+            .see-more {
+                margin-top: 15px;
             }
         }
 
@@ -402,12 +421,14 @@
         /* 视频幻灯片样式 */
         .slide.video-slide {
             position: relative;
+            background: transparent;
         }
         
         .slide.video-slide video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            background: transparent;
         }
 
         /* 轮播图描述样式 */
@@ -448,7 +469,7 @@
     <!-- Mobile Navigation -->
     <nav class="nav-mobile">
         <a href="index.html">TOP</a>
-        <a href="project.html" class="active">PROJECT</a>
+        <a href="project.html">PROJECT</a>
         <a href="installation.html">INSTALLATION</a>
         <a href="sculpture.html">SCULPTURE</a>
         <a href="drawing.html">DRAWING</a>
@@ -460,71 +481,124 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_21.jpg" alt="Project Image 1">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_01.jpg" alt="Project Image 1">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_20.jpg" alt="Project Image 2">
-                </div>
-                <div class="slide video-slide">
-                    <video id="slideVideo" muted playsinline autoplay loop preload="auto" poster="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_15.jpg">
-                        <source src="images/installation/im%20just%20a%20dog/imjustadog_web.mp4" type="video/mp4">
-                        <source src="images/installation/im%20just%20a%20dog/imjustadog_web.webm" type="video/webm">
-                        <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_15.jpg" alt="视频无法播放时的替代图片">
-                    </video>
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_02.jpg" alt="Project Image 2">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_19.jpg" alt="Project Image 3">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_03.jpg" alt="Project Image 3">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_18.jpg" alt="Project Image 4">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_04.jpg" alt="Project Image 4">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_17.jpg" alt="Project Image 5">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_05.jpg" alt="Project Image 5">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_16.jpg" alt="Project Image 6">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_06.jpg" alt="Project Image 6">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_15.jpg" alt="Project Image 7">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_07.jpg" alt="Project Image 7">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_14.jpg" alt="Project Image 8">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_08.jpg" alt="Project Image 8">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_13.jpg" alt="Project Image 9">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_09.jpg" alt="Project Image 9">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_12.jpg" alt="Project Image 10">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_10.jpg" alt="Project Image 10">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_07.jpg" alt="Project Image 11">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_11.jpg" alt="Project Image 11">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_06.jpg" alt="Project Image 12">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_12.jpg" alt="Project Image 12">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_05.jpg" alt="Project Image 13">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_13.jpg" alt="Project Image 13">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_04.jpg" alt="Project Image 14">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_14.jpg" alt="Project Image 14">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_03.jpg" alt="Project Image 15">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_15.jpg" alt="Project Image 15">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_02.jpg" alt="Project Image 16">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_16.jpg" alt="Project Image 16">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_01.jpg" alt="Project Image 17">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_17.jpg" alt="Project Image 17">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_b_00.jpg" alt="Project Image 18">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_18.jpg" alt="Project Image 18">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_07.jpg" alt="Project Image 19">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_19.jpg" alt="Project Image 19">
                 </div>
                 <div class="slide">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_06.jpg" alt="Project Image 20">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_20.jpg" alt="Project Image 20">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_21.jpg" alt="Project Image 21">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_22.jpg" alt="Project Image 22">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_23.jpg" alt="Project Image 23">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_24.jpg" alt="Project Image 24">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_25.jpg" alt="Project Image 25">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_26.jpg" alt="Project Image 26">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_27.jpg" alt="Project Image 27">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_28.jpg" alt="Project Image 28">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_29.jpg" alt="Project Image 29">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_30.jpg" alt="Project Image 30">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_a_31.jpg" alt="Project Image 31">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_00.jpg" alt="Project Image 32">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_01.jpg" alt="Project Image 33">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_02.jpg" alt="Project Image 34">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_03.jpg" alt="Project Image 35">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_04.jpg" alt="Project Image 36">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_05.jpg" alt="Project Image 37">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_06.jpg" alt="Project Image 38">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_07.jpg" alt="Project Image 39">
+                </div>
+                <div class="slide">
+                    <img src="images/02project/slideshow/2237_webpic_project_002_b_09.jpg" alt="Project Image 40">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -546,22 +620,26 @@
         <div class="project-intro">
             <div class="intro-item">
                 <div class="intro-image">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_02.jpg" alt="Neighborhood Orchestra">
+                    <img src="images/02project/project/01_2025_streetview_webinfo.jpg" alt="An alley to K Market Street">
                 </div>
-                <h2 class="intro-title">Neighborhood Orchestra</h2>
-                <p class="intro-description">
-                    A project that records the sounds of the city and weaves stories from the memories of places. We explore the soundscapes hidden in everyday life and propose new ways of seeing the city.
-                </p>
+                <div class="intro-content">
+                    <h2 class="intro-title">An alley to K Market Street</h2>
+                    <p class="intro-description">
+                        A project that records the sounds of the city and weaves stories from the memories of places. We explore the soundscapes hidden in everyday life and propose new ways of seeing the city.
+                    </p>
+                </div>
                 <a class="see-more" data-target="project1">See More</a>
             </div>
             <div class="intro-item">
                 <div class="intro-image">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_15.jpg" alt="Project Name">
+                    <img src="images/02project/project/02_2527_webpic_sketch_kuuchuuteien.jpg" alt="Talking about an anonymous story">
                 </div>
-                <h2 class="intro-title">Project Name</h2>
-                <p class="intro-description">
-                    A project exploring the potential of alley spaces that exist in the gaps of the city. We discover new value in these alleys as places where traces of people's lives intersect with urban memories.
-                </p>
+                <div class="intro-content">
+                    <h2 class="intro-title">Talking about an anonymous story</h2>
+                    <p class="intro-description">
+                        A project exploring the potential of alley spaces that exist in the gaps of the city. We discover new value in these alleys as places where traces of people's lives intersect with urban memories.
+                    </p>
+                </div>
                 <a class="see-more" data-target="project2">See More</a>
             </div>
         </div>
@@ -569,7 +647,7 @@
         <section class="project-section">
             <div class="project-preview">
                 <div class="project-preview-content">
-                    <h2 class="project-title">Neighborhood Orchestra</h2>
+                    <h2 class="project-title">An alley to K Market Street</h2>
                     
                     <div class="project-slider">
                         <div class="project-slides">
@@ -640,7 +718,7 @@
         <section class="project-section">
             <div class="project-preview">
                 <div class="project-preview-content">
-                    <h2 class="project-title">Project Name</h2>
+                    <h2 class="project-title">Talking about an anonymous story</h2>
                     <p class="project-description">
                         A project exploring the potential of alley spaces that exist in the gaps of the city. We discover new value in these alleys as places where traces of people's lives intersect with urban memories.
                     </p>
@@ -691,6 +769,7 @@
     <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 幻灯片功能
             const slides = document.querySelectorAll('.slide');
             const prevBtn = document.querySelector('.slider-nav.prev');
             const nextBtn = document.querySelector('.slider-nav.next');
@@ -700,11 +779,10 @@
             // 自动轮播定时器
             let slideInterval = setInterval(nextSlide, 6000);
 
-            // 显示指定索引的幻灯片
+            // 显示特定幻灯片
             function showSlide(index) {
                 slides.forEach(slide => slide.classList.remove('active'));
                 
-                // 处理循环
                 if (index >= totalSlides) {
                     currentSlide = 0;
                 } else if (index < 0) {

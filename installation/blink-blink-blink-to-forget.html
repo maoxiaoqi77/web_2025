@@ -6,6 +6,7 @@
     <title>Blink,blink,blink,to forget - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/lightbox-fix.css">
     <style>
         main {
             margin-top: 70px;
@@ -119,7 +120,10 @@
         }
 
         /* Lightbox styles */
-        .lightbox {
+        .optimized-lightbox {
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
             display: none;
             position: fixed;
             top: 0;
@@ -132,11 +136,12 @@
             align-items: center;
         }
 
-        .lightbox.active {
+        .optimized-lightbox.active {
             display: flex;
         }
 
-        .lightbox-content {
+        .optimized-lightbox-content {
+            flex-direction: column;
             max-width: 95%;
             max-height: 95%;
             width: auto;
@@ -147,19 +152,19 @@
             align-items: center;
         }
 
-        .lightbox-content img {
+        .optimized-lightbox-content img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 85vh;
             width: auto;
             height: auto;
             object-fit: contain;
             display: block;
         }
 
-        .lightbox-close {
+        .optimized-lightbox-close {
             position: absolute;
-            top: -50px;
-            right: -10px;
+            top: -40px;
+            right: 0;
             color: white;
             font-size: 30px;
             cursor: pointer;
@@ -168,7 +173,7 @@
             z-index: 10;
         }
 
-        .lightbox-nav {
+        .optimized-lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -183,16 +188,16 @@
             opacity: 0.7;
         }
 
-        .lightbox-nav:hover {
+        .optimized-lightbox-nav:hover {
             opacity: 1;
             color: #fff;
         }
 
-        .lightbox-prev {
+        .optimized-lightbox-prev {
             left: -70px;
         }
 
-        .lightbox-next {
+        .optimized-lightbox-next {
             right: -70px;
         }
 
@@ -299,27 +304,28 @@
                 gap: 20px;
             }
 
-            .lightbox-content {
+            .optimized-lightbox-content {
+            flex-direction: column;
                 max-width: 98%;
                 max-height: 98%;
             }
 
-            .lightbox-close {
+            .optimized-lightbox-close {
                 top: -40px;
                 right: 0;
                 font-size: 24px;
             }
 
-            .lightbox-nav {
+            .optimized-lightbox-nav {
                 font-size: 24px;
                 padding: 10px 15px;
             }
 
-            .lightbox-prev {
+            .optimized-lightbox-prev {
                 left: -50px;
             }
 
-            .lightbox-next {
+            .optimized-lightbox-next {
                 right: -50px;
             }
 
@@ -342,12 +348,37 @@
                 grid-template-columns: 1fr;
             }
 
-            .lightbox-prev {
+            .optimized-lightbox {
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
+                padding: 0;
+            }
+
+            .optimized-lightbox-content {
+            flex-direction: column;
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 50px 10px 20px;
+            }
+
+            .optimized-lightbox-close {
+                top: 10px;
+                right: 10px;
+                z-index: 1010;
+            }
+
+            .optimized-lightbox-prev {
                 left: 10px;
             }
 
-            .lightbox-next {
+            .optimized-lightbox-next {
                 right: 10px;
+            }
+
+            .optimized-lightbox-info-section {
+                margin-bottom: 30px;
             }
         }
 
@@ -356,27 +387,28 @@
             gap: 20px;
         }
 
-        .lightbox-content {
+        .optimized-lightbox-content {
+            flex-direction: column;
             max-width: 98%;
             max-height: 98%;
         }
 
-        .lightbox-close {
+        .optimized-lightbox-close {
             top: -40px;
             right: 0;
             font-size: 24px;
         }
 
-        .lightbox-nav {
+        .optimized-lightbox-nav {
             font-size: 24px;
             padding: 10px 15px;
         }
 
-        .lightbox-prev {
+        .optimized-lightbox-prev {
             left: -50px;
         }
 
-        .lightbox-next {
+        .optimized-lightbox-next {
             right: 10px;
         }
     </style>
@@ -414,7 +446,7 @@
     <main>
         <a href="../installation.html#blink-blink-blink-to-forget" class="back-link">← Back to INSTALLATION</a>
         <div class="project-header">
-            <img src="../images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink,blink,blink,to forget">
+            <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/01_2523_webpic_IMG_3030.jpg" alt="blink,blink,blink,to forget">
         </div>
 
         <div class="project-content">
@@ -424,103 +456,51 @@
 This work creates an immersive environment where light becomes a metaphor for consciousness, blinking in and out of existence like memories that surface and disappear. The installation invites viewers to contemplate the paradoxical nature of forgetting as both loss and liberation.</p>
 
             <div class="media-gallery">
-                <div class="video-section">
-                    <div class="videos-grid">
-                        <div class="video-item">
-                            <video controls>
-                                <source src="../images/installation/blink,blink,blink,to%20forget/00_blink3toforget_02_web.mp4" type="video/mp4">
-                                <source src="../images/installation/blink,blink,blink,to%20forget/00_blink3toforget_02_web.webm" type="video/webm">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_2822.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(0)">
+                        <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/01_2523_webpic_IMG_3030.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(0)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_2876.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(1)">
+                        <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3040.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(1)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3030.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(2)">
+                        <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3100.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(2)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3040.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(3)">
+                        <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3135.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(3)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3100.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(4)">
+                        <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3230.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(4)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3118.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(5)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3135.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(6)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(7)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3182.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(8)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3230.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(9)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3255_3240.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(10)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3299_3255.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(11)">
+                        <img src="../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3255.jpg" alt="Blink,blink,blink,to forget detail" onclick="openLightbox(5)">
                     </div>
                 </div>
             </div>
 
             <div class="other-installations">
                 <h3>Other Installations</h3>
-                <div class="thumbnails-grid">
-                    <a href="../installation/chasing-little-past.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="Chasing Little Past">
-                        </div>
-                        <p class="thumbnail-title">chasing little past</p>
-                    </a>
-                    <a href="../installation/im-just-a-dog.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'm just a dog">
-                        </div>
-                        <p class="thumbnail-title">i'm just a dog</p>
-                    </a>
-                    <a href="../installation/in-the-bush.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="In the bush">
-                        </div>
-                        <p class="thumbnail-title">in the bush</p>
-                    </a>
-                    <a href="../installation/still-sigh-with-water.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sigh with water">
-                        </div>
-                        <p class="thumbnail-title">still sigh with water</p>
-                    </a>
-                    <a href="../installation/never-talk-in-the-garden.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden">
-                        </div>
-                        <p class="thumbnail-title">never talk in the garden</p>
-                    </a>
-                </div>
+                <!-- 此部分将由other-installations.js自动生成 -->
             </div>
         </div>
     </main>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
+    <div class="optimized-lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="optimized-lightbox-content" onclick="event.stopPropagation()">
+            <button class="optimized-lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
             <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-next" onclick="changeImage(1)">&#8250;</button>
+            
+            <div class="optimized-lightbox-info-section">
+                <div class="optimized-lightbox-artwork-title" id="artwork-title">blink3 to forget</div>
+                <div class="optimized-lightbox-artwork-details">
+                    <div><span class="label">Year:</span> <span id="artwork-year">2020</span></div>
+                    <div><span class="label">Material:</span> <span id="artwork-medium">mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)</span></div>
+                    <div><span class="label">Size:</span> <span id="artwork-size">Variable Dimensions</span></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -536,20 +516,16 @@ This work creates an immersive environment where light becomes a metaphor for co
     </footer>
 
     <script src="../js/script.js"></script>
+    <script src="../js/installation-data.js"></script>
+    <script src="../js/other-installations.js"></script>
     <script>
         const images = [
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_2822.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_2876.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3030.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3040.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3100.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3118.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3135.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3182.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3230.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3255_3240.jpg",
-            "../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3299_3255.jpg"
+            "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/01_2523_webpic_IMG_3030.jpg",
+            "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3040.jpg",
+            "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3100.jpg",
+            "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3135.jpg",
+            "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3230.jpg",
+            "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3255.jpg"
         ];
 
         let currentImageIndex = 0;

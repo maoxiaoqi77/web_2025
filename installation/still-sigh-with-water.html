@@ -6,6 +6,7 @@
     <title>still sign with water_TWS - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/lightbox-fix.css">
     <style>
         main {
             margin-top: 70px;
@@ -72,12 +73,17 @@
 
         .video-section {
             margin-bottom: 60px;
+            max-height: 80vh; /* 限制视频容器最大高度为视口高度的80% */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .video-section video {
             width: 100%;
             height: auto;
-            object-fit: cover;
+            max-height: 80vh; /* 限制视频最大高度为视口高度的80% */
+            object-fit: contain; /* 确保视频完整显示 */
         }
 
         .gallery-grid {
@@ -142,7 +148,7 @@
 
         .lightbox-content img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 85vh;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -151,8 +157,8 @@
 
         .lightbox-close {
             position: absolute;
-            top: -50px;
-            right: -10px;
+            top: -40px;
+            right: 0;
             color: white;
             font-size: 30px;
             cursor: pointer;
@@ -369,103 +375,52 @@
     <main>
         <a href="../installation.html#still-sigh-with-water" class="back-link">← Back to INSTALLATION</a>
         <div class="project-header">
-            <img src="../images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sigh with water">
+            <img src="../images/02installation/02_024_still_sign_with_water_TWS/00_2526_webpic_IMG_1115.jpg" alt="still sign with water">
         </div>
 
         <div class="project-content">
             <h1 class="project-title">still sign with water_TWS</h1>
-            <p class="project-description">An installation exploring the relationship between water, light, and perception. Through the interplay of reflective surfaces and subtle movements, the work creates a meditative space where viewers can contemplate the ephemeral nature of existence.
+            <p class="project-description">An installation exploring the relationship between water and human perception. Through the use of light, reflection, and subtle movement, it creates a meditative space where viewers can contemplate the ephemeral nature of existence.
 
-The installation combines video projections with physical elements to create an immersive environment that shifts and changes with the viewer's perspective. The flowing water imagery serves as a metaphor for the passage of time and the constant state of flux in our lives and memories.</p>
+The work features a delicate balance between stillness and motion, with water serving as both a physical medium and a metaphorical element representing the flow of time and consciousness.</p>
 
             <div class="media-gallery">
-                <div class="video-section">
-                    <video controls>
-                        <source src="../images/installation/still%20sign%20with%20water/stillsignwithwater_web.mp4" type="video/mp4">
-                        <source src="../images/installation/still%20sign%20with%20water/stillsignwithwater_web.webm" type="video/webm">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1101.jpg" alt="still sign with water detail" onclick="openLightbox(0)">
+                        <img src="../images/02installation/02_024_still_sign_with_water_TWS/00_2526_webpic_IMG_1115.jpg" alt="still sign with water detail" onclick="openLightbox(0)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1103.jpg" alt="still sign with water detail" onclick="openLightbox(1)">
+                        <img src="../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1101.jpg" alt="still sign with water detail" onclick="openLightbox(1)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1105.jpg" alt="still sign with water detail" onclick="openLightbox(2)">
+                        <img src="../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1222.jpg" alt="still sign with water detail" onclick="openLightbox(2)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1106.jpg" alt="still sign with water detail" onclick="openLightbox(3)">
+                        <img src="../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1369.jpg" alt="still sign with water detail" onclick="openLightbox(3)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1108.jpg" alt="still sign with water detail" onclick="openLightbox(4)">
+                        <img src="../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1466.jpg" alt="still sign with water detail" onclick="openLightbox(4)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1111.jpg" alt="still sign with water detail" onclick="openLightbox(5)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1116.jpg" alt="still sign with water detail" onclick="openLightbox(6)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1117.jpg" alt="still sign with water detail" onclick="openLightbox(7)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1118.jpg" alt="still sign with water detail" onclick="openLightbox(8)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1123.jpg" alt="still sign with water detail" onclick="openLightbox(9)">
+                        <img src="../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1496.jpg" alt="still sign with water detail" onclick="openLightbox(5)">
                     </div>
                 </div>
             </div>
 
             <div class="other-installations">
                 <h3>Other Installations</h3>
-                <div class="thumbnails-grid">
-                    <a href="in-the-bush.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="in the bush_NAKANOJYO">
-                        </div>
-                        <p class="thumbnail-title">in the bush_NAKANOJYO</p>
-                    </a>
-                    <a href="dog-place1.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'M JUST A DOG_TWS">
-                        </div>
-                        <p class="thumbnail-title">I'M JUST A DOG_TWS</p>
-                    </a>
-                    <a href="place1.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing little pasts_TWS">
-                        </div>
-                        <p class="thumbnail-title">chasing little pasts_TWS</p>
-                    </a>
-                    <a href="blink-blink-blink-to-forget.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/blink,blink,blink,to%20forget/2236_webpic_IMG_3030_installation_000.jpg" alt="blink3 to forget_NAKANOJYO">
-                        </div>
-                        <p class="thumbnail-title">blink3 to forget_NAKANOJYO</p>
-                    </a>
-                    <a href="never-talk-in-the-garden.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/blink,blink,blink,to%20forget/1543_webpic_IMG_3156.jpg" alt="never talk in the garden_TWS_HONGO">
-                        </div>
-                        <p class="thumbnail-title">never talk in the garden_TWS_HONGO</p>
-                    </a>
-                </div>
+                <!-- 此部分将由other-installations.js自动生成 -->
             </div>
         </div>
     </main>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
+    <div class="optimized-lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="optimized-lightbox-content" onclick="event.stopPropagation()">
+            <button class="optimized-lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
             <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-next" onclick="changeImage(1)">&#8250;</button>
         </div>
     </div>
 
@@ -481,18 +436,16 @@ The installation combines video projections with physical elements to create an 
     </footer>
 
     <script src="../js/script.js"></script>
+    <script src="../js/installation-data.js"></script>
+    <script src="../js/other-installations.js"></script>
     <script>
         const images = [
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1101.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1103.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1105.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1106.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1108.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1111.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1116.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1117.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1118.jpg",
-            "../images/installation/still%20sign%20with%20water/1449_webpic_IMG_1123.jpg"
+            "../images/02installation/02_024_still_sign_with_water_TWS/00_2526_webpic_IMG_1115.jpg",
+            "../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1101.jpg",
+            "../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1222.jpg",
+            "../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1369.jpg",
+            "../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1466.jpg",
+            "../images/02installation/02_024_still_sign_with_water_TWS/1449_webpic_IMG_1496.jpg"
         ];
 
         let currentImageIndex = 0;
