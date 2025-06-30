@@ -70,16 +70,17 @@
         /* 视频幻灯片样式 */
         .slide.video-slide {
             position: relative;
+            background: transparent;
         }
         
         .slide.video-slide video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            background: #f5f5f5;
+            background: transparent;
         }
 
-        /* Lightbox styles - updated for artwork details */
+        /* Lightbox styles */
         .lightbox {
             display: none;
             position: fixed;
@@ -152,6 +153,18 @@
             color: #333;
             display: inline-block;
             width: 80px;
+            vertical-align: top;
+        }
+
+        .artwork-details div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .artwork-details span:not(.label) {
+            display: inline-block;
+            max-width: calc(100% - 85px);
         }
 
         .lightbox-close {
@@ -255,7 +268,26 @@
                 font-size: 18px;
             }
 
+            .lightbox {
+                overflow-y: auto;
+            }
+
+            .lightbox-content {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+                margin: 20px auto;
+                overflow-y: visible;
+            }
+
+            .lightbox-image-section {
+                flex: none;
+                width: 100%;
+            }
+
             .lightbox-info-section {
+                flex: none;
+                width: 100%;
                 padding: 15px;
             }
 
@@ -276,7 +308,13 @@
             }
 
             .lightbox-content {
-                height: 90%;
+                width: 95%;
+                margin: 50px auto 20px;
+            }
+
+            .lightbox-close {
+                top: -30px;
+                right: 0;
             }
         }
     </style>
@@ -315,142 +353,95 @@
         <!-- Slider -->
         <div class="slider">
             <div class="slides">
-                <!-- Drawing 2025 - Swimmer -->
                 <div class="slide active">
-                    <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg" alt="Drawing 1">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_001_1938_ipad_IMG_7887.jpg" alt="Drawing 1">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="Drawing 2">
-                </div>
-                <div class="slide video-slide">
-                    <video id="slideVideo" muted playsinline autoplay loop preload="auto" poster="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg">
-                        <source src="images/installation/blink,blink,blink,to%20forget/00_blink3toforget_02_web.mp4" type="video/mp4">
-                        <source src="images/installation/blink,blink,blink,to%20forget/00_blink3toforget_02_web.webm" type="video/webm">
-                        <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="视频无法播放时的替代图片">
-                    </video>
+                    <img src="images/02drawing/00_SLIDESHOW/DS_002_1938_ipad_IMG_7909.jpg" alt="Drawing 2">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg" alt="Drawing 3">
-                </div>
-                <!-- Drawing 2025 - Object -->
-                <div class="slide">
-                    <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_1.jpg" alt="Drawing 4">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_003_2502_ipad_IMG_8860.jpg" alt="Drawing 3">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_15.jpg" alt="Drawing 5">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_003_2504_ipad_kiyomi_drawing_object_4.jpg" alt="Drawing 4">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_28.jpg" alt="Drawing 6">
-                </div>
-                <!-- Drawing 2024 -->
-                <div class="slide">
-                    <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8854_8860_8851.jpg" alt="Drawing 7">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_005_2521_webpic_IMG_8715.jpg" alt="Drawing 5">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9113.jpg" alt="Drawing 8">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_006_2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg のコピー.jpg" alt="Drawing 6">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8890.jpg" alt="Drawing 9">
-                </div>
-                <!-- Drawing 2023 -->
-                <div class="slide">
-                    <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_01.jpg" alt="Drawing 10">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_007_2504_ipad_kiyomi_drawing_object_1.jpg" alt="Drawing 7">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_04.jpg" alt="Drawing 11">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_008_1939_ipad_IMG_7941.jpg" alt="Drawing 8">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/drawing_2023_web/2501_web_IMG_8727_02.jpg" alt="Drawing 12">
-                </div>
-                <!-- Drawing 2021 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2021/2236_webpic_drawing_001.jpg" alt="Drawing 13">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_009_2504_ipad_kiyomi_drawing_object_28.jpg" alt="Drawing 9">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2021/2236_webpic_drawing_006.jpg" alt="Drawing 14">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_010_2502_ipad_IMG_8854_8860_8851.jpg" alt="Drawing 10">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2021/2236_webpic_drawing_012.jpg" alt="Drawing 15">
-                </div>
-                <!-- Drawing 2016 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2016_01/1630_webpic_IMG_3503.jpg" alt="Drawing 16">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_011_2504_ipad_kiyomi_drawing_object_15.jpg" alt="Drawing 11">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2016_01/1630_webpic_IMG_3527.jpg" alt="Drawing 17">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_012_2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg のコピー.jpg" alt="Drawing 12">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2016_01/1630_webpic_IMG_3534.jpg" alt="Drawing 18">
-                </div>
-                <!-- Drawing 2015 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2015_01/1630_webpic_IMG_0009.jpg" alt="Drawing 19">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_013_2521_webpic_IMG_9146.jpg" alt="Drawing 13">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2015_01/1630_webpic_IMG_0030.jpg" alt="Drawing 20">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_014_2504_ipad_kiyomi_drawing_object_22.jpg" alt="Drawing 14">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2015_01/1630_webpic_IMG_0042.jpg" alt="Drawing 21">
-                </div>
-                <!-- Drawing 2014-02 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2014_02/1451_webpic_IMG_2230.jpg" alt="Drawing 22">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_015_2521_webpic_IMG_8710.jpg" alt="Drawing 15">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2014_02/1451_webpic_IMG_2265.jpg" alt="Drawing 23">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_016_2504_ipad_kiyomi_drawing_object_14.jpg" alt="Drawing 16">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2014_02/1519_webpic_IMG_2283.jpg" alt="Drawing 24">
-                </div>
-                <!-- Drawing 2014-01 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2014_01/1451_webpic_IMG_2156.jpg" alt="Drawing 25">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_017_1939_ipad_IMG_7742.jpg" alt="Drawing 17">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2014_01/1451_webpic_IMG_2191.jpg" alt="Drawing 26">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_018_2504_ipad_kiyomi_drawing_object_9.jpg" alt="Drawing 18">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2014_01/1513_webpic_IMG_2781.jpg" alt="Drawing 27">
-                </div>
-                <!-- Drawing 2013-02 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2013_02/1451_WEBPIC_IMG_2459.jpg" alt="Drawing 28">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_019_2521_webpic_IMG_8712.jpg" alt="Drawing 19">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2013_02/1451_webpic_IMG_2513.jpg" alt="Drawing 29">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_020_2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg のコピー.jpg" alt="Drawing 20">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2013_02/1513_webpic_IMG_2513.jpg" alt="Drawing 30">
-                </div>
-                <!-- Drawing 2013-01 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2013_01/1451_webpic_IMG_0089.jpg" alt="Drawing 31">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_021_2504_ipad_kiyomi_drawing_object_24.jpg" alt="Drawing 21">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2013_01/1451_webpic_IMG_0132_0141.jpg" alt="Drawing 32">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_022_2521_webpic_IMG_9145.jpg" alt="Drawing 22">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2013_01/1513_webpic_IMG_0132_0141.jpg" alt="Drawing 33">
-                </div>
-                <!-- Drawing 2012 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2012/1513_webpic_IMG_7426.jpg" alt="Drawing 34">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_023_1938_ipad_IMG_7929.jpg" alt="Drawing 23">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2012/1513_webpic_IMG_7496.jpg" alt="Drawing 35">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_024_2502_ipad_IMG_8863.jpg" alt="Drawing 24">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2012/1513_webpic_IMG_7520.jpg" alt="Drawing 36">
-                </div>
-                <!-- Drawing 2011 -->
-                <div class="slide">
-                    <img src="images/drawing/D_2011_01/1451_WEBPIC_IMG_8514.jpg" alt="Drawing 37">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_025_2521_webpic_IMG_0780.jpg" alt="Drawing 25">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2011_01/1451_webpic_IMG_8457.jpg" alt="Drawing 38">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_026_2501_web_IMG_8727_02.jpg" alt="Drawing 26">
                 </div>
                 <div class="slide">
-                    <img src="images/drawing/D_2011_01/basic_IMG_9286.jpg" alt="Drawing 39">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_027_2504_ipad_kiyomi_drawing_object_19.jpg" alt="Drawing 27">
+                </div>
+                <div class="slide">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_028_2504_ipad_kiyomi_drawing_object_13.jpg" alt="Drawing 28">
+                </div>
+                <div class="slide">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_029_1939_ipad_IMG_7715.jpg" alt="Drawing 29">
+                </div>
+                <div class="slide">
+                    <img src="images/02drawing/00_SLIDESHOW/DS_030_1938_ipad_IMG_7893.jpg" alt="Drawing 30">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -468,34 +459,34 @@
                 <h3>Drawing 2025 - Swimmer</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg" alt="Swimmer drawing" onclick="openLightbox(0)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg" alt="Swimmer drawing" onclick="openLightbox(0)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.jpg" alt="Swimmer drawing" onclick="openLightbox(1)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.jpg" alt="Swimmer drawing" onclick="openLightbox(1)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.jpg" alt="Swimmer drawing" onclick="openLightbox(2)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.jpg" alt="Swimmer drawing" onclick="openLightbox(2)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.jpg" alt="Swimmer drawing" onclick="openLightbox(3)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.jpg" alt="Swimmer drawing" onclick="openLightbox(3)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="Swimmer drawing" onclick="openLightbox(4)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg" alt="Swimmer drawing" onclick="openLightbox(4)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.jpg" alt="Swimmer drawing" onclick="openLightbox(5)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.jpg" alt="Swimmer drawing" onclick="openLightbox(5)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.jpg" alt="Swimmer drawing" onclick="openLightbox(6)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.jpg" alt="Swimmer drawing" onclick="openLightbox(6)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg" alt="Swimmer drawing" onclick="openLightbox(7)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg" alt="Swimmer drawing" onclick="openLightbox(7)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg" alt="Swimmer drawing" onclick="openLightbox(8)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg" alt="Swimmer drawing" onclick="openLightbox(8)">
                     </div>
                     <div class="gallery-item">
-                        <img class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.jpg" alt="Swimmer drawing" onclick="openLightbox(9)">
+                        <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.jpg" alt="Swimmer drawing" onclick="openLightbox(9)">
                     </div>
                 </div>
             </div>
@@ -505,88 +496,88 @@
                 <h3>Drawing 2025 - Object</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_1.jpg" alt="Object drawing" onclick="openLightbox(10)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1.jpg" alt="Object drawing" onclick="openLightbox(10)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_2.jpg" alt="Object drawing" onclick="openLightbox(11)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2.jpg" alt="Object drawing" onclick="openLightbox(11)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_3.jpg" alt="Object drawing" onclick="openLightbox(12)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3.jpg" alt="Object drawing" onclick="openLightbox(12)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_4.jpg" alt="Object drawing" onclick="openLightbox(13)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4.jpg" alt="Object drawing" onclick="openLightbox(13)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_5.jpg" alt="Object drawing" onclick="openLightbox(14)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5.jpg" alt="Object drawing" onclick="openLightbox(14)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_6.jpg" alt="Object drawing" onclick="openLightbox(15)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6.jpg" alt="Object drawing" onclick="openLightbox(15)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_7.jpg" alt="Object drawing" onclick="openLightbox(16)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7.jpg" alt="Object drawing" onclick="openLightbox(16)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_8.jpg" alt="Object drawing" onclick="openLightbox(17)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8.jpg" alt="Object drawing" onclick="openLightbox(17)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_9.jpg" alt="Object drawing" onclick="openLightbox(18)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9.jpg" alt="Object drawing" onclick="openLightbox(18)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_10.jpg" alt="Object drawing" onclick="openLightbox(19)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10.jpg" alt="Object drawing" onclick="openLightbox(19)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_11.jpg" alt="Object drawing" onclick="openLightbox(20)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11.jpg" alt="Object drawing" onclick="openLightbox(20)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_12.jpg" alt="Object drawing" onclick="openLightbox(21)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12.jpg" alt="Object drawing" onclick="openLightbox(21)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_13.jpg" alt="Object drawing" onclick="openLightbox(22)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13.jpg" alt="Object drawing" onclick="openLightbox(22)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_14.jpg" alt="Object drawing" onclick="openLightbox(23)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14.jpg" alt="Object drawing" onclick="openLightbox(23)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_15.jpg" alt="Object drawing" onclick="openLightbox(24)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15.jpg" alt="Object drawing" onclick="openLightbox(24)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_16.jpg" alt="Object drawing" onclick="openLightbox(25)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16.jpg" alt="Object drawing" onclick="openLightbox(25)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_17.jpg" alt="Object drawing" onclick="openLightbox(26)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17.jpg" alt="Object drawing" onclick="openLightbox(26)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_18.jpg" alt="Object drawing" onclick="openLightbox(27)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18.jpg" alt="Object drawing" onclick="openLightbox(27)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_19.jpg" alt="Object drawing" onclick="openLightbox(28)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19.jpg" alt="Object drawing" onclick="openLightbox(28)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_20.jpg" alt="Object drawing" onclick="openLightbox(29)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20.jpg" alt="Object drawing" onclick="openLightbox(29)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_21.jpg" alt="Object drawing" onclick="openLightbox(30)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21.jpg" alt="Object drawing" onclick="openLightbox(30)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_22.jpg" alt="Object drawing" onclick="openLightbox(31)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22.jpg" alt="Object drawing" onclick="openLightbox(31)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_23.jpg" alt="Object drawing" onclick="openLightbox(32)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23.jpg" alt="Object drawing" onclick="openLightbox(32)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_24.jpg" alt="Object drawing" onclick="openLightbox(33)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24.jpg" alt="Object drawing" onclick="openLightbox(33)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_25.jpg" alt="Object drawing" onclick="openLightbox(34)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25.jpg" alt="Object drawing" onclick="openLightbox(34)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_26.jpg" alt="Object drawing" onclick="openLightbox(35)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26.jpg" alt="Object drawing" onclick="openLightbox(35)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_27.jpg" alt="Object drawing" onclick="openLightbox(36)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27.jpg" alt="Object drawing" onclick="openLightbox(36)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_28.jpg" alt="Object drawing" onclick="openLightbox(37)">
+                        <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28.jpg" alt="Object drawing" onclick="openLightbox(37)">
                     </div>
                 </div>
             </div>
@@ -596,76 +587,67 @@
                 <h3>Drawing 2024</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8854_8860_8851.jpg" alt="Drawing 2024" onclick="openLightbox(38)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8851.jpg" alt="Drawing 2024" onclick="openLightbox(38)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8836_8866_8872.jpg" alt="Drawing 2024" onclick="openLightbox(39)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8854.jpg" alt="Drawing 2024" onclick="openLightbox(39)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8890_8887_8878.jpg" alt="Drawing 2024" onclick="openLightbox(40)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8860.jpg" alt="Drawing 2024" onclick="openLightbox(40)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9113.jpg" alt="Drawing 2024" onclick="openLightbox(41)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8863.jpg" alt="Drawing 2024" onclick="openLightbox(41)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9212.jpg" alt="Drawing 2024" onclick="openLightbox(42)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8866.jpg" alt="Drawing 2024" onclick="openLightbox(42)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9206.jpg" alt="Drawing 2024" onclick="openLightbox(43)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8872.jpg" alt="Drawing 2024" onclick="openLightbox(43)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9200.jpg" alt="Drawing 2024" onclick="openLightbox(44)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8878.jpg" alt="Drawing 2024" onclick="openLightbox(44)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9116.jpg" alt="Drawing 2024" onclick="openLightbox(45)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8887.jpg" alt="Drawing 2024" onclick="openLightbox(45)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9110.jpg" alt="Drawing 2024" onclick="openLightbox(46)">
+                        <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8890.jpg" alt="Drawing 2024" onclick="openLightbox(46)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9102.jpg" alt="Drawing 2024" onclick="openLightbox(47)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9102.jpg" alt="Drawing 2024" onclick="openLightbox(47)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9105.jpg" alt="Drawing 2024" onclick="openLightbox(48)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9105.jpg" alt="Drawing 2024" onclick="openLightbox(48)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9108.jpg" alt="Drawing 2024" onclick="openLightbox(49)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9108.jpg" alt="Drawing 2024" onclick="openLightbox(49)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9174.jpg" alt="Drawing 2024" onclick="openLightbox(50)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9110.jpg" alt="Drawing 2024" onclick="openLightbox(50)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9180.jpg" alt="Drawing 2024" onclick="openLightbox(51)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9113.jpg" alt="Drawing 2024" onclick="openLightbox(51)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2503_ipad_IMG_9189.jpg" alt="Drawing 2024" onclick="openLightbox(52)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9116.jpg" alt="Drawing 2024" onclick="openLightbox(52)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8851.jpg" alt="Drawing 2024" onclick="openLightbox(53)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9174.jpg" alt="Drawing 2024" onclick="openLightbox(53)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8854.jpg" alt="Drawing 2024" onclick="openLightbox(54)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9180.jpg" alt="Drawing 2024" onclick="openLightbox(54)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8860.jpg" alt="Drawing 2024" onclick="openLightbox(55)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9189.jpg" alt="Drawing 2024" onclick="openLightbox(55)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8863.jpg" alt="Drawing 2024" onclick="openLightbox(56)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9200.jpg" alt="Drawing 2024" onclick="openLightbox(56)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8866.jpg" alt="Drawing 2024" onclick="openLightbox(57)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9206.jpg" alt="Drawing 2024" onclick="openLightbox(57)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8872.jpg" alt="Drawing 2024" onclick="openLightbox(58)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8878.jpg" alt="Drawing 2024" onclick="openLightbox(59)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8887.jpg" alt="Drawing 2024" onclick="openLightbox(60)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/drawing_2024_web/2502_ipad_IMG_8890.jpg" alt="Drawing 2024" onclick="openLightbox(61)">
+                        <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9212.jpg" alt="Drawing 2024" onclick="openLightbox(58)">
                     </div>
                 </div>
             </div>
@@ -675,31 +657,53 @@
                 <h3>Drawing 2023</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_01.jpg" alt="Drawing 2023" onclick="openLightbox(62)">
+                        <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01.jpg" alt="Drawing 2023" onclick="openLightbox(59)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_02.jpg" alt="Drawing 2023" onclick="openLightbox(63)">
+                        <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02.jpg" alt="Drawing 2023" onclick="openLightbox(60)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_03.jpg" alt="Drawing 2023" onclick="openLightbox(64)">
+                        <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03.jpg" alt="Drawing 2023" onclick="openLightbox(61)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_04.jpg" alt="Drawing 2023" onclick="openLightbox(65)">
+                        <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04.jpg" alt="Drawing 2023" onclick="openLightbox(62)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_05.jpg" alt="Drawing 2023" onclick="openLightbox(66)">
+                        <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05.jpg" alt="Drawing 2023" onclick="openLightbox(63)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2504_ipad_2351_drawing_06.jpg" alt="Drawing 2023" onclick="openLightbox(67)">
+                        <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06.jpg" alt="Drawing 2023" onclick="openLightbox(64)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2501_web_IMG_8721_02.jpg" alt="Drawing 2023" onclick="openLightbox(68)">
+                        <img src="images/02drawing/01_images/D_2023/2501_web_IMG_8727_02.jpg" alt="Drawing 2023" onclick="openLightbox(65)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2501_web_IMG_8727_02.jpg" alt="Drawing 2023" onclick="openLightbox(69)">
+                        <img src="images/02drawing/01_images/D_2023/2501_web_IMG_8721_02.jpg" alt="Drawing 2023" onclick="openLightbox(66)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/drawing_2023_web/2501_web_IMG_8733_02.jpg" alt="Drawing 2023" onclick="openLightbox(70)">
+                        <img src="images/02drawing/01_images/D_2023/2501_web_IMG_8733_02.jpg" alt="Drawing 2023" onclick="openLightbox(67)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drawing 2022 -->
+            <div class="gallery-group">
+                <h3>Drawing 2022</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8710.jpg" alt="Drawing 2022" onclick="openLightbox(71)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8707.jpg" alt="Drawing 2022" onclick="openLightbox(72)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8712.jpg" alt="Drawing 2022" onclick="openLightbox(73)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8715.jpg" alt="Drawing 2022" onclick="openLightbox(74)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8652.jpg" alt="Drawing 2022" onclick="openLightbox(75)">
                     </div>
                 </div>
             </div>
@@ -709,40 +713,50 @@
                 <h3>Drawing 2021</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_001.jpg" alt="Drawing 2021" onclick="openLightbox(71)">
+                        <img src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8612.jpg" alt="Drawing 2021" onclick="openLightbox(76)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_002.jpg" alt="Drawing 2021" onclick="openLightbox(72)">
+                        <img src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8600.jpg" alt="Drawing 2021" onclick="openLightbox(77)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_003.jpg" alt="Drawing 2021" onclick="openLightbox(73)">
+                        <img src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8608.jpg" alt="Drawing 2021" onclick="openLightbox(78)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drawing 2019 -->
+            <div class="gallery-group">
+                <h3>Drawing 2019</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7887.jpg" alt="Drawing 2019" onclick="openLightbox(79)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_004.jpg" alt="Drawing 2021" onclick="openLightbox(74)">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7893.jpg" alt="Drawing 2019" onclick="openLightbox(80)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_005.jpg" alt="Drawing 2021" onclick="openLightbox(75)">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7897.jpg" alt="Drawing 2019" onclick="openLightbox(81)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_006.jpg" alt="Drawing 2021" onclick="openLightbox(76)">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7902.jpg" alt="Drawing 2019" onclick="openLightbox(82)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_007.jpg" alt="Drawing 2021" onclick="openLightbox(77)">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7909.jpg" alt="Drawing 2019" onclick="openLightbox(83)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_008.jpg" alt="Drawing 2021" onclick="openLightbox(78)">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7923.jpg" alt="Drawing 2019" onclick="openLightbox(84)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_009.jpg" alt="Drawing 2021" onclick="openLightbox(79)">
+                        <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7929.jpg" alt="Drawing 2019" onclick="openLightbox(85)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_010.jpg" alt="Drawing 2021" onclick="openLightbox(80)">
+                        <img src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7715.jpg" alt="Drawing 2019" onclick="openLightbox(86)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_011.jpg" alt="Drawing 2021" onclick="openLightbox(81)">
+                        <img src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7742.jpg" alt="Drawing 2019" onclick="openLightbox(87)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2021/2236_webpic_drawing_012.jpg" alt="Drawing 2021" onclick="openLightbox(82)">
+                        <img src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7941.jpg" alt="Drawing 2019" onclick="openLightbox(88)">
                     </div>
                 </div>
             </div>
@@ -752,233 +766,10 @@
                 <h3>Drawing 2016</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2016_01/1630_webpic_IMG_3503.jpg" alt="Drawing 2016" onclick="openLightbox(83)">
+                        <img src="images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891.jpg" alt="Drawing 2016" onclick="openLightbox(97)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/drawing/D_2016_01/1630_webpic_IMG_3509.jpg" alt="Drawing 2016" onclick="openLightbox(84)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2016_01/1630_webpic_IMG_3521_3515.jpg" alt="Drawing 2016" onclick="openLightbox(85)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2016_01/1630_webpic_IMG_3527.jpg" alt="Drawing 2016" onclick="openLightbox(86)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2016_01/1630_webpic_IMG_3534.jpg" alt="Drawing 2016" onclick="openLightbox(87)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2015 -->
-            <div class="gallery-group">
-                <h3>Drawing 2015</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2015_01/1630_webpic_IMG_0009.jpg" alt="Drawing 2015" onclick="openLightbox(88)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2015_01/1630_webpic_IMG_0015.jpg" alt="Drawing 2015" onclick="openLightbox(89)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2015_01/1630_webpic_IMG_0018.jpg" alt="Drawing 2015" onclick="openLightbox(90)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2015_01/1630_webpic_IMG_0030.jpg" alt="Drawing 2015" onclick="openLightbox(91)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2015_01/1630_webpic_IMG_0036.jpg" alt="Drawing 2015" onclick="openLightbox(92)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2015_01/1630_webpic_IMG_0042.jpg" alt="Drawing 2015" onclick="openLightbox(93)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2014 - 02 -->
-            <div class="gallery-group">
-                <h3>Drawing 2014 - 02</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1451_webpic_IMG_2230.jpg" alt="Drawing 2014-02" onclick="openLightbox(94)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1451_webpic_IMG_2236.jpg" alt="Drawing 2014-02" onclick="openLightbox(95)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1451_webpic_IMG_2242.jpg" alt="Drawing 2014-02" onclick="openLightbox(96)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1451_webpic_IMG_2265.jpg" alt="Drawing 2014-02" onclick="openLightbox(97)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1451_webpic_IMG_2283.jpg" alt="Drawing 2014-02" onclick="openLightbox(98)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1512_webpic_TET_016.jpg" alt="Drawing 2014-02" onclick="openLightbox(99)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1513_IMG_2236.jpg" alt="Drawing 2014-02" onclick="openLightbox(100)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1513_webpic_IMG_2230.jpg" alt="Drawing 2014-02" onclick="openLightbox(101)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1513_webpic_IMG_2242.jpg" alt="Drawing 2014-02" onclick="openLightbox(102)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_02/1519_webpic_IMG_2283.jpg" alt="Drawing 2014-02" onclick="openLightbox(103)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2014 - 01 -->
-            <div class="gallery-group">
-                <h3>Drawing 2014 - 01</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1451_webpic_IMG_2156.jpg" alt="Drawing 2014-01" onclick="openLightbox(104)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1451_webpic_IMG_2162.jpg" alt="Drawing 2014-01" onclick="openLightbox(105)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1451_webpic_IMG_2168.jpg" alt="Drawing 2014-01" onclick="openLightbox(106)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1451_webpic_IMG_2191.jpg" alt="Drawing 2014-01" onclick="openLightbox(107)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1451_webpic_IMG_2194.jpg" alt="Drawing 2014-01" onclick="openLightbox(108)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1513_webpic_IMG_2156.jpg" alt="Drawing 2014-01" onclick="openLightbox(109)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1513_webpic_IMG_2162.jpg" alt="Drawing 2014-01" onclick="openLightbox(110)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1513_webpic_IMG_2168.jpg" alt="Drawing 2014-01" onclick="openLightbox(111)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1513_webpic_IMG_2191.jpg" alt="Drawing 2014-01" onclick="openLightbox(112)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1513_webpic_IMG_2194.jpg" alt="Drawing 2014-01" onclick="openLightbox(113)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2014_01/1513_webpic_IMG_2781.jpg" alt="Drawing 2014-01" onclick="openLightbox(114)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2013 - 02 -->
-            <div class="gallery-group">
-                <h3>Drawing 2013 - 02</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_02/1451_WEBPIC_IMG_2459.jpg" alt="Drawing 2013-02" onclick="openLightbox(115)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_02/1451_webpic_IMG_2486.jpg" alt="Drawing 2013-02" onclick="openLightbox(116)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_02/1451_webpic_IMG_2513.jpg" alt="Drawing 2013-02" onclick="openLightbox(117)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_02/1513_webpic_IMG_2459.jpg" alt="Drawing 2013-02" onclick="openLightbox(118)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_02/1513_webpic_IMG_2486.jpg" alt="Drawing 2013-02" onclick="openLightbox(119)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_02/1513_webpic_IMG_2513.jpg" alt="Drawing 2013-02" onclick="openLightbox(120)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2013 - 01 -->
-            <div class="gallery-group">
-                <h3>Drawing 2013 - 01</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_01/1451_webpic_IMG_0089.jpg" alt="Drawing 2013-01" onclick="openLightbox(121)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_01/1451_webpic_IMG_0107.jpg" alt="Drawing 2013-01" onclick="openLightbox(122)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_01/1451_webpic_IMG_0132_0141.jpg" alt="Drawing 2013-01" onclick="openLightbox(123)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_01/1513_webpic_IMG_0089.jpg" alt="Drawing 2013-01" onclick="openLightbox(124)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_01/1513_webpic_IMG_0107.jpg" alt="Drawing 2013-01" onclick="openLightbox(125)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2013_01/1513_webpic_IMG_0132_0141.jpg" alt="Drawing 2013-01" onclick="openLightbox(126)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2012 -->
-            <div class="gallery-group">
-                <h3>Drawing 2012</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2012/1513_webpic_IMG_7426.jpg" alt="Drawing 2012" onclick="openLightbox(127)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2012/1513_webpic_IMG_7496.jpg" alt="Drawing 2012" onclick="openLightbox(130)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2012/1513_webpic_IMG_7520.jpg" alt="Drawing 2012" onclick="openLightbox(132)">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drawing 2011 -->
-            <div class="gallery-group">
-                <h3>Drawing 2011</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/1451_WEBPIC_IMG_8514.jpg" alt="Drawing 2011" onclick="openLightbox(133)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/1451_webpic_IMG_8457.jpg" alt="Drawing 2011" onclick="openLightbox(134)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9286.jpg" alt="Drawing 2011" onclick="openLightbox(135)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/adapt_IMG_0181-2.jpg" alt="Drawing 2011" onclick="openLightbox(136)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9272.jpg" alt="Drawing 2011" onclick="openLightbox(137)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9276.jpg" alt="Drawing 2011" onclick="openLightbox(138)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9281.jpg" alt="Drawing 2011" onclick="openLightbox(139)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9286.jpg" alt="Drawing 2011" onclick="openLightbox(140)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/adapt_IMG_0181-2.jpg" alt="Drawing 2011" onclick="openLightbox(141)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9272.jpg" alt="Drawing 2011" onclick="openLightbox(142)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9276.jpg" alt="Drawing 2011" onclick="openLightbox(143)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9281.jpg" alt="Drawing 2011" onclick="openLightbox(144)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/drawing/D_2011_01/basic_IMG_9286.jpg" alt="Drawing 2011" onclick="openLightbox(145)">
+                        <img src="images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892.jpg" alt="Drawing 2016" onclick="openLightbox(98)">
                     </div>
                 </div>
             </div>
@@ -1019,570 +810,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        // All drawing images for lightbox
-        const images = [
-            // Drawing 2025 - Swimmer (0-9)
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg",
-            "images/drawing/drawing_2025_web/swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.jpg",
-            // Drawing 2025 - Object (10-37)
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_1.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_2.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_3.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_4.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_5.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_6.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_7.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_8.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_9.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_10.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_11.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_12.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_13.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_14.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_15.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_16.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_17.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_18.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_19.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_20.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_21.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_22.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_23.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_24.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_25.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_26.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_27.jpg",
-            "images/drawing/drawing_2025_web/object/2504_ipad_kiyomi_drawing_object_28.jpg",
-            // Drawing 2024 (38-61)
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8854_8860_8851.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8836_8866_8872.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8890_8887_8878.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9113.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9212.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9206.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9200.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9116.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9110.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9102.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9105.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9108.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9174.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9180.jpg",
-            "images/drawing/drawing_2024_web/2503_ipad_IMG_9189.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8851.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8854.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8860.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8863.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8866.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8872.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8878.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8887.jpg",
-            "images/drawing/drawing_2024_web/2502_ipad_IMG_8890.jpg",
-            // Drawing 2023 (62-70)
-            "images/drawing/drawing_2023_web/2504_ipad_2351_drawing_01.jpg",
-            "images/drawing/drawing_2023_web/2504_ipad_2351_drawing_02.jpg",
-            "images/drawing/drawing_2023_web/2504_ipad_2351_drawing_03.jpg",
-            "images/drawing/drawing_2023_web/2504_ipad_2351_drawing_04.jpg",
-            "images/drawing/drawing_2023_web/2504_ipad_2351_drawing_05.jpg",
-            "images/drawing/drawing_2023_web/2504_ipad_2351_drawing_06.jpg",
-            "images/drawing/drawing_2023_web/2501_web_IMG_8721_02.jpg",
-            "images/drawing/drawing_2023_web/2501_web_IMG_8727_02.jpg",
-            "images/drawing/drawing_2023_web/2501_web_IMG_8733_02.jpg",
-            // Drawing 2021 (71-82)
-            "images/drawing/D_2021/2236_webpic_drawing_001.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_002.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_003.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_004.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_005.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_006.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_007.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_008.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_009.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_010.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_011.jpg",
-            "images/drawing/D_2021/2236_webpic_drawing_012.jpg",
-            // Drawing 2016 (83-87)
-            "images/drawing/D_2016_01/1630_webpic_IMG_3503.jpg",
-            "images/drawing/D_2016_01/1630_webpic_IMG_3509.jpg",
-            "images/drawing/D_2016_01/1630_webpic_IMG_3521_3515.jpg",
-            "images/drawing/D_2016_01/1630_webpic_IMG_3527.jpg",
-            "images/drawing/D_2016_01/1630_webpic_IMG_3534.jpg",
-            // Drawing 2015 (88-93)
-            "images/drawing/D_2015_01/1630_webpic_IMG_0009.jpg",
-            "images/drawing/D_2015_01/1630_webpic_IMG_0015.jpg",
-            "images/drawing/D_2015_01/1630_webpic_IMG_0018.jpg",
-            "images/drawing/D_2015_01/1630_webpic_IMG_0030.jpg",
-            "images/drawing/D_2015_01/1630_webpic_IMG_0036.jpg",
-            "images/drawing/D_2015_01/1630_webpic_IMG_0042.jpg",
-            // Drawing 2014 - 02 (94-103)
-            "images/drawing/D_2014_02/1451_webpic_IMG_2230.jpg",
-            "images/drawing/D_2014_02/1451_webpic_IMG_2236.jpg",
-            "images/drawing/D_2014_02/1451_webpic_IMG_2242.jpg",
-            "images/drawing/D_2014_02/1451_webpic_IMG_2265.jpg",
-            "images/drawing/D_2014_02/1451_webpic_IMG_2283.jpg",
-            "images/drawing/D_2014_02/1512_webpic_TET_016.jpg",
-            "images/drawing/D_2014_02/1513_IMG_2236.jpg",
-            "images/drawing/D_2014_02/1513_webpic_IMG_2230.jpg",
-            "images/drawing/D_2014_02/1513_webpic_IMG_2242.jpg",
-            "images/drawing/D_2014_02/1519_webpic_IMG_2283.jpg",
-            // Drawing 2014 - 01 (104-114)
-            "images/drawing/D_2014_01/1451_webpic_IMG_2156.jpg",
-            "images/drawing/D_2014_01/1451_webpic_IMG_2162.jpg",
-            "images/drawing/D_2014_01/1451_webpic_IMG_2168.jpg",
-            "images/drawing/D_2014_01/1451_webpic_IMG_2191.jpg",
-            "images/drawing/D_2014_01/1451_webpic_IMG_2194.jpg",
-            "images/drawing/D_2014_01/1513_webpic_IMG_2156.jpg",
-            "images/drawing/D_2014_01/1513_webpic_IMG_2162.jpg",
-            "images/drawing/D_2014_01/1513_webpic_IMG_2168.jpg",
-            "images/drawing/D_2014_01/1513_webpic_IMG_2191.jpg",
-            "images/drawing/D_2014_01/1513_webpic_IMG_2194.jpg",
-            "images/drawing/D_2014_01/1513_webpic_IMG_2781.jpg",
-            // Drawing 2013 - 02 (115-120)
-            "images/drawing/D_2013_02/1451_WEBPIC_IMG_2459.jpg",
-            "images/drawing/D_2013_02/1451_webpic_IMG_2486.jpg",
-            "images/drawing/D_2013_02/1451_webpic_IMG_2513.jpg",
-            "images/drawing/D_2013_02/1513_webpic_IMG_2459.jpg",
-            "images/drawing/D_2013_02/1513_webpic_IMG_2486.jpg",
-            "images/drawing/D_2013_02/1513_webpic_IMG_2513.jpg",
-            // Drawing 2013 - 01 (121-126)
-            "images/drawing/D_2013_01/1451_webpic_IMG_0089.jpg",
-            "images/drawing/D_2013_01/1451_webpic_IMG_0107.jpg",
-            "images/drawing/D_2013_01/1451_webpic_IMG_0132_0141.jpg",
-            "images/drawing/D_2013_01/1513_webpic_IMG_0089.jpg",
-            "images/drawing/D_2013_01/1513_webpic_IMG_0107.jpg",
-            "images/drawing/D_2013_01/1513_webpic_IMG_0132_0141.jpg",
-            // Drawing 2012 (127-132)
-            "images/drawing/D_2012/1513_webpic_IMG_7426.jpg",
-            "images/drawing/D_2012/1513_webpic_IMG_7438.jpg",
-            "images/drawing/D_2012/1513_webpic_IMG_7447.jpg",
-            "images/drawing/D_2012/1513_webpic_IMG_7496.jpg",
-            "images/drawing/D_2012/1513_webpic_IMG_7505.jpg",
-            "images/drawing/D_2012/1513_webpic_IMG_7520.jpg",
-            // Drawing 2011 (133-145)
-            "images/drawing/D_2011_01/1451_WEBPIC_IMG_8514.jpg",
-            "images/drawing/D_2011_01/1451_webpic_IMG_8421.jpg",
-            "images/drawing/D_2011_01/1451_webpic_IMG_8430.jpg",
-            "images/drawing/D_2011_01/1451_webpic_IMG_8443.jpg",
-            "images/drawing/D_2011_01/1451_webpic_IMG_8457.jpg",
-            "images/drawing/D_2011_01/1451_webpic_IMG_8486.jpg",
-            "images/drawing/D_2011_01/1451_webpic_IMG_8502.jpg",
-            "images/drawing/D_2011_01/1513_webpic_IMG_9272.jpg",
-            "images/drawing/D_2011_01/adapt_IMG_0181-2.jpg",
-            "images/drawing/D_2011_01/basic_IMG_9272.jpg",
-            "images/drawing/D_2011_01/basic_IMG_9276.jpg",
-            "images/drawing/D_2011_01/basic_IMG_9281.jpg",
-            "images/drawing/D_2011_01/basic_IMG_9286.jpg"
-        ];
-
-        // Artwork information data
-        const artworkInfo = [
-            // Drawing 2025 - Swimmer (0-9)
-            { title: "Swimmer Drawing 01", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 02", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 03", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 04", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 05", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 06", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 07", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 08", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 09", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Swimmer Drawing 10", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            // Drawing 2025 - Object (10-37)
-            { title: "Object Drawing 01", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 02", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 03", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 04", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 05", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 06", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 07", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 08", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 09", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 10", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 11", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 12", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 13", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 14", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 15", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 16", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 17", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 18", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 19", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 20", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 21", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 22", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 23", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 24", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 25", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 26", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 27", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            { title: "Object Drawing 28", year: "2025", medium: "Digital Drawing on iPad", size: "Digital Format" },
-            // Drawing 2024 (38-61)
-            { title: "Composite Drawing 01", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Composite Drawing 02", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Composite Drawing 03", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 01", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 02", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 03", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 04", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 05", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 06", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 07", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 08", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 09", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 10", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 11", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 12", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 01", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 02", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 03", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 04", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 05", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 06", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 07", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 08", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 09", year: "2024", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2023 (62-70)
-            { title: "Drawing 01", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 02", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 03", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 04", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 05", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 06", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 01", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 02", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study 03", year: "2023", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2021 (71-82)
-            { title: "Drawing 001", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 002", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 003", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 004", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 005", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 006", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 007", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 008", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 009", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 010", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 011", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing 012", year: "2021", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2016 (83-87)
-            { title: "Drawing Study", year: "2016", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2016", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2016", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2016", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2016", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2015 (88-93)
-            { title: "Drawing Study", year: "2015", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2015", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2015", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2015", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2015", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2015", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2014 - 02 (94-103)
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2014 - 01 (104-114)
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2014", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2013 - 02 (115-120)
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2013 - 01 (121-126)
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2013", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2012 (127-132)
-            { title: "Drawing Study", year: "2012", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2012", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2012", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2012", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2012", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2012", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            // Drawing 2011 (133-145)
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Mixed Media", size: "Various" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" },
-            { title: "Drawing Study", year: "2011", medium: "Pencil on Paper", size: "29.7 × 21.0 cm" }
-        ];
-
-        let currentImageIndex = 0;
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const artwork = artworkInfo[index];
-            
-            document.getElementById('lightbox-img').src = images[index];
-            document.getElementById('artwork-title').textContent = artwork.title;
-            document.getElementById('artwork-year').textContent = artwork.year;
-            document.getElementById('artwork-medium').textContent = artwork.medium;
-            document.getElementById('artwork-size').textContent = artwork.size;
-            document.getElementById('lightbox').classList.add('active');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = images.length - 1;
-            } else if (currentImageIndex >= images.length) {
-                currentImageIndex = 0;
-            }
-            
-            const artwork = artworkInfo[currentImageIndex];
-            document.getElementById('lightbox-img').src = images[currentImageIndex];
-            document.getElementById('artwork-title').textContent = artwork.title;
-            document.getElementById('artwork-year').textContent = artwork.year;
-            document.getElementById('artwork-medium').textContent = artwork.medium;
-            document.getElementById('artwork-size').textContent = artwork.size;
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('lightbox').classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
-
-        // Slider functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function resetAutoSlide() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function handleManualSlide(direction) {
-            clearInterval(slideInterval); // 暂停自动轮播
-            if (direction === 'next') {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-            // 3秒后恢复自动轮播
-            setTimeout(() => {
-                resetAutoSlide();
-            }, 3000);
-        }
-
-        // Slider navigation
-        document.querySelector('.slider-nav.next').addEventListener('click', () => handleManualSlide('next'));
-        document.querySelector('.slider-nav.prev').addEventListener('click', () => handleManualSlide('prev'));
-
-        // 初始化自动轮播
-        resetAutoSlide();
-
-        // 图片预加载和懒加载功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 优先预加载轮播图图片
-            function preloadSliderImages() {
-                const imageUrls = [];
-                
-                // 收集轮播图的图片
-                document.querySelectorAll('.slide:not(.video-slide) img').forEach(img => {
-                    if (img.src && !imageUrls.includes(img.src)) {
-                        imageUrls.push(img.src);
-                    }
-                });
-                
-                // 预加载视频的海报图片
-                document.querySelectorAll('video[poster]').forEach(video => {
-                    const posterUrl = video.getAttribute('poster');
-                    if (posterUrl && !imageUrls.includes(posterUrl)) {
-                        imageUrls.push(posterUrl);
-                    }
-                });
-                
-                // 预加载第一个画廊组的图片（可见区域）
-                const firstGalleryImages = document.querySelectorAll('.gallery-group:first-child img');
-                firstGalleryImages.forEach(img => {
-                    if (img.dataset.src && !imageUrls.includes(img.dataset.src)) {
-                        imageUrls.push(img.dataset.src);
-                        // 同时设置src以立即加载
-                        img.src = img.dataset.src;
-                        img.classList.add('lazy-loaded');
-                    }
-                });
-                
-                // 预加载所有收集到的图片
-                imageUrls.forEach(url => {
-                    const img = new Image();
-                    img.src = url;
-                });
-                
-                console.log(`预加载了 ${imageUrls.length} 张图片`);
-            }
-            
-            // 获取所有需要懒加载的图片
-            const lazyImages = document.querySelectorAll('img.lazy');
-            
-            // 如果浏览器支持Intersection Observer API
-            if ('IntersectionObserver' in window) {
-                // 创建观察者对象
-                const imageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        // 如果图片进入视口
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            // 添加加载中状态
-                            img.classList.add('lazy-loading');
-                            // 设置图片src为data-src的值
-                            img.src = img.dataset.src;
-                            
-                            // 图片加载完成后移除懒加载类
-                            img.onload = function() {
-                                img.classList.remove('lazy-loading');
-                                img.classList.add('lazy-loaded');
-                                // 图片加载完成后，取消对该图片的观察
-                                imageObserver.unobserve(img);
-                            };
-                        }
-                    });
-                }, {
-                    // 图片进入视口前150px时就开始加载，提前加载更多
-                    rootMargin: '150px 0px',
-                    threshold: 0.01
-                });
-                
-                // 对每个懒加载图片进行观察
-                lazyImages.forEach(function(img) {
-                    imageObserver.observe(img);
-                });
-            } else {
-                // 如果浏览器不支持Intersection Observer，则使用滚动事件
-                let lazyImagePositions = [];
-                let loaded = false;
-                
-                // 保存每个图片的位置信息
-                lazyImages.forEach(function(img) {
-                    lazyImagePositions.push({
-                        img: img,
-                        rect: img.getBoundingClientRect()
-                    });
-                });
-                
-                // 滚动时检查图片是否在视口内
-                function lazyLoad() {
-                    if (loaded) return;
-                    
-                    // 设置已加载标志，防止重复处理
-                    loaded = true;
-                    
-                    setTimeout(function() {
-                        let scroll = window.scrollY;
-                        let windowHeight = window.innerHeight;
-                        
-                        lazyImagePositions.forEach(function(obj, i) {
-                            // 如果图片进入视口
-                            if (obj.rect.top - windowHeight - 150 < scroll) {
-                                const img = obj.img;
-                                
-                                // 添加加载中状态
-                                img.classList.add('lazy-loading');
-                                // 设置图片src为data-src的值
-                                img.src = img.dataset.src;
-                                
-                                // 图片加载完成后移除懒加载类
-                                img.onload = function() {
-                                    img.classList.remove('lazy-loading');
-                                    img.classList.add('lazy-loaded');
-                                };
-                                
-                                // 从数组中移除已处理的图片
-                                lazyImagePositions.splice(i, 1);
-                            }
-                        });
-                        
-                        // 如果所有图片都已处理，则移除滚动事件监听
-                        if (lazyImagePositions.length === 0) {
-                            document.removeEventListener('scroll', lazyLoad);
-                            window.removeEventListener('resize', lazyLoad);
-                            window.removeEventListener('orientationChange', lazyLoad);
-                        } else {
-                            loaded = false;
-                        }
-                    }, 200);
-                }
-                
-                // 添加滚动事件监听
-                document.addEventListener('scroll', lazyLoad);
-                window.addEventListener('resize', lazyLoad);
-                window.addEventListener('orientationChange', lazyLoad);
-                
-                // 初始加载
-                lazyLoad();
-            }
-            
-            // 执行预加载
-            preloadSliderImages();
-        });
-    </script>
 </body>
 </html> 

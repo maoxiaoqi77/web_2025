@@ -49,15 +49,30 @@
         /* 视频幻灯片样式 */
         .slide.video-slide {
             position: relative;
+            background: transparent;
         }
         
         .slide.video-slide video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            background: transparent;
         }
 
-        /* Lightbox styles - updated for artwork details */
+        /* Gallery group styles */
+        .gallery-group {
+            margin-bottom: 60px;
+        }
+
+        .gallery-group h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: normal;
+            padding-left: 20px;
+        }
+
+        /* Lightbox styles */
         .lightbox {
             display: none;
             position: fixed;
@@ -120,16 +135,24 @@
         }
 
         .artwork-details {
-            font-size: 16px;
-            line-height: 2;
-            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .artwork-details div {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: flex-start;
         }
 
         .artwork-details .label {
             font-weight: 500;
-            color: #333;
-            display: inline-block;
             width: 80px;
+            flex-shrink: 0;
+        }
+
+        .artwork-details span:not(.label) {
+            display: inline-block;
         }
 
         .lightbox-close {
@@ -165,7 +188,7 @@
         }
 
         .lightbox-prev {
-            left: 20px;
+            left: 15px;
         }
 
         .lightbox-next {
@@ -229,7 +252,30 @@
                 right: 10px;
             }
 
+            .gallery-group h3 {
+                font-size: 18px;
+            }
+
+            .lightbox {
+                overflow-y: auto;
+            }
+
+            .lightbox-content {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+                margin: 20px auto;
+                overflow-y: visible;
+            }
+
+            .lightbox-image-section {
+                flex: none;
+                width: 100%;
+            }
+
             .lightbox-info-section {
+                flex: none;
+                width: 100%;
                 padding: 15px;
             }
 
@@ -250,7 +296,13 @@
             }
 
             .lightbox-content {
-                height: 90%;
+                width: 95%;
+                margin: 50px auto 20px;
+            }
+
+            .lightbox-close {
+                top: -30px;
+                right: 0;
             }
         }
     </style>
@@ -290,38 +342,28 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/sculpture/2236_webpic_IMG_0772_object_000.jpg" alt="Sculpture 1">
+                    <img src="images/02sculpture/00_SLIDESHOW/2520_weppic_IMG_0772_slide.jpg" alt="Sculpture 1">
                 </div>
                 <div class="slide">
-                    <img src="images/sculpture/2236_webpic_IMG_0757_basic_02_object_000.jpg" alt="Sculpture 2">
+                    <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5529_02.jpg" alt="Sculpture 2">
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slidshow_IMG_5521_02.jpg" alt="Sculpture 3">
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5537_02.jpg" alt="Sculpture 4">
                 </div>
                 <div class="slide video-slide">
-                    <video id="slideVideo" muted playsinline autoplay loop preload="auto" poster="images/sculpture/2236_webpic_IMG_0757_basic_02_object_000.jpg">
-                        <source src="images/sculpture/2330_sound_of_a_kettle_compressed.mp4" type="video/mp4">
-                        <source src="images/sculpture/2330_sound_of_a_kettle_compressed.webm" type="video/webm">
-                        <img src="images/sculpture/2236_webpic_IMG_0757_basic_02_object_000.jpg" alt="视频无法播放时的替代图片">
+                    <video id="slideVideo" muted playsinline autoplay loop preload="auto" poster="images/02sculpture/00_SLIDESHOW/2520_weppic_IMG_0772_slide.jpg" style="background: transparent;">
+                        <source src="images/02sculpture/00_SLIDESHOW/2330_sound_of_a_kettle.mp4" type="video/mp4">
+                        <img src="images/02sculpture/00_SLIDESHOW/2520_weppic_IMG_0772_slide.jpg" alt="视频无法播放时的替代图片">
                     </video>
                 </div>
-                <div class="slide">
-                    <img src="images/sculpture/2236_webpic_IMG_5529_installation_000.jpg" alt="Sculpture 3">
-                </div>
-                <div class="slide">
-                    <img src="images/sculpture/2236_webpic_IMG_5537_installation_000.jpg" alt="Sculpture 4">
-                </div>
-                <div class="slide">
-                    <img src="images/sculpture/2236_webpic_IMG_5521_object_000.jpg" alt="Sculpture 5">
-                </div>
-                <div class="slide">
-                    <img src="images/sculpture/1707_web_IMG_5521.jpg" alt="Sculpture 6">
-                </div>
-                <div class="slide">
-                    <img src="images/sculpture/1707_web_IMG_5529.jpg" alt="Sculpture 7">
-                </div>
-                <div class="slide">
-                    <img src="images/sculpture/1707_web_IMG_5537.jpg" alt="Sculpture 8">
-                </div>
-                <div class="slide">
-                    <img src="images/sculpture/SCN_0002.jpg" alt="Sculpture 9">
+                <div class="slide video-slide">
+                    <video id="slideVideo2" muted playsinline autoplay loop preload="auto" poster="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5529_02.jpg" style="background: transparent;">
+                        <source src="images/02sculpture/00_SLIDESHOW/2524_webvideo_020.mp4" type="video/mp4">
+                        <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5529_02.jpg" alt="视频无法播放时的替代图片">
+                    </video>
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -334,33 +376,32 @@
 
         <!-- Gallery Section -->
         <section class="gallery-section">
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/sculpture/2236_webpic_IMG_0772_object_000.jpg" alt="Sculpture detail" onclick="openLightbox(0)">
+            <!-- Sculpture 2022 -->
+            <div class="gallery-group">
+                <h3>Sculpture 2022</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.jpg" alt="Sculpture 2022" onclick="openLightbox(0)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.jpg" alt="Sculpture 2022" onclick="openLightbox(1)">
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/2236_webpic_IMG_0757_basic_02_object_000.jpg" alt="Sculpture detail" onclick="openLightbox(1)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/2236_webpic_IMG_5529_installation_000.jpg" alt="Sculpture detail" onclick="openLightbox(2)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/2236_webpic_IMG_5537_installation_000.jpg" alt="Sculpture detail" onclick="openLightbox(3)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/2236_webpic_IMG_5521_object_000.jpg" alt="Sculpture detail" onclick="openLightbox(4)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/1707_web_IMG_5521.jpg" alt="Sculpture detail" onclick="openLightbox(5)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/1707_web_IMG_5529.jpg" alt="Sculpture detail" onclick="openLightbox(6)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/1707_web_IMG_5537.jpg" alt="Sculpture detail" onclick="openLightbox(7)">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/sculpture/SCN_0002.jpg" alt="Sculpture detail" onclick="openLightbox(8)">
+            </div>
+
+            <!-- Sculpture 2017 -->
+            <div class="gallery-group">
+                <h3>Sculpture 2017</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.jpg" alt="Sculpture 2017" onclick="openLightbox(2)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.jpg" alt="Sculpture 2017" onclick="openLightbox(3)">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.jpg" alt="Sculpture 2017" onclick="openLightbox(4)">
+                    </div>
                 </div>
             </div>
         </section>
@@ -400,125 +441,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        // Sculpture gallery images
-        const images = [
-            "images/sculpture/2236_webpic_IMG_0772_object_000.jpg",
-            "images/sculpture/2236_webpic_IMG_0757_basic_02_object_000.jpg",
-            "images/sculpture/2236_webpic_IMG_5529_installation_000.jpg",
-            "images/sculpture/2236_webpic_IMG_5537_installation_000.jpg",
-            "images/sculpture/2236_webpic_IMG_5521_object_000.jpg",
-            "images/sculpture/1707_web_IMG_5521.jpg",
-            "images/sculpture/1707_web_IMG_5529.jpg",
-            "images/sculpture/1707_web_IMG_5537.jpg",
-            "images/sculpture/SCN_0002.jpg"
-        ];
-
-        // Sculpture artwork information
-        const artworkInfo = [
-            { title: "Object Study 01", year: "2023", medium: "Mixed Media, Found Objects", size: "Variable Dimensions" },
-            { title: "Basic Object 02", year: "2023", medium: "Mixed Media, Found Objects", size: "Variable Dimensions" },
-            { title: "Installation Study 01", year: "2023", medium: "Mixed Media Installation", size: "Site-specific" },
-            { title: "Installation Study 02", year: "2023", medium: "Mixed Media Installation", size: "Site-specific" },
-            { title: "Object Study 02", year: "2023", medium: "Mixed Media, Found Objects", size: "Variable Dimensions" },
-            { title: "Sculpture Study 01", year: "2017", medium: "Mixed Media", size: "Variable Dimensions" },
-            { title: "Sculpture Study 02", year: "2017", medium: "Mixed Media", size: "Variable Dimensions" },
-            { title: "Sculpture Study 03", year: "2017", medium: "Mixed Media", size: "Variable Dimensions" },
-            { title: "Sculpture Documentation", year: "2023", medium: "Mixed Media", size: "Variable Dimensions" }
-        ];
-
-        let currentImageIndex = 0;
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const artwork = artworkInfo[index];
-            
-            document.getElementById('lightbox-img').src = images[index];
-            document.getElementById('artwork-title').textContent = artwork.title;
-            document.getElementById('artwork-year').textContent = artwork.year;
-            document.getElementById('artwork-medium').textContent = artwork.medium;
-            document.getElementById('artwork-size').textContent = artwork.size;
-            document.getElementById('lightbox').classList.add('active');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = images.length - 1;
-            } else if (currentImageIndex >= images.length) {
-                currentImageIndex = 0;
-            }
-            
-            const artwork = artworkInfo[currentImageIndex];
-            document.getElementById('lightbox-img').src = images[currentImageIndex];
-            document.getElementById('artwork-title').textContent = artwork.title;
-            document.getElementById('artwork-year').textContent = artwork.year;
-            document.getElementById('artwork-medium').textContent = artwork.medium;
-            document.getElementById('artwork-size').textContent = artwork.size;
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('lightbox').classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
-
-        // Slider functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
-
-        function resetAutoSlide() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function handleManualSlide(direction) {
-            clearInterval(slideInterval); // 暂停自动轮播
-            if (direction === 'next') {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-            // 3秒后恢复自动轮播
-            setTimeout(() => {
-                resetAutoSlide();
-            }, 3000);
-        }
-
-        // Slider navigation
-        document.querySelector('.slider-nav.next').addEventListener('click', () => handleManualSlide('next'));
-        document.querySelector('.slider-nav.prev').addEventListener('click', () => handleManualSlide('prev'));
-
-        // 初始化自动轮播
-        resetAutoSlide();
-    </script>
 </body>
 </html> 

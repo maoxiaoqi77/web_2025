@@ -266,6 +266,25 @@ main {
         padding: 0;
         opacity: 1;
     }
+
+    .optimized-lightbox {
+        padding: 20px 0;
+        align-items: flex-start;
+    }
+    
+    .optimized-lightbox-content {
+        max-height: none;
+        margin-top: 40px;
+    }
+    
+    .optimized-lightbox-close {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .optimized-lightbox-info-section {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -285,6 +304,36 @@ main {
         font-size: 14px;
         padding: 0;
         opacity: 1;
+    }
+
+    .optimized-lightbox {
+        padding: 0;
+    }
+    
+    .optimized-lightbox-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 50px 10px 20px;
+    }
+    
+    .optimized-lightbox-close {
+        top: 10px;
+        right: 10px;
+        z-index: 1010;
+    }
+    
+    .optimized-lightbox-info-section {
+        margin-bottom: 30px;
+    }
+    
+    .optimized-lightbox-artwork-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .optimized-lightbox-artwork-details {
+        font-size: 14px;
     }
 }
 
@@ -419,4 +468,211 @@ main {
     .footer-social {
         justify-content: center;
     }
+}
+
+/* 更新优化的lightbox样式 */
+.optimized-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.optimized-lightbox.active {
+    display: flex;
+}
+
+.optimized-lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.optimized-lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.optimized-lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.optimized-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 36px;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 5px;
+}
+
+.optimized-lightbox-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.optimized-lightbox-prev {
+    left: -60px;
+}
+
+.optimized-lightbox-next {
+    right: -60px;
+}
+
+/* 添加artwork信息区域样式 */
+.optimized-lightbox-info-section {
+    background: white;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.optimized-lightbox-artwork-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.optimized-lightbox-artwork-details {
+    font-size: 15px;
+    color: #666;
+}
+
+.optimized-lightbox-artwork-details div {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: flex-start;
+}
+
+.optimized-lightbox-artwork-details .label {
+    font-weight: 500;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.optimized-lightbox-artwork-details span:not(.label) {
+    display: inline-block;
+}
+
+@media (max-width: 1200px) {
+    .optimized-lightbox-prev {
+        left: 10px;
+    }
+
+    .optimized-lightbox-next {
+        right: 10px;
+    }
+}
+
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    width: 1200px;
+    height: 700px;
+    position: relative;
+    background: white;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lightbox-image-section {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    padding: 20px;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.lightbox-info-section {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+}
+
+.artwork-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+.artwork-details {
+    font-size: 16px;
+    line-height: 2;
+    color: #666;
+}
+
+.artwork-details .label {
+    font-weight: 500;
+    color: #333;
+    display: inline-block;
+    width: 80px;
+    vertical-align: top;
+}
+
+.artwork-details div {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.artwork-details span:not(.label) {
+    display: inline-block;
+    max-width: calc(100% - 85px);
 } 

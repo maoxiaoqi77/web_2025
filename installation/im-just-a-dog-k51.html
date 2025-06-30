@@ -6,6 +6,7 @@
     <title>I'M JUST A DOG_k51 - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/lightbox-fix.css">
     <style>
         main {
             margin-top: 70px;
@@ -112,7 +113,7 @@
         }
 
         /* Lightbox styles */
-        .lightbox {
+        .optimized-lightbox {
             display: none;
             position: fixed;
             top: 0;
@@ -123,36 +124,41 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
         }
 
-        .lightbox.active {
+        .optimized-lightbox.active {
             display: flex;
         }
 
-        .lightbox-content {
-            max-width: 95%;
-            max-height: 95%;
+        .optimized-lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
             width: auto;
             height: auto;
             position: relative;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            z-index: 1001;
         }
 
-        .lightbox-content img {
+        .optimized-lightbox-content img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 85vh;
             width: auto;
             height: auto;
             object-fit: contain;
             display: block;
         }
 
-        .lightbox-close {
+        .optimized-lightbox-close {
             position: absolute;
-            top: -50px;
-            right: -10px;
+            top: -40px;
+            right: 0;
             color: white;
             font-size: 30px;
             cursor: pointer;
@@ -161,7 +167,7 @@
             z-index: 10;
         }
 
-        .lightbox-nav {
+        .optimized-lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -176,16 +182,16 @@
             opacity: 0.7;
         }
 
-        .lightbox-nav:hover {
+        .optimized-lightbox-nav:hover {
             opacity: 1;
             color: #fff;
         }
 
-        .lightbox-prev {
+        .optimized-lightbox-prev {
             left: -70px;
         }
 
-        .lightbox-next {
+        .optimized-lightbox-next {
             right: -70px;
         }
 
@@ -283,28 +289,36 @@
                 gap: 10px;
             }
 
-            .lightbox-content {
-                max-width: 98%;
-                max-height: 98%;
+            .optimized-lightbox {
+                padding: 10px;
             }
-
-            .lightbox-close {
-                top: -40px;
+            
+            .optimized-lightbox-content {
+                max-width: 95%;
+                max-height: 90%;
+            }
+            
+            .optimized-lightbox-content img {
+                max-height: 80vh;
+            }
+            
+            .optimized-lightbox-close {
+                top: -30px;
                 right: 0;
                 font-size: 24px;
             }
 
-            .lightbox-nav {
+            .optimized-lightbox-nav {
                 font-size: 24px;
                 padding: 10px 15px;
             }
 
-            .lightbox-prev {
-                left: -50px;
+            .optimized-lightbox-prev {
+                left: 10px;
             }
 
-            .lightbox-next {
-                right: -50px;
+            .optimized-lightbox-next {
+                right: 10px;
             }
 
             .thumbnails-grid {
@@ -325,13 +339,33 @@
             .thumbnails-grid {
                 grid-template-columns: 1fr;
             }
-
-            .lightbox-prev {
-                left: 10px;
+            
+            .optimized-lightbox {
+                padding: 5px;
+            }
+            
+            .optimized-lightbox-content {
+                max-width: 100%;
+            }
+            
+            .optimized-lightbox-content img {
+                max-height: 75vh;
+            }
+            
+            .optimized-lightbox-close {
+                top: -25px;
+                right: 0;
+                font-size: 20px;
             }
 
-            .lightbox-next {
-                right: 10px;
+            .optimized-lightbox-prev {
+                left: 5px;
+                font-size: 20px;
+            }
+
+            .optimized-lightbox-next {
+                right: 5px;
+                font-size: 20px;
             }
         }
     </style>
@@ -369,87 +403,40 @@
     <main>
         <a href="../installation.html#im-just-a-dog-k51" class="back-link">← Back to INSTALLATION</a>
         <div class="project-header">
-            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'M JUST A DOG_k51">
+            <img src="../images/02installation/02_037_im_just_a_dog_k51/01_2523_webpic_IMG_3628.jpg" alt="I'm just a dog k51">
         </div>
 
         <div class="project-content">
             <h1 class="project-title">I'M JUST A DOG_k51</h1>
-            <p class="project-description">Exploring the emotional connection between humans and animals through a dog's perspective, presented at OPEN STUDIO in Berlin, Germany. The installation incorporates elements of daily life, presenting a unique observational viewpoint of life.
+            <p class="project-description">An installation exploring the relationship between humans and dogs, presented at K51 Gallery. The work creates a spatial narrative that invites viewers to reflect on the unique bond between humans and their canine companions.
 
-This work invites viewers to reconsider their relationship with pets and other animals, questioning the boundaries between human and animal consciousness. Through careful arrangement of domestic objects and animal imagery, the installation creates a space that is both familiar and unsettling, challenging our assumptions about how animals perceive the world around them.</p>
+Through the interplay of light, shadow, and projection, the installation creates a dreamlike environment where the boundaries between human and animal perspectives blur, suggesting a deeper connection between species.</p>
 
             <div class="media-gallery">
-                <div class="video-section">
-                    <video controls>
-                        <source src="../images/installation/im%20just%20a%20dog/imjustadog_web.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(0)">
-                        <img src="../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1746.jpg" alt="I'm just a dog detail">
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_037_im_just_a_dog_k51/01_2523_webpic_IMG_3628.jpg" alt="I'm just a dog k51 detail" onclick="openLightbox(0)">
                     </div>
-                    <div class="gallery-item" onclick="openLightbox(1)">
-                        <img src="../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1748.jpg" alt="I'm just a dog detail">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(2)">
-                        <img src="../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1754.jpg" alt="I'm just a dog detail">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(3)">
-                        <img src="../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1756.jpg" alt="I'm just a dog detail">
-                    </div>
-                    <div class="gallery-item" onclick="openLightbox(4)">
-                        <img src="../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1757.jpg" alt="I'm just a dog detail">
+                    <div class="gallery-item">
+                        <img src="../images/02installation/02_037_im_just_a_dog_k51/02_basic_IMG_2092 2.jpg" alt="I'm just a dog k51 detail" onclick="openLightbox(1)">
                     </div>
                 </div>
             </div>
 
             <div class="other-installations">
                 <h3>Other Installations</h3>
-                <div class="thumbnails-grid">
-                    <a href="in-the-bush.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/in%20the%20bush/ipad_IMG_6367_innstallation_000.jpg" alt="in the bush_NAKANOJYO">
-                        </div>
-                        <p class="thumbnail-title">in the bush_NAKANOJYO</p>
-                    </a>
-                    <a href="im-just-a-dog-tws.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'M JUST A DOG_TWS">
-                        </div>
-                        <p class="thumbnail-title">I'M JUST A DOG_TWS</p>
-                    </a>
-                    <a href="im-just-a-dog-superbien.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg" alt="I'M JUST A DOG_superbien!">
-                        </div>
-                        <p class="thumbnail-title">I'M JUST A DOG_superbien!</p>
-                    </a>
-                    <a href="still-sigh-with-water.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/still%20sign%20with%20water/2236_webpic_IMG_1101_installation_000.jpg" alt="still sign with water_TWS">
-                        </div>
-                        <p class="thumbnail-title">still sign with water_TWS</p>
-                    </a>
-                    <a href="chasing-little-pasts-tws.html" class="thumbnail-item">
-                        <div class="thumbnail-image">
-                            <img src="../images/installation/chasing little past/026_chasingalittlepast/2236_webpic_IMG_1890_installation_000.jpg" alt="chasing little pasts_TWS">
-                        </div>
-                        <p class="thumbnail-title">chasing little pasts_TWS</p>
-                    </a>
-                </div>
+                <!-- 此部分将由other-installations.js自动生成 -->
             </div>
         </div>
     </main>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
+    <div class="optimized-lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="optimized-lightbox-content" onclick="event.stopPropagation()">
+            <button class="optimized-lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
             <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+            <button class="optimized-lightbox-nav optimized-lightbox-next" onclick="changeImage(1)">&#8250;</button>
         </div>
     </div>
 
@@ -465,13 +452,12 @@ This work invites viewers to reconsider their relationship with pets and other a
     </footer>
 
     <script src="../js/script.js"></script>
+    <script src="../js/installation-data.js"></script>
+    <script src="../js/other-installations.js"></script>
     <script>
         const images = [
-            "../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1746.jpg",
-            "../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1748.jpg",
-            "../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1754.jpg",
-            "../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1756.jpg",
-            "../images/installation/im%20just%20a%20dog/1543_webpic_IMG_1757.jpg"
+            "../images/02installation/02_037_im_just_a_dog_k51/01_2523_webpic_IMG_3628.jpg",
+            "../images/02installation/02_037_im_just_a_dog_k51/02_basic_IMG_2092 2.jpg"
         ];
 
         let currentImageIndex = 0;
@@ -497,7 +483,7 @@ This work invites viewers to reconsider their relationship with pets and other a
         }
 
         // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener("keydown", , function(e) {
             if (document.getElementById('lightbox').classList.contains('active')) {
                 if (e.key === 'Escape') {
                     closeLightbox();
@@ -544,4 +530,4 @@ This work invites viewers to reconsider their relationship with pets and other a
         })();
     </script>
 </body>
-</html> 
+</html>

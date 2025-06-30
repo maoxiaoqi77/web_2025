@@ -1,0 +1,30 @@
+/* 优化的Lightbox导航按钮样式 */
+@media (max-width: 768px) {
+    .optimized-lightbox-prev {
+        left: 10px !important;
+    }
+    
+    .optimized-lightbox-next {
+        right: 10px !important;
+    }
+
+    .optimized-lightbox-nav {
+        font-size: 24px;
+        padding: 10px 15px;
+        z-index: 1002;
+    }
+}
+
+@media (max-width: 480px) {
+    .optimized-lightbox-prev {
+        left: 5px !important;
+        font-size: 20px;
+        z-index: 1002;
+    }
+    
+    .optimized-lightbox-next {
+        right: 5px !important;
+        font-size: 20px;
+        z-index: 1002;
+    }
+} 
