@@ -62,6 +62,26 @@
             object-fit: cover;
             background: transparent;
         }
+        
+        /* 新闻图片样式 - 保持3:2比例 */
+        .news-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 3/2;
+            background: #f5f5f5;
+        }
+
+        /* br标签段间距样式 - 更强的实现 */
+        br {
+            content: " ";
+            display: block;
+            margin-bottom: 2em;
+            margin-top: 2em;
+            line-height: 4em;
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
@@ -99,67 +119,82 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/02top/slide show/001_2021_webpic_IMG_5824_02.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/001_2021_webpic_IMG_5824_02.jpg" alt="001">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/002_2526_webpic_slideshow_sketch_aoikoya_basic.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/002_2526_webpic_slideshow_sketch_aoikoya_basic.jpg" alt="002">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/003_2523_webpic_slidshow_IMG_5384.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/003_2523_webpic_slidshow_IMG_5384.jpg" alt="003">
                 </div>
                 <div class="slide video-slide">
-                    <video id="slideVideo1" muted playsinline autoplay loop preload="auto">
-                        <source src="images/02top/slide show/004_1423_stillsignwithwater.mp4" type="video/mp4">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/004_2527_webvideo_stillsignwithwater.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/005_2021_webpic_IMG_6367.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
-                </div>
-                <div class="slide">
-                    <img src="images/02top/slide show/006_2521_webpic_IMG_9145.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/005_2021_webpic_IMG_6367.jpg" alt="005">
                 </div>
                 <div class="slide video-slide">
-                    <video id="slideVideo2" muted playsinline autoplay loop preload="auto">
-                        <source src="images/02top/slide show/007_2024_korokoro_1.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="slide">
-                    <img src="images/02top/slide show/008_2523_webpic_slidshow_IMG_3628.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
-                </div>
-                <div class="slide video-slide">
-                    <video id="slideVideo3" muted playsinline autoplay loop preload="auto">
-                        <source src="images/02top/slide show/009_2228_chime.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="slide">
-                    <img src="images/02top/slide show/010_2236_webpic_slidshow_IMG_3602_installation_000.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
-                </div>
-                <div class="slide video-slide">
-                    <video id="slideVideo4" muted playsinline autoplay loop preload="auto">
-                        <source src="images/02top/slide show/011_2228_suiteki.mp4" type="video/mp4">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/006_2527_webvideo_sound_of_a_kettle.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="slide video-slide">
-                    <video id="slideVideo5" muted playsinline autoplay loop preload="auto">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/007_2524_webvideo_003.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <img src="images/02top/slide show/008_2523_webpic_slidshow_IMG_3628.jpg" alt="008">
+                </div>
+                <div class="slide video-slide">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/009_2524_webvideo_004.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <img src="images/02top/slide show/010_2236_webpic_slidshow_IMG_3602_installation_000.jpg" alt="010">
+                </div>
+                <div class="slide video-slide">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/011_2524_webvideo_005.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide video-slide">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/012_2524_webvideo_018.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide video-slide">
+                    <video muted playsinline autoplay preload="auto">
                         <source src="images/02top/slide show/012_NTIG_3.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/013_2523_webpic_slidshow_IMG_1510_02.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/013_2523_webpic_slidshow_IMG_1510_02.jpg" alt="013">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/014_2526_webpic_slideshow_IMG_1115.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/014_2526_webpic_slideshow_IMG_1115.jpg" alt="014">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/015_2521_webpic_IMG_9146.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/015_2521_webpic_IMG_9146.jpg" alt="015">
                 </div>
                 <div class="slide video-slide">
-                    <video id="slideVideo6" muted playsinline autoplay loop preload="auto">
+                    <video muted playsinline autoplay preload="auto">
                         <source src="images/02top/slide show/016_2320_ig_charsingalittlepast_openart_01.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/017_2527_webpic_slideshow_IMG_0757_04.jpg" alt="KIYOMI+TETSUHIRO UOZUMI Artwork">
+                    <img src="images/02top/slide show/017_2527_webpic_slideshow_IMG_0757_04.jpg" alt="017">
+                </div>
+                <div class="slide video-slide">
+                    <video muted playsinline autoplay preload="auto">
+                        <source src="images/02top/slide show/018_2527_webvideo_soundogdog.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <img src="images/02top/slide show/019_2521_webpic_IMG_9145.jpg" alt="019">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -179,8 +214,10 @@
                     <div class="news-content">
                         <time>26.03.2025</time>
                         <h3> Showing our drawings in La Isla Salon</h3>
-                        <p>ヘアーサロン　La Isla Salon　でドローイングを展示しています。
+                        <p>I’m currently exhibiting a selection of my drawings at La Isla Salon. You’re warmly invited to visit and enjoy the show!
+                            <br>
                             La Isla Salon
+                            <br>
                             Hagelberger Str. 56, 10965 Berlin
                             </p>
                         <a href="javascript:void(0);" class="see-more">See More</a>
@@ -198,13 +235,13 @@
                             Japanese historical figure Mitsuko Coudenhove-Kalergi. This exhibition will be
                             
                             in conjunction with the 10th anniversary of Castle Poběžovice's Japanese
-                            Garden.
+                            Garden.<br>
                             The works that comprise HALLO MITSUKO will be fabricated from familiar
                             things collected from locals. the exhibition constructs a multi-layered narrative
                             of a historical figure, weaving together fragments of fiction and documentary
-                            (non-fiction).
+                            (non-fiction).<br>
                             Firstly, It is important to mention some key details regarding the HALLO
-                            MITSUKO exhibition venue.
+                            MITSUKO exhibition venue.<br>
                             Currently, our venue the Castle Poběžovice is undergoing extensive restoration
                             as such it can only be opened partially to the public. As such much of the castle
                             is mysterious, only hinting at its former glory, filled with traces of stories that are

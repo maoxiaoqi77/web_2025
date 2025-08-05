@@ -25,28 +25,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 过滤掉当前页面
-    const filteredInstallations = installationData.filter(item => item.id !== currentPageName);
+    const filteredInstallations = installationData.filter(item => {
+        // 使用解码后的当前页面名称进行比较，以处理URL编码的特殊字符
+        const decodedCurrentPageName = decodeURIComponent(currentPageName);
+        return item.id !== decodedCurrentPageName;
+    });
     
-    // 创建单个网格容器，而不是多行
+    // 创建单个网格容器
     const grid = document.createElement('div');
     grid.className = 'thumbnails-grid';
+    grid.style.display = 'grid';
+    grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    grid.style.gap = '20px';
+    grid.style.width = '100%';
     
     // 添加所有项目到网格
     filteredInstallations.forEach(item => {
         const thumbnailItem = document.createElement('a');
-        thumbnailItem.href = `../installation/${item.id}.html`;
+        // 确保正确编码URL中的特殊字符
+        thumbnailItem.href = `../installation/${encodeURIComponent(item.id)}.html`;
         thumbnailItem.className = 'thumbnail-item';
+        thumbnailItem.style.display = 'flex';
+        thumbnailItem.style.flexDirection = 'column';
+        thumbnailItem.style.height = '100%';
+        thumbnailItem.style.width = '100%';
+        thumbnailItem.style.textDecoration = 'none';
+        thumbnailItem.style.color = 'inherit';
         
         const thumbnailImage = document.createElement('div');
         thumbnailImage.className = 'thumbnail-image';
+        thumbnailImage.style.width = '100%';
+        thumbnailImage.style.aspectRatio = '4/3';
+        thumbnailImage.style.marginBottom = '10px';
+        thumbnailImage.style.overflow = 'hidden';
         
         const img = document.createElement('img');
         img.src = item.thumbnail;
         img.alt = item.title;
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.objectPosition = 'center center';
         
         const title = document.createElement('p');
         title.className = 'thumbnail-title';
         title.textContent = item.title;
+        title.style.fontSize = '14px';
+        title.style.color = '#333';
+        title.style.textAlign = 'center';
+        title.style.lineHeight = '1.4';
+        title.style.marginTop = 'auto';
+        title.style.height = '40px';
+        title.style.display = 'flex';
+        title.style.alignItems = 'center';
+        title.style.justifyContent = 'center';
+        title.style.overflow = 'hidden';
         
         thumbnailImage.appendChild(img);
         thumbnailItem.appendChild(thumbnailImage);
@@ -56,4 +89,40 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 添加网格到容器
     otherInstallationsContainer.appendChild(grid);
+    
+    // 添加响应式布局
+    const mediaQueryHandler = () => {
+        const width = window.innerWidth;
+        if (width <= 480) {
+            grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            grid.style.gap = '15px';
+            document.querySelectorAll('.thumbnail-title').forEach(el => {
+                el.style.height = '32px';
+                el.style.fontSize = '12px';
+            });
+        } else if (width <= 768) {
+            grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            grid.style.gap = '15px';
+            document.querySelectorAll('.thumbnail-title').forEach(el => {
+                el.style.height = '36px';
+                el.style.fontSize = '12px';
+            });
+        } else if (width <= 992) {
+            grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            document.querySelectorAll('.thumbnail-title').forEach(el => {
+                el.style.height = '40px';
+                el.style.fontSize = '14px';
+            });
+        } else if (width <= 1200) {
+            grid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+        } else {
+            grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
+        }
+    };
+    
+    // 初始化响应式布局
+    mediaQueryHandler();
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', mediaQueryHandler);
 });

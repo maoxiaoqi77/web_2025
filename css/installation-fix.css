@@ -1,0 +1,124 @@
+/**
+ * Installation页面修复样式
+ * 解决Other Installations部分缩略图大小不一致和主图在屏幕缩小时适配的问题
+ */
+
+/* 修复主图在屏幕缩小时的适配问题 */
+.project-header {
+    width: calc(100% - 100px) !important;
+    max-width: 1300px !important;
+    margin: 0 50px 20px 50px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    aspect-ratio: 16/9 !important;
+}
+
+.project-header img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    margin: 0 !important;
+}
+
+/* 修复Other Installations部分缩略图大小不一致的问题 */
+.other-installations {
+    margin-top: 80px !important;
+    padding-top: 40px !important;
+    border-top: 1px solid #eee !important;
+}
+
+.other-installations h3 {
+    font-size: 20px !important;
+    color: #333 !important;
+    margin-bottom: 30px !important;
+    text-align: center !important;
+}
+
+.other-installations .thumbnails-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+.other-installations .thumbnail-item {
+    display: flex !important;
+    flex-direction: column !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: opacity 0.3s !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.other-installations .thumbnail-item:hover {
+    opacity: 0.8 !important;
+}
+
+.other-installations .thumbnail-image {
+    width: 100% !important;
+    aspect-ratio: 4/3 !important;
+    margin-bottom: 10px !important;
+    overflow: hidden !important;
+}
+
+.other-installations .thumbnail-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+}
+
+.other-installations .thumbnail-title {
+    font-size: 14px !important;
+    color: #333 !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+    margin-top: auto !important;
+    height: 40px !important; /* 固定标题高度，确保所有缩略图高度一致 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+/* 响应式布局调整 */
+@media (max-width: 1200px) {
+    .other-installations .thumbnails-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .other-installations .thumbnails-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-header {
+        width: calc(100% - 40px) !important;
+        margin: 0 20px 20px 20px !important;
+    }
+    
+    .other-installations .thumbnails-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+    
+    .other-installations .thumbnail-title {
+        font-size: 12px !important;
+        height: 36px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .other-installations .thumbnails-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .other-installations .thumbnail-title {
+        height: 32px !important;
+    }
+} 

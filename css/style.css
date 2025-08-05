@@ -13,6 +13,18 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* br标签段间距样式 - 更强的实现 */
+br {
+    content: " ";
+    display: block;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    line-height: 4em;
+    font-size: 1em;
+}
+
+
+
 /* 导航栏样式 */
 .header {
     position: fixed;
@@ -61,6 +73,11 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .menu-btn span {
@@ -69,6 +86,20 @@ body {
     background: #999;
     margin: 2px 0;
     transition: 0.3s;
+    pointer-events: none;
+}
+
+/* 菜单按钮激活状态 */
+.menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* 移动端导航菜单 */
@@ -82,6 +113,13 @@ body {
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-mobile.active {
+    display: block;
+    transform: translateY(0);
 }
 
 .nav-mobile a {
@@ -210,6 +248,11 @@ main {
         max-width: 100%;
         padding: 50px 50px;
     }
+    
+    .footer-content {
+        max-width: 100%;
+        padding: 0 50px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -219,6 +262,10 @@ main {
 
     .menu-btn {
         display: flex;
+        min-width: 30px;
+        min-height: 30px;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -229,10 +276,6 @@ main {
 
     .logo {
         font-size: 20px;
-    }
-
-    .nav-mobile.active {
-        display: block;
     }
 
     main {
@@ -290,6 +333,10 @@ main {
 @media (max-width: 480px) {
     .logo {
         font-size: 18px;
+    }
+    
+    .footer-content {
+        padding: 0 20px;
     }
 
     .slider-nav.prev {
@@ -437,7 +484,7 @@ main {
     margin: 0 auto;
     display: flex;
     justify-content: flex-end;
-    padding: 0;
+    padding: 0 50px;
 }
 
 .footer-social {
@@ -462,11 +509,12 @@ main {
     }
 
     .footer-content {
-        padding: 0 15px;
+        padding: 0 20px;
+        justify-content: flex-end;
     }
 
     .footer-social {
-        justify-content: center;
+        justify-content: flex-end;
     }
 }
 

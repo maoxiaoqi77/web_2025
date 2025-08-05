@@ -38,6 +38,24 @@
         }
 
         /* Slider image style update */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-color: #000; /* 添加黑色背景 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
         .slide img {
             width: 100%;
             height: 100%;
@@ -49,14 +67,29 @@
         /* 视频幻灯片样式 */
         .slide.video-slide {
             position: relative;
-            background: transparent;
+            background: #000; /* 确保视频幻灯片有黑色背景 */
         }
         
         .slide.video-slide video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* 改为contain以保持原始比例 */
             background: transparent;
+        }
+        
+        /* 竖版视频特殊样式 */
+        .slide.video-slide.vertical-video {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide.video-slide.vertical-video video {
+            max-height: 100%;
+            width: auto;
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
         }
 
         /* Gallery group styles */
@@ -84,6 +117,9 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* 增加iOS滚动流畅度 */
+            overscroll-behavior: contain; /* 防止滚动传播 */
         }
 
         .lightbox.active {
@@ -200,19 +236,41 @@
                 grid-template-columns: repeat(4, 1fr);
             }
 
+            .lightbox {
+                overflow-y: auto;
+                padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
             .lightbox-content {
                 width: 95%;
-                height: 80%;
+                height: auto;
+                max-height: none;
                 flex-direction: column;
+                margin: 60px auto 40px;
+                overflow-y: visible;
+                box-sizing: border-box;
             }
 
             .lightbox-image-section {
-                flex: 2;
+                flex: none;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+                padding: 15px;
             }
 
             .lightbox-info-section {
-                flex: 1;
-                padding: 20px;
+                flex: none;
+                width: 100%;
+                padding: 20px 15px 30px;
+                overflow-y: visible;
             }
 
             .artwork-title {
@@ -230,6 +288,13 @@
 
             .lightbox-next {
                 right: 15px;
+            }
+            
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                color: white;
+                z-index: 1010;
             }
         }
 
@@ -256,27 +321,42 @@
                 font-size: 18px;
             }
 
+            /* 保持lightbox滚动行为与平板一致 */
             .lightbox {
                 overflow-y: auto;
+                padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .lightbox-content {
                 flex-direction: column;
                 height: auto;
                 max-height: none;
-                margin: 20px auto;
+                margin: 60px auto 40px;
                 overflow-y: visible;
+                width: 90%;
+                box-sizing: border-box;
             }
 
             .lightbox-image-section {
                 flex: none;
                 width: 100%;
+                max-height: none;
+                overflow-y: visible;
+                padding: 15px;
             }
 
             .lightbox-info-section {
                 flex: none;
                 width: 100%;
-                padding: 15px;
+                padding: 15px 15px 30px;
+                overflow-y: visible;
             }
 
             .artwork-title {
@@ -297,12 +377,158 @@
 
             .lightbox-content {
                 width: 95%;
-                margin: 50px auto 20px;
+                margin: 50px auto 30px;
+                max-height: none;
             }
 
             .lightbox-close {
-                top: -30px;
-                right: 0;
+                top: 15px;
+                right: 15px;
+                color: white;
+                z-index: 1010;
+            }
+        }
+
+        /* 确保在所有设备上都能正常滚动 */
+        @media (hover: none) and (pointer: coarse) {
+            /* 触摸设备专用样式 */
+            .lightbox {
+                overflow-y: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .lightbox-content {
+                margin: 60px auto 40px;
+                width: 90%;
+                max-width: 600px;
+                height: auto;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        /* 视频缩略图样式 */
+        .video-gallery-item {
+            position: relative;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .play-button i {
+            color: white;
+            font-size: 24px;
+            margin-left: 4px; /* 稍微向右偏移，使其视觉上居中 */
+        }
+        
+        .video-thumbnail:hover .play-button {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        /* 视频弹框样式 */
+        .video-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .video-lightbox.active {
+            display: flex;
+        }
+        
+        .video-lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            width: 1000px;
+            position: relative;
+            background: black;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 宽高比 */
+            position: relative;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .video-info {
+            padding: 20px;
+            color: white;
+        }
+        
+        .video-info .artwork-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .video-info .artwork-year {
+            font-size: 16px;
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .play-button {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .play-button i {
+                font-size: 18px;
+            }
+            
+            .video-lightbox-content {
+                width: 95%;
             }
         }
     </style>
@@ -342,28 +568,31 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/02sculpture/00_SLIDESHOW/2520_weppic_IMG_0772_slide.jpg" alt="Sculpture 1">
+                    <img src="images/02sculpture/00_SLIDESHOW/01_2520_weppic_IMG_0772_slide.jpg" alt="Sculpture 1">
                 </div>
-                <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5529_02.jpg" alt="Sculpture 2">
-                </div>
-                <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slidshow_IMG_5521_02.jpg" alt="Sculpture 3">
-                </div>
-                <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5537_02.jpg" alt="Sculpture 4">
-                </div>
-                <div class="slide video-slide">
-                    <video id="slideVideo" muted playsinline autoplay loop preload="auto" poster="images/02sculpture/00_SLIDESHOW/2520_weppic_IMG_0772_slide.jpg" style="background: transparent;">
-                        <source src="images/02sculpture/00_SLIDESHOW/2330_sound_of_a_kettle.mp4" type="video/mp4">
-                        <img src="images/02sculpture/00_SLIDESHOW/2520_weppic_IMG_0772_slide.jpg" alt="视频无法播放时的替代图片">
+                <div class="slide video-slide vertical-video">
+                    <video id="slideVideo1" muted playsinline autoplay loop preload="auto" style="background: transparent;">
+                        <source src="images/02sculpture/00_SLIDESHOW/02_2527_webvideo_soundogdog.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
                 </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.jpg" alt="Sculpture 3">
+                </div>
                 <div class="slide video-slide">
-                    <video id="slideVideo2" muted playsinline autoplay loop preload="auto" poster="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5529_02.jpg" style="background: transparent;">
-                        <source src="images/02sculpture/00_SLIDESHOW/2524_webvideo_020.mp4" type="video/mp4">
-                        <img src="images/02sculpture/00_SLIDESHOW/2527_webpic_slideshow_IMG_5529_02.jpg" alt="视频无法播放时的替代图片">
+                    <video id="slideVideo2" muted playsinline autoplay loop preload="auto" poster="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.jpg" style="background: transparent;">
+                        <source src="images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/05_2527_webpic_slideshow_IMG_5529_02.jpg" alt="Sculpture 5">
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/06_2527_webpic_slideshow_IMG_5537_02.jpg" alt="Sculpture 6">
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/07_2527_webpic_slidshow_IMG_5521_02.jpg" alt="Sculpture 7">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -385,6 +614,14 @@
                     </div>
                     <div class="gallery-item">
                         <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.jpg" alt="Sculpture 2022" onclick="openLightbox(1)">
+                    </div>
+                    <div class="gallery-item video-gallery-item">
+                        <div class="video-thumbnail">
+                            <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.jpg" alt="Sound of a kettle video">
+                            <div class="play-button" onclick="openVideoLightbox('images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.mp4', 'Sound of a kettle', '2022')">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -429,6 +666,23 @@
         </div>
     </div>
 
+    <!-- Video Lightbox -->
+    <div class="video-lightbox" id="video-lightbox" onclick="closeVideoLightbox()">
+        <div class="video-lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeVideoLightbox()">&times;</button>
+            <div class="video-container">
+                <video id="lightbox-video" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-info">
+                <div class="artwork-title" id="video-title">Video Title</div>
+                <div class="artwork-year" id="video-year">2022</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -441,5 +695,504 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 视频幻灯片处理
+            const slides = document.querySelectorAll('.slide');
+            const slidesArray = Array.from(slides);
+            const prevBtn = document.querySelector('.slider-nav.prev');
+            const nextBtn = document.querySelector('.slider-nav.next');
+            let currentIndex = 0;
+            let isTransitioning = false;
+            let autoSlideTimer = null;
+            
+            // 查找当前激活的幻灯片索引
+            slidesArray.forEach((slide, index) => {
+                if (slide.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+            
+            // 预加载所有视频
+            function preloadVideos() {
+                slidesArray.forEach((slide) => {
+                    if (slide.classList.contains('video-slide')) {
+                        const video = slide.querySelector('video');
+                        if (video) {
+                            video.load();
+                        }
+                    }
+                });
+            }
+            
+            // 处理视频播放
+            function handleVideoPlayback(slide) {
+                if (!slide || !slide.classList.contains('video-slide')) return false;
+                
+                // 停止所有其他视频
+                slidesArray.forEach((otherSlide) => {
+                    if (otherSlide !== slide && otherSlide.classList.contains('video-slide')) {
+                        const otherVideo = otherSlide.querySelector('video');
+                        if (otherVideo) {
+                            otherVideo.pause();
+                            otherVideo.currentTime = 0;
+                        }
+                    }
+                });
+                
+                // 获取当前视频
+                const video = slide.querySelector('video');
+                if (!video) return false;
+                
+                // 重置视频
+                video.currentTime = 0;
+                
+                // 设置视频事件
+                video.onended = function() {
+                    console.log('视频播放结束，切换到下一张');
+                    nextSlide();
+                };
+                
+                video.onerror = function(e) {
+                    console.error('视频播放错误:', e);
+                    nextSlide();
+                };
+                
+                // 确保视频已加载
+                if (video.readyState === 0) {
+                    video.load();
+                }
+                
+                // 播放视频
+                try {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.error('视频播放失败:', error);
+                            // 尝试重新创建视频元素
+                            recreateVideoElement(slide);
+                        });
+                    }
+                } catch (e) {
+                    console.error('播放视频时出错:', e);
+                    recreateVideoElement(slide);
+                }
+                
+                return true;
+            }
+            
+            // 重新创建视频元素
+            function recreateVideoElement(slide) {
+                const oldVideo = slide.querySelector('video');
+                if (!oldVideo) return;
+                
+                const videoSrc = oldVideo.querySelector('source').getAttribute('src');
+                if (!videoSrc) return;
+                
+                // 获取poster属性（如果有）
+                const posterSrc = oldVideo.getAttribute('poster');
+                
+                // 移除旧视频
+                slide.removeChild(oldVideo);
+                
+                // 创建新视频
+                const newVideo = document.createElement('video');
+                newVideo.setAttribute('muted', '');
+                newVideo.setAttribute('playsinline', '');
+                newVideo.setAttribute('autoplay', '');
+                newVideo.setAttribute('preload', 'auto');
+                newVideo.style.background = 'transparent';
+                
+                // 如果有poster属性，添加到新视频
+                if (posterSrc) {
+                    newVideo.setAttribute('poster', posterSrc);
+                }
+                
+                // 根据幻灯片类型设置不同的样式
+                if (slide.classList.contains('vertical-video')) {
+                    newVideo.style.maxHeight = '100%';
+                    newVideo.style.width = 'auto';
+                    newVideo.style.maxWidth = '100%';
+                    newVideo.style.margin = '0 auto';
+                    newVideo.style.display = 'block';
+                } else {
+                    newVideo.style.objectFit = 'contain';
+                    newVideo.style.width = '100%';
+                    newVideo.style.height = '100%';
+                }
+                
+                // 创建新的source元素
+                const source = document.createElement('source');
+                source.setAttribute('src', videoSrc);
+                source.setAttribute('type', 'video/mp4');
+                newVideo.appendChild(source);
+                
+                // 添加到幻灯片
+                slide.appendChild(newVideo);
+                
+                // 设置事件
+                newVideo.onended = function() {
+                    console.log('重建的视频播放结束，切换到下一张');
+                    nextSlide();
+                };
+                
+                // 尝试播放
+                setTimeout(() => {
+                    try {
+                        newVideo.play().catch(e => {
+                            console.error('重建视频播放失败:', e);
+                            // 如果播放失败，确保显示海报图像
+                            if (posterSrc) {
+                                newVideo.setAttribute('poster', posterSrc);
+                            }
+                        });
+                    } catch (e) {
+                        console.error('重建视频播放出错:', e);
+                        // 如果播放失败，确保显示海报图像
+                        if (posterSrc) {
+                            newVideo.setAttribute('poster', posterSrc);
+                        }
+                    }
+                }, 100);
+            }
+            
+            // 切换到指定幻灯片
+            function goToSlide(index) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
+                // 清除自动轮播定时器
+                clearTimeout(autoSlideTimer);
+                
+                // 处理循环
+                if (index >= slidesArray.length) {
+                    index = 0;
+                } else if (index < 0) {
+                    index = slidesArray.length - 1;
+                }
+                
+                // 移除当前幻灯片的激活状态
+                slidesArray[currentIndex].classList.remove('active');
+                
+                // 如果当前是视频幻灯片，停止视频
+                const currentSlide = slidesArray[currentIndex];
+                if (currentSlide.classList.contains('video-slide')) {
+                    const video = currentSlide.querySelector('video');
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                }
+                
+                // 更新当前索引
+                currentIndex = index;
+                
+                // 添加新幻灯片的激活状态
+                const newSlide = slidesArray[currentIndex];
+                newSlide.classList.add('active');
+                
+                // 如果新幻灯片是视频，提前加载并播放视频
+                if (newSlide.classList.contains('video-slide')) {
+                    // 获取视频元素
+                    const video = newSlide.querySelector('video');
+                    if (video) {
+                        // 确保视频已加载
+                        if (video.readyState < 2) { // HAVE_CURRENT_DATA
+                            console.log('预加载视频...');
+                            video.load();
+                            
+                            // 监听加载事件
+                            video.addEventListener('loadeddata', function onLoaded() {
+                                console.log('视频加载完成，开始播放');
+                                handleVideoPlayback(newSlide);
+                                // 移除事件监听器
+                                video.removeEventListener('loadeddata', onLoaded);
+                            });
+                            
+                            // 设置超时，如果视频加载时间过长，也继续执行
+                            setTimeout(() => {
+                                handleVideoPlayback(newSlide);
+                            }, 1000);
+                        } else {
+                            // 视频已加载，直接播放
+                            handleVideoPlayback(newSlide);
+                        }
+                    } else {
+                        console.error('未找到视频元素');
+                        // 如果没有找到视频，设置自动轮播
+                        autoSlideTimer = setTimeout(() => {
+                            nextSlide();
+                        }, 3000);
+                    }
+                } else {
+                    // 如果是图片，设置自动轮播
+                    autoSlideTimer = setTimeout(() => {
+                        nextSlide();
+                    }, 6000);
+                }
+                
+                // 延迟重置过渡状态
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 800);
+            }
+            
+            // 下一张幻灯片
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+            
+            // 上一张幻灯片
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+            
+            // 检查所有视频是否可以播放
+            function checkAllVideos() {
+                console.log('检查所有视频...');
+                const videos = document.querySelectorAll('video');
+                videos.forEach((video, index) => {
+                    // 获取视频源
+                    const source = video.querySelector('source');
+                    if (!source) return;
+                    
+                    const videoSrc = source.getAttribute('src');
+                    if (!videoSrc) return;
+                    
+                    console.log(`检查视频 ${index + 1}: ${videoSrc}`);
+                    
+                    // 创建一个新的XMLHttpRequest来检查视频文件是否存在
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', videoSrc, true);
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            console.log(`视频 ${index + 1} 可以访问`);
+                        } else {
+                            console.error(`视频 ${index + 1} 无法访问: ${xhr.status}`);
+                        }
+                    };
+                    xhr.onerror = function() {
+                        console.error(`视频 ${index + 1} 请求错误`);
+                    };
+                    xhr.send();
+                    
+                    // 监听视频的错误事件
+                    video.addEventListener('error', function(e) {
+                        console.error(`视频 ${index + 1} 加载错误:`, e);
+                    });
+                });
+            }
+            
+            // 初始化
+            function init() {
+                // 预加载所有视频
+                preloadVideos();
+                
+                // 手动预加载第二个视频
+                const video2 = document.getElementById('slideVideo2');
+                if (video2) {
+                    video2.load();
+                    
+                    // 监听加载事件
+                    video2.addEventListener('loadeddata', function() {
+                        console.log('第二个视频已预加载完成');
+                    });
+                    
+                    // 监听错误事件
+                    video2.addEventListener('error', function(e) {
+                        console.error('第二个视频加载错误:', e);
+                    });
+                }
+                
+                // 检查所有视频
+                checkAllVideos();
+                
+                // 如果当前幻灯片是视频，播放视频
+                const currentSlide = slidesArray[currentIndex];
+                if (currentSlide.classList.contains('video-slide')) {
+                    handleVideoPlayback(currentSlide);
+                } else {
+                    // 如果是图片，设置自动轮播
+                    autoSlideTimer = setTimeout(() => {
+                        nextSlide();
+                    }, 6000);
+                }
+                
+                // 绑定按钮事件
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        prevSlide();
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        nextSlide();
+                    });
+                }
+                
+                // 键盘导航
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                    }
+                });
+                
+                // 鼠标悬停暂停自动轮播
+                const slider = document.querySelector('.slider');
+                if (slider) {
+                    slider.addEventListener('mouseenter', () => {
+                        clearTimeout(autoSlideTimer);
+                    });
+                    
+                    slider.addEventListener('mouseleave', () => {
+                        if (!slidesArray[currentIndex].classList.contains('video-slide')) {
+                            autoSlideTimer = setTimeout(() => {
+                                nextSlide();
+                            }, 6000);
+                        }
+                    });
+                }
+            }
+            
+            // 初始化
+            init();
+
+            // Lightbox functionality
+            const artworks = [
+                {
+                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.jpg",
+                    title: "Sound of a kettle",
+                    year: "2022",
+                    medium: "Mixed Media, Found Objects",
+                    size: "Variable Dimensions"
+                },
+                {
+                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.jpg",
+                    title: "Sound of a kettle",
+                    year: "2022",
+                    medium: "Mixed Media, Found Objects",
+                    size: "Variable Dimensions"
+                },
+                {
+                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.jpg",
+                    title: "Untitled",
+                    year: "2017",
+                    medium: "Mixed Media, Found Objects",
+                    size: "Variable Dimensions"
+                },
+                {
+                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.jpg",
+                    title: "Untitled",
+                    year: "2017",
+                    medium: "Mixed Media, Found Objects",
+                    size: "Variable Dimensions"
+                },
+                {
+                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.jpg",
+                    title: "Untitled",
+                    year: "2017",
+                    medium: "Mixed Media, Found Objects",
+                    size: "Variable Dimensions"
+                }
+            ];
+            
+            let currentArtworkIndex = 0;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const artworkTitle = document.getElementById('artwork-title');
+            const artworkYear = document.getElementById('artwork-year');
+            const artworkMedium = document.getElementById('artwork-medium');
+            const artworkSize = document.getElementById('artwork-size');
+            
+            window.openLightbox = function(index) {
+                currentArtworkIndex = index;
+                updateLightboxContent();
+                lightbox.classList.add('active');
+                
+                // 重置滚动位置
+                lightbox.scrollTop = 0;
+                
+                // 禁止背景滚动
+                document.body.style.overflow = 'hidden';
+            };
+            
+            window.closeLightbox = function() {
+                lightbox.classList.remove('active');
+                
+                // 恢复背景滚动
+                document.body.style.overflow = '';
+            };
+            
+            window.changeImage = function(direction) {
+                currentArtworkIndex = (currentArtworkIndex + direction + artworks.length) % artworks.length;
+                updateLightboxContent();
+            };
+            
+            function updateLightboxContent() {
+                const artwork = artworks[currentArtworkIndex];
+                lightboxImg.src = artwork.image;
+                artworkTitle.textContent = artwork.title;
+                artworkYear.textContent = artwork.year;
+                artworkMedium.textContent = artwork.medium;
+                artworkSize.textContent = artwork.size;
+            }
+            
+            // 视频弹框功能
+            window.openVideoLightbox = function(videoSrc, title, year) {
+                const videoLightbox = document.getElementById('video-lightbox');
+                const lightboxVideo = document.getElementById('lightbox-video');
+                const videoTitle = document.getElementById('video-title');
+                const videoYear = document.getElementById('video-year');
+                
+                // 设置视频源
+                lightboxVideo.querySelector('source').src = videoSrc;
+                
+                // 重新加载视频
+                lightboxVideo.load();
+                
+                // 设置标题和年份
+                videoTitle.textContent = title;
+                videoYear.textContent = year;
+                
+                // 显示弹框
+                videoLightbox.classList.add('active');
+                
+                // 禁止背景滚动
+                document.body.style.overflow = 'hidden';
+                
+                // 自动播放视频
+                lightboxVideo.play().catch(error => {
+                    console.error('视频自动播放失败:', error);
+                });
+            };
+            
+            window.closeVideoLightbox = function() {
+                const videoLightbox = document.getElementById('video-lightbox');
+                const lightboxVideo = document.getElementById('lightbox-video');
+                
+                // 暂停视频
+                lightboxVideo.pause();
+                
+                // 隐藏弹框
+                videoLightbox.classList.remove('active');
+                
+                // 恢复背景滚动
+                document.body.style.overflow = '';
+            };
+            
+            // 键盘事件监听
+            document.addEventListener('keydown', function(e) {
+                const videoLightbox = document.getElementById('video-lightbox');
+                if (videoLightbox && videoLightbox.classList.contains('active') && e.key === 'Escape') {
+                    closeVideoLightbox();
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

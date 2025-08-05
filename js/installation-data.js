@@ -75,7 +75,7 @@ const installationData = [
         year: "2014"
     },
     {
-        id: "dog-place1",
+        id: "im_just_a_dog_tws",
         title: "I'M JUST A DOG_TWS",
         thumbnail: "../images/02installation/02_025_i_m_just_a_dog_TWS/00_2526_webpic_IMG_1510_02.jpg",
         year: "2014"
@@ -87,9 +87,9 @@ const installationData = [
         year: "2014"
     },
     {
-        id: "dog-place2",
+        id: "i_m_just_a_dog_superbien!",
         title: "I'M JUST A DOG_superbien!",
-        thumbnail: "../images/installation/im%20just%20a%20dog/2236_webpic_IMG_1746_02_installation_000.jpg",
+        thumbnail: "../images/02installation/02_023_i_m_just_a_dog_superbien!/00_2527_webpic_IMG_1025.jpg",
         year: "2013"
     }
 ]; 
