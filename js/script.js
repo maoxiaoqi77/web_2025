@@ -53,38 +53,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // 如果当前幻灯片包含视频
         if (video) {
             try {
-                // 重置视频时间并播放
-                video.currentTime = 0;
+                // 先移除旧的事件监听器
+                video.onloadeddata = null;
+                video.onended = null;
+                video.onerror = null;
                 
-                // 尝试播放视频
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        // 视频成功播放
-                        console.log("视频成功播放");
-                    }).catch(e => {
-                        console.error("视频播放失败，恢复自动轮播", e);
-                        // 如果视频播放失败，恢复自动轮播
+                // 延迟一小段时间确保DOM渲染完成
+                setTimeout(() => {
+                    // 重置视频时间
+                    video.currentTime = 0;
+                    
+                    // 尝试播放视频
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log("视频成功播放");
+                        }).catch(e => {
+                            console.error("视频播放失败，尝试重试", e);
+                            // 如果播放失败，再延迟重试一次
+                            setTimeout(() => {
+                                video.play().catch(e2 => {
+                                    console.error("视频重试播放也失败，恢复自动轮播", e2);
+                                    resetAutoSlide();
+                                });
+                            }, 500);
+                        });
+                    }
+                    
+                    // 视频结束时切换到下一张
+                    video.onended = function() {
+                        nextSlide();
+                        handleVideoSlide(slides[currentSlide]);
+                    };
+                    
+                    // 视频加载错误时处理
+                    video.onerror = function() {
+                        console.error("视频加载错误");
                         resetAutoSlide();
-                    });
-                }
+                    };
+                }, 100); // 延迟100ms确保DOM渲染
                 
-                // 视频结束时切换到下一张
-                video.onended = function() {
-                    nextSlide();
-                    // 视频播放完毕后，重新开始自动轮播
-                    resetAutoSlide();
-                };
-                
-                // 视频加载错误时处理
-                video.onerror = function() {
-                    console.error("视频加载错误");
-                    resetAutoSlide();
-                };
             } catch (e) {
                 console.error("处理视频时出错:", e);
                 resetAutoSlide();
@@ -215,16 +225,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.querySelector('.menu-btn');
     const navMobile = document.querySelector('.nav-mobile');
     
-    menuBtn.addEventListener('click', function() {
+    // 确保菜单按钮存在后再绑定事件
+    if (menuBtn && navMobile) {
+        // 移除可能存在的旧事件监听器
+        menuBtn.removeEventListener('click', handleMenuClick);
+        
+        // 绑定新的点击事件
+        menuBtn.addEventListener('click', handleMenuClick);
+        
+        // 点击页面其他区域关闭菜单
+        document.removeEventListener('click', handleDocumentClick);
+        document.addEventListener('click', handleDocumentClick);
+    }
+    
+    // 菜单点击处理函数
+    function handleMenuClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
         navMobile.classList.toggle('active');
-    });
-
-    // 点击页面其他区域关闭菜单
-    document.addEventListener('click', function(event) {
-        if (!menuBtn.contains(event.target) && !navMobile.contains(event.target)) {
+        menuBtn.classList.toggle('active');
+        console.log('菜单按钮被点击，当前状态:', navMobile.classList.contains('active'));
+    }
+    
+    // 文档点击处理函数
+    function handleDocumentClick(event) {
+        if (menuBtn && navMobile && !menuBtn.contains(event.target) && !navMobile.contains(event.target)) {
             navMobile.classList.remove('active');
+            menuBtn.classList.remove('active');
         }
-    });
+    }
+    
+    // 添加触摸事件支持（针对平板设备）
+    if (menuBtn) {
+        menuBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault();
+            handleMenuClick(event);
+        }, { passive: false });
+    }
 });
 
 // 全局 lightbox 图片滑动切换功能
@@ -913,7 +950,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Endless_Untitled 3",
             year: "2022",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
-            size: "W: 950mm, H: 950mm, D: 10mm"
+            size: "W: 950mm, H: 720mm, D: 10mm"
         }
     ];
 
@@ -1108,6 +1145,9 @@ document.addEventListener('DOMContentLoaded', function() {
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden'; // 防止背景滚动
         
+        // 重置lightbox滚动位置
+        lightbox.scrollTop = 0;
+        
         // 创建新图片对象预加载
         const img = new Image();
         img.onload = function() {
@@ -1174,6 +1214,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 切换图片
     window.changeImage = function(step) {
         currentIndex = (currentIndex + step + images.length) % images.length;
+        
+        // 重置lightbox滚动位置
+        if (lightbox) {
+            lightbox.scrollTop = 0;
+        }
+        
         openLightboxWithImage(images[currentIndex].src, images[currentIndex].info);
         if (event) event.stopPropagation();
     };
@@ -1206,6 +1252,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 直接通过索引打开灯箱
     window.openLightbox = function(index) {
         console.log("打开灯箱，索引:", index);
+        
+        // 重置lightbox滚动位置
+        if (lightbox) {
+            lightbox.scrollTop = 0;
+        }
         
         if (indexMap[index] !== undefined) {
             currentIndex = indexMap[index];

@@ -92,6 +92,9 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* 增加iOS滚动流畅度 */
+            overscroll-behavior: contain; /* 防止滚动传播 */
         }
 
         .lightbox.active {
@@ -212,19 +215,41 @@
                 grid-template-columns: repeat(4, 1fr);
             }
 
+            .lightbox {
+                overflow-y: auto;
+                padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
             .lightbox-content {
                 width: 95%;
-                height: 80%;
+                height: auto;
+                max-height: none;
                 flex-direction: column;
+                margin: 60px auto 40px;
+                overflow-y: visible;
+                box-sizing: border-box;
             }
 
             .lightbox-image-section {
-                flex: 2;
+                flex: none;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+                padding: 15px;
             }
 
             .lightbox-info-section {
-                flex: 1;
-                padding: 20px;
+                flex: none;
+                width: 100%;
+                padding: 20px 15px 30px;
+                overflow-y: visible;
             }
 
             .artwork-title {
@@ -242,6 +267,13 @@
 
             .lightbox-next {
                 right: 15px;
+            }
+            
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                color: white;
+                z-index: 1010;
             }
         }
 
@@ -268,27 +300,42 @@
                 font-size: 18px;
             }
 
+            /* 保持lightbox滚动行为与平板一致 */
             .lightbox {
                 overflow-y: auto;
+                padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .lightbox-content {
                 flex-direction: column;
                 height: auto;
                 max-height: none;
-                margin: 20px auto;
+                margin: 60px auto 40px;
                 overflow-y: visible;
+                width: 90%;
+                box-sizing: border-box;
             }
 
             .lightbox-image-section {
                 flex: none;
                 width: 100%;
+                max-height: none;
+                overflow-y: visible;
+                padding: 15px;
             }
 
             .lightbox-info-section {
                 flex: none;
                 width: 100%;
-                padding: 15px;
+                padding: 15px 15px 30px;
+                overflow-y: visible;
             }
 
             .artwork-title {
@@ -309,12 +356,39 @@
 
             .lightbox-content {
                 width: 95%;
-                margin: 50px auto 20px;
+                margin: 50px auto 30px;
+                max-height: none;
             }
 
             .lightbox-close {
-                top: -30px;
-                right: 0;
+                top: 15px;
+                right: 15px;
+                color: white;
+                z-index: 1010;
+            }
+        }
+
+        /* 确保在所有设备上都能正常滚动 */
+        @media (hover: none) and (pointer: coarse) {
+            /* 触摸设备专用样式 */
+            .lightbox {
+                overflow-y: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .lightbox-content {
+                margin: 60px auto 40px;
+                width: 90%;
+                max-width: 600px;
+                height: auto;
+                max-height: none;
+                overflow-y: visible;
             }
         }
     </style>

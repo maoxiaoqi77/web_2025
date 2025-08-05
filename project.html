@@ -152,6 +152,13 @@
             gap: 20px;
             margin-top: 30px;
         }
+        
+        /* 视频专用样式 */
+        .project-gallery:has(.video-container) {
+            display: block;
+            max-width: 100%;
+            margin: 30px auto;
+        }
 
         .gallery-item {
             position: relative;
@@ -162,6 +169,74 @@
             height: auto;
             aspect-ratio: 16/9;
             object-fit: cover;
+        }
+        
+        /* 视频包装器样式 */
+        .project-video-wrapper {
+            width: 100%;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            overflow: hidden;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #f5f5f5;
+        }
+        
+        .image-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-container img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 项目详情页图片容器 */
+        .project-image-container {
+            width: 100%;
+            margin: 15px 0 20px 0;
+            overflow: hidden;
+        }
+        
+        .project-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-image-container img:hover {
+            transform: scale(1.02);
+        }
+        
+        @media screen and (max-width: 1340px) {
+            .project-video-wrapper {
+                max-width: calc(100% - 40px);
+                margin: 30px auto;
+            }
         }
 
         .play-icon {
@@ -207,7 +282,15 @@
             height: 0;
             padding-bottom: 66.67%; /* 2:3 比例 */
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .image-caption {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 15px 0;
+            text-align: left;
+            line-height: 1.4;
         }
 
         .intro-image img {
@@ -229,7 +312,7 @@
             font-size: 20px;
             font-weight: 400;
             color: #333;
-            margin-bottom: 15px;
+            margin: 10px 0 5px 0;
         }
 
         .intro-description {
@@ -270,6 +353,16 @@
                 padding-left: 0;
                 padding-right: 0;
             }
+            
+            /* slideshow下方标题在移动端的样式 */
+            .intro-content .intro-title {
+                font-size: 20px;
+                margin: 10px 0 5px 0;
+            }
+            
+            .slider-description {
+                margin: 3px auto 20px;
+            }
 
             .project-intro {
                 grid-template-columns: 1fr !important;
@@ -298,6 +391,21 @@
 
             .see-more {
                 margin-top: 15px;
+            }
+            
+            /* 移动端视频容器样式 */
+            .project-video-wrapper {
+                max-width: 100%;
+                margin: 20px auto;
+            }
+            
+            .video-container {
+                padding-bottom: 56.25%;
+            }
+            
+            /* 移动端项目图片样式 */
+            .project-image-container {
+                margin: 10px 0 15px 0;
             }
         }
 
@@ -434,7 +542,7 @@
         /* 轮播图描述样式 */
         .slider-description {
             max-width: 1300px;
-            margin: 10px auto 25px;
+            margin: 5px auto 25px;
             text-align: left;
             padding: 0;
         }
@@ -444,6 +552,15 @@
             line-height: 1.6;
             font-size: 16px;
             margin: 0;
+        }
+        
+        /* slideshow下方标题样式 */
+        .intro-content .intro-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #333;
+            margin: 30px 0 10px 0;
+            text-align: left;
         }
     </style>
 </head>
@@ -608,37 +725,51 @@
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
-
+        <div class="intro-content">
+        <h2 class="intro-title">Neighborhood Orchestra Project</h2>
+        </div>
         <div class="slider-description">
             <p>
-                A project that records the sounds of the city and weaves stories from the memories of places. We explore the soundscapes hidden in everyday life and propose new ways of seeing the city.
-                        Exploring the emotional connection between humans and animals through a dog's perspective. The installation incorporates elements of daily life,
-                        presenting a unique observational viewpoint of life.
+                <strong>Neighborhood Orchestra Project</strong> is a sound installation project that carefully collects unnoticed but not hidden events occurring within the neighborhood, using sound and landscape as motifs, and transforms the entire neighborhood into an exhibition space.
+                <br>
+                    Focusing on the small, everyday moments of serendipity, the project connects local living histories and anthropological perspectives to art.
+                <br>
+                By intentionally existing as a subtle anomaly within the neighborhood, this project aims to create small shifts in everyday communication.
             </p>
+            <p>ーー日本語ーーー<br>
+                「まち音企画」は、街の中に潜む、誰にも隠されていないけれど誰の目にも留まらない出来事を、音と風景をモチーフに丁寧に拾い集め、街全体を展示空間としたサウンドインスタレーションのプロジェクトです。
+                <br>
+                    日常のふとした瞬間に気づく些細な出来事やセレンディピティに着目し、地域に刻まれた生活史や人類文化学的な視点を通じて、アートへとつなげていきます。
+                <br>
+                この企画は、街の中であえて異物として存在し、普段のコミュニケーションに小さな変化をもたらすことを目指しています。</p>
         </div>
 
         <div class="project-intro">
             <div class="intro-item">
                 <div class="intro-image">
-                    <img src="images/02project/project/01_2025_streetview_webinfo.jpg" alt="An alley to K Market Street">
+                    <img src="images/02project/project1/00_2025_streetview_webinfo.jpg" alt="An alley to K Market Street">
                 </div>
                 <div class="intro-content">
                     <h2 class="intro-title">An alley to K Market Street</h2>
-                    <p class="intro-description">
-                        A project that records the sounds of the city and weaves stories from the memories of places. We explore the soundscapes hidden in everyday life and propose new ways of seeing the city.
-                    </p>
+                </div>
+                <div class="image-caption">
+                    2020<br>
+                    KANAIWA ONO ART PROJECT, Artist in Residence<br>
+                    21st Century Museum of Contemporary Art, Kanazawa JAPAN
                 </div>
                 <a class="see-more" data-target="project1">See More</a>
             </div>
             <div class="intro-item">
                 <div class="intro-image">
-                    <img src="images/02project/project/02_2527_webpic_sketch_kuuchuuteien.jpg" alt="Talking about an anonymous story">
+                    <img src="images/02project/project2/00_2527_webpic_sketch_kuuchuuteien.jpg" alt="Talking about an anonymous story">
                 </div>
                 <div class="intro-content">
                     <h2 class="intro-title">Talking about an anonymous story</h2>
-                    <p class="intro-description">
-                        A project exploring the potential of alley spaces that exist in the gaps of the city. We discover new value in these alleys as places where traces of people's lives intersect with urban memories.
-                    </p>
+                </div>
+                <div class="image-caption">
+                    2021<br>
+                    KANAIWA ONO ART PROJECT, Artist in Residence<br>
+                    21st Century Museum of Contemporary Art, Kanazawa JAPAN
                 </div>
                 <a class="see-more" data-target="project2">See More</a>
             </div>
@@ -652,35 +783,12 @@
                     <div class="project-slider">
                         <div class="project-slides">
                             <div class="project-slide active">
-                                <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_02.jpg" alt="Project Image 1">
+                                <img src="images/02project/project1/00_2025_streetview_webinfo.jpg" alt="Project Image 1">
                             </div>
                             <div class="project-slide">
-                                <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_03.jpg" alt="Project Image 2">
+                                <img src="images/02project/project1/01_2523_webpic_IMG_8254.jpg" alt="Project Image 2">
                             </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_04.jpg" alt="Project Image 3">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_05.jpg" alt="Project Image 4">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_06.jpg" alt="Project Image 5">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_15.jpg" alt="Project Image 6">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_14.jpg" alt="Project Image 7">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_13.jpg" alt="Project Image 8">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_12.jpg" alt="Project Image 9">
-                            </div>
-                            <div class="project-slide">
-                                <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_11.jpg" alt="Project Image 10">
-                            </div>
+                            
                         </div>
                         <button class="project-slider-nav prev">
                             <i class="fas fa-chevron-left"></i>
@@ -690,27 +798,37 @@
                         </button>
                     </div>
 
-                    <p class="project-description">
-                        A project that records the sounds of the city and weaves stories from the memories of places. We explore the soundscapes hidden in everyday life and propose new ways of seeing the city.
+                    <p class="intro-description">
+                        <strong>Neighborhood Orchestra Project VOL.1 (Kanaiwa, Kanazawa City)</strong>
+                        <br>
+                        This project was conducted as part of an artist-in-residence program in the Kanaiwa district of Kanazawa City.
+                        Although the main theme was originally to engage with the local community, the early period of the COVID-19 pandemic in 2020 made such interactions difficult. Nevertheless, we observed the neighborhood and focused on the usually unnoticed landscape and sounds in the absence of people passing by.
+                       <br>
+                        The sounds heard were mainly everyday life sounds coming from inside houses, and the sense of human presence came from these domestic sounds together with light spilling out from the windows.
+                        <br>
+                        For this project, we borrowed the windows of two houses facing each other along a narrow alley and placed field-recorded sounds from the neighborhood at each window.
+                        <br>
+                        We created and presented a sound installation where light flowed out from the windows in response to the sounds.
+                        <br>
+                       ーーーーオリジナル日本語文ーーーー
+                       <br><strong>まち音企画 VOL.1（金沢市金石地区）</strong>
+                       金沢市金石地区でのアーティスト・イン・レジデンスとして実施されたプロジェクトです。
+                        本来は地域の人々との交流を主なテーマとしていましたが、2020年のコロナ禍の初期で交流が難しい状況でした。それでも街を観察し、人の行き交いがない中で、普段は気づかない街の風景と音に向き合いました。
+                       <br>聴こえてくる生活音は主に家の中からであり、人の存在を感じさせたのはその生活音と、窓からあふれる光でした。
+                        そこで、細い路地の両側にある２軒の家の窓をお借りし、街でフィールドレコーディングした音をそれぞれの窓に配置しました。
+                       <br>音に合わせて窓から光があふれ出すサウンドインスタレーションとして制作し、発表しました。
+                         
                     </p>
+                    
                 </div>
             </div>
 
-            <div class="project-gallery">
-                <div class="gallery-item">
-                    <img src="images/project/P_000_machiotokikaku00/2314_webpic_project_001.jpg" alt="Video 1">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Urban Soundscape #1</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/project/P_000_machiotokikaku00/2314_webpic_project_002.jpg" alt="Video 2">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Urban Soundscape #2</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/project/P_000_machiotokikaku00/2237_webpic_project_000_01.jpg" alt="Video 3">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Urban Soundscape #3</p>
+            <div class="project-video-wrapper">
+                <div class="video-container">
+                    <video controls>
+                        <source src="images/02project/project1/02_2026_k_02.mp4" type="video/mp4">
+                        您的浏览器不支持视频标签。
+                    </video>
                 </div>
             </div>
         </section>
@@ -719,39 +837,26 @@
             <div class="project-preview">
                 <div class="project-preview-content">
                     <h2 class="project-title">Talking about an anonymous story</h2>
-                    <p class="project-description">
-                        A project exploring the potential of alley spaces that exist in the gaps of the city. We discover new value in these alleys as places where traces of people's lives intersect with urban memories.
+                    <div class="project-image-container">
+                        <img src="images/02project/project2/00_2527_webpic_sketch_kuuchuuteien.jpg" alt="Talking about an anonymous story">
+                    </div>
+                    <p class="intro-description">
+                        <strong>Neighborhood Orchestra Project VOL.2</strong> was conducted with a two-month residency in Kanaiwa, Kanazawa City, where we researched the local neighborhood.
+ We performed field recordings and landscape sketches, then installed eight sound spots where audio plays automatically when people pass by, thus adding new layers to the existing soundscape of the area.
+<br>The audio playback devices are embedded within objects designed to blend seamlessly with the surrounding landscape.
+<br>To guide visitors to these sound spots, we created postcards featuring sketches of the installation locations and distributed them via flyer drops to households in the neighborhood. The exact locations are not disclosed, encouraging participants to explore the area using the postcard imagery and enjoy the sound experience as they walk through the neighborhood.
+<br>
+                    ーーーオリジナル日本語ーーー
+                        <br>
+                        <strong>まち音企画 VOL.2</strong> は、金沢市金石地区に2ヶ月滞在し、地域の「まち」をリサーチしたプロジェクトです。
+                        <br>フィールドレコーディングと風景のスケッチを行い、8ヶ所に人が通ると自動で音が再生されるサウンドスポットを設置しました。これにより、街のサウンドスケープに新たな変化を加えています。
+                        <br>音源再生装置は、その風景に馴染むようにデザインされたオブジェの中に仕込んでいます。
+                        <br>また、サウンドスポットの場所を案内するため、設置場所の風景を描いたポストカードを制作し、近隣の各家庭にポスティングで配布しました。具体的な設置場所は伝えられず、ポストカードの風景を頼りに参加者が街を歩きながら、音の体験を楽しむ仕組みです。
                     </p>
                 </div>
             </div>
 
-            <div class="project-gallery">
-                <div class="gallery-item">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_03.jpg" alt="Video 4">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Alley Exploration #1</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_05.jpg" alt="Video 5">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Alley Exploration #2</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_06.jpg" alt="Video 6">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Alley Exploration #3</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/project/P_001_machiotokikaku01/2236_webpic_project_001_07.jpg" alt="Video 7">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Alley Exploration #4</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/project/P_002_machiotokikaku02/2237_webpic_project_002_a_01.jpg" alt="Video 8">
-                    <i class="fas fa-play-circle play-icon"></i>
-                    <p class="gallery-description">Alley Exploration #5</p>
-                </div>
-            </div>
+
         </section>
     </main>
 
