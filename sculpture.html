@@ -25,6 +25,10 @@
             overflow: hidden;
             cursor: pointer;
             transition: opacity 0.3s;
+            background-color: #f5f5f5; /* 改为浅灰色背景，与drawing.html一致 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-item:hover {
@@ -35,8 +39,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
         }
 
+        /* 移除webp格式图片特殊处理，统一使用cover */
+        /* .gallery-item img[src$=".webp"] {
+            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+        } */
+        
         /* Slider image style update */
         .slide {
             position: absolute;
@@ -46,10 +60,11 @@
             height: 100%;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
-            background-color: #000; /* 添加黑色背景 */
+            background-color: #f5f5f5; /* 改为浅灰色背景，与drawing.html一致 */
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden; /* 防止内容溢出 */
         }
         
         .slide.active {
@@ -59,21 +74,30 @@
         .slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain !important; /* 使用!important确保优先级，与drawing.html一致 */
             object-position: center center;
             display: block;
         }
+
+        /* 移除webp格式图片特殊处理，统一使用上面的样式 */
+        /* .slide img[src$=".webp"] {
+            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+        } */
         
         /* 视频幻灯片样式 */
         .slide.video-slide {
             position: relative;
-            background: #000; /* 确保视频幻灯片有黑色背景 */
+            background: #f5f5f5; /* 改为浅灰色背景，与普通幻灯片一致 */
         }
         
         .slide.video-slide video {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 改为contain以保持原始比例 */
+            object-fit: contain; /* 保持contain以保持原始比例 */
             background: transparent;
         }
         
@@ -153,6 +177,14 @@
             object-fit: contain;
         }
 
+        /* webp格式图片特殊处理 - 确保完整显示 */
+        .lightbox-content img[src$=".webp"] {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
         .lightbox-info-section {
             flex: 1;
             padding: 40px;
@@ -568,31 +600,25 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/02sculpture/00_SLIDESHOW/01_2520_weppic_IMG_0772_slide.jpg" alt="Sculpture 1">
-                </div>
-                <div class="slide video-slide vertical-video">
-                    <video id="slideVideo1" muted playsinline autoplay loop preload="auto" style="background: transparent;">
-                        <source src="images/02sculpture/00_SLIDESHOW/02_2527_webvideo_soundogdog.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <img src="images/02sculpture/00_SLIDESHOW/01_2520_weppic_IMG_0772_slide.webp" alt="Sculpture 1">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.jpg" alt="Sculpture 3">
-                </div>
-                <div class="slide video-slide">
-                    <video id="slideVideo2" muted playsinline autoplay loop preload="auto" poster="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.jpg" style="background: transparent;">
-                        <source src="images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <img src="images/02sculpture/00_SLIDESHOW/02_2527_webvideo_soundogdog.webp" alt="Sound of a dog">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/05_2527_webpic_slideshow_IMG_5529_02.jpg" alt="Sculpture 5">
+                    <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.webp" alt="Sculpture 3">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/06_2527_webpic_slideshow_IMG_5537_02.jpg" alt="Sculpture 6">
+                    <img src="images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.webp" alt="Sound of a kettle">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/07_2527_webpic_slidshow_IMG_5521_02.jpg" alt="Sculpture 7">
+                    <img src="images/02sculpture/00_SLIDESHOW/05_2527_webpic_slideshow_IMG_5529_02.webp" alt="Sculpture 5">
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/06_2527_webpic_slideshow_IMG_5537_02.webp" alt="Sculpture 6">
+                </div>
+                <div class="slide">
+                    <img src="images/02sculpture/00_SLIDESHOW/07_2527_webpic_slidshow_IMG_5521_02.webp" alt="Sculpture 7">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -610,15 +636,15 @@
                 <h3>Sculpture 2022</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.jpg" alt="Sculpture 2022" onclick="openLightbox(0)">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sculpture 2022" onclick="openLightbox(0)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.jpg" alt="Sculpture 2022" onclick="openLightbox(1)">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp" alt="Sculpture 2022" onclick="openLightbox(1)">
                     </div>
                     <div class="gallery-item video-gallery-item">
                         <div class="video-thumbnail">
-                            <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.jpg" alt="Sound of a kettle video">
-                            <div class="play-button" onclick="openVideoLightbox('images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.mp4', 'Sound of a kettle', '2022')">
+                            <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sound of a kettle video">
+                            <div class="play-button" onclick="openVideoLightbox('images/02sculpture/01_images/S_2022/2330_sound_of_a_kettle.mp4', 'Sound of a kettle', '2022')">
                                 <i class="fas fa-play"></i>
                             </div>
                         </div>
@@ -631,13 +657,13 @@
                 <h3>Sculpture 2017</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.jpg" alt="Sculpture 2017" onclick="openLightbox(2)">
+                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture 2017" onclick="openLightbox(2)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.jpg" alt="Sculpture 2017" onclick="openLightbox(3)">
+                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture 2017" onclick="openLightbox(3)">
                     </div>
                     <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.jpg" alt="Sculpture 2017" onclick="openLightbox(4)">
+                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture 2017" onclick="openLightbox(4)">
                     </div>
                 </div>
             </div>
@@ -697,7 +723,7 @@
     <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 视频幻灯片处理
+            // 幻灯片处理
             const slides = document.querySelectorAll('.slide');
             const slidesArray = Array.from(slides);
             const prevBtn = document.querySelector('.slider-nav.prev');
@@ -712,149 +738,6 @@
                     currentIndex = index;
                 }
             });
-            
-            // 预加载所有视频
-            function preloadVideos() {
-                slidesArray.forEach((slide) => {
-                    if (slide.classList.contains('video-slide')) {
-                        const video = slide.querySelector('video');
-                        if (video) {
-                            video.load();
-                        }
-                    }
-                });
-            }
-            
-            // 处理视频播放
-            function handleVideoPlayback(slide) {
-                if (!slide || !slide.classList.contains('video-slide')) return false;
-                
-                // 停止所有其他视频
-                slidesArray.forEach((otherSlide) => {
-                    if (otherSlide !== slide && otherSlide.classList.contains('video-slide')) {
-                        const otherVideo = otherSlide.querySelector('video');
-                        if (otherVideo) {
-                            otherVideo.pause();
-                            otherVideo.currentTime = 0;
-                        }
-                    }
-                });
-                
-                // 获取当前视频
-                const video = slide.querySelector('video');
-                if (!video) return false;
-                
-                // 重置视频
-                video.currentTime = 0;
-                
-                // 设置视频事件
-                video.onended = function() {
-                    console.log('视频播放结束，切换到下一张');
-                    nextSlide();
-                };
-                
-                video.onerror = function(e) {
-                    console.error('视频播放错误:', e);
-                    nextSlide();
-                };
-                
-                // 确保视频已加载
-                if (video.readyState === 0) {
-                    video.load();
-                }
-                
-                // 播放视频
-                try {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            console.error('视频播放失败:', error);
-                            // 尝试重新创建视频元素
-                            recreateVideoElement(slide);
-                        });
-                    }
-                } catch (e) {
-                    console.error('播放视频时出错:', e);
-                    recreateVideoElement(slide);
-                }
-                
-                return true;
-            }
-            
-            // 重新创建视频元素
-            function recreateVideoElement(slide) {
-                const oldVideo = slide.querySelector('video');
-                if (!oldVideo) return;
-                
-                const videoSrc = oldVideo.querySelector('source').getAttribute('src');
-                if (!videoSrc) return;
-                
-                // 获取poster属性（如果有）
-                const posterSrc = oldVideo.getAttribute('poster');
-                
-                // 移除旧视频
-                slide.removeChild(oldVideo);
-                
-                // 创建新视频
-                const newVideo = document.createElement('video');
-                newVideo.setAttribute('muted', '');
-                newVideo.setAttribute('playsinline', '');
-                newVideo.setAttribute('autoplay', '');
-                newVideo.setAttribute('preload', 'auto');
-                newVideo.style.background = 'transparent';
-                
-                // 如果有poster属性，添加到新视频
-                if (posterSrc) {
-                    newVideo.setAttribute('poster', posterSrc);
-                }
-                
-                // 根据幻灯片类型设置不同的样式
-                if (slide.classList.contains('vertical-video')) {
-                    newVideo.style.maxHeight = '100%';
-                    newVideo.style.width = 'auto';
-                    newVideo.style.maxWidth = '100%';
-                    newVideo.style.margin = '0 auto';
-                    newVideo.style.display = 'block';
-                } else {
-                    newVideo.style.objectFit = 'contain';
-                    newVideo.style.width = '100%';
-                    newVideo.style.height = '100%';
-                }
-                
-                // 创建新的source元素
-                const source = document.createElement('source');
-                source.setAttribute('src', videoSrc);
-                source.setAttribute('type', 'video/mp4');
-                newVideo.appendChild(source);
-                
-                // 添加到幻灯片
-                slide.appendChild(newVideo);
-                
-                // 设置事件
-                newVideo.onended = function() {
-                    console.log('重建的视频播放结束，切换到下一张');
-                    nextSlide();
-                };
-                
-                // 尝试播放
-                setTimeout(() => {
-                    try {
-                        newVideo.play().catch(e => {
-                            console.error('重建视频播放失败:', e);
-                            // 如果播放失败，确保显示海报图像
-                            if (posterSrc) {
-                                newVideo.setAttribute('poster', posterSrc);
-                            }
-                        });
-                    } catch (e) {
-                        console.error('重建视频播放出错:', e);
-                        // 如果播放失败，确保显示海报图像
-                        if (posterSrc) {
-                            newVideo.setAttribute('poster', posterSrc);
-                        }
-                    }
-                }, 100);
-            }
             
             // 切换到指定幻灯片
             function goToSlide(index) {
@@ -874,16 +757,6 @@
                 // 移除当前幻灯片的激活状态
                 slidesArray[currentIndex].classList.remove('active');
                 
-                // 如果当前是视频幻灯片，停止视频
-                const currentSlide = slidesArray[currentIndex];
-                if (currentSlide.classList.contains('video-slide')) {
-                    const video = currentSlide.querySelector('video');
-                    if (video) {
-                        video.pause();
-                        video.currentTime = 0;
-                    }
-                }
-                
                 // 更新当前索引
                 currentIndex = index;
                 
@@ -891,45 +764,10 @@
                 const newSlide = slidesArray[currentIndex];
                 newSlide.classList.add('active');
                 
-                // 如果新幻灯片是视频，提前加载并播放视频
-                if (newSlide.classList.contains('video-slide')) {
-                    // 获取视频元素
-                    const video = newSlide.querySelector('video');
-                    if (video) {
-                        // 确保视频已加载
-                        if (video.readyState < 2) { // HAVE_CURRENT_DATA
-                            console.log('预加载视频...');
-                            video.load();
-                            
-                            // 监听加载事件
-                            video.addEventListener('loadeddata', function onLoaded() {
-                                console.log('视频加载完成，开始播放');
-                                handleVideoPlayback(newSlide);
-                                // 移除事件监听器
-                                video.removeEventListener('loadeddata', onLoaded);
-                            });
-                            
-                            // 设置超时，如果视频加载时间过长，也继续执行
-                            setTimeout(() => {
-                                handleVideoPlayback(newSlide);
-                            }, 1000);
-                        } else {
-                            // 视频已加载，直接播放
-                            handleVideoPlayback(newSlide);
-                        }
-                    } else {
-                        console.error('未找到视频元素');
-                        // 如果没有找到视频，设置自动轮播
-                        autoSlideTimer = setTimeout(() => {
-                            nextSlide();
-                        }, 3000);
-                    }
-                } else {
-                    // 如果是图片，设置自动轮播
-                    autoSlideTimer = setTimeout(() => {
-                        nextSlide();
-                    }, 6000);
-                }
+                // 设置自动轮播
+                autoSlideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 6000);
                 
                 // 延迟重置过渡状态
                 setTimeout(() => {
@@ -947,76 +785,12 @@
                 goToSlide(currentIndex - 1);
             }
             
-            // 检查所有视频是否可以播放
-            function checkAllVideos() {
-                console.log('检查所有视频...');
-                const videos = document.querySelectorAll('video');
-                videos.forEach((video, index) => {
-                    // 获取视频源
-                    const source = video.querySelector('source');
-                    if (!source) return;
-                    
-                    const videoSrc = source.getAttribute('src');
-                    if (!videoSrc) return;
-                    
-                    console.log(`检查视频 ${index + 1}: ${videoSrc}`);
-                    
-                    // 创建一个新的XMLHttpRequest来检查视频文件是否存在
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('HEAD', videoSrc, true);
-                    xhr.onload = function() {
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            console.log(`视频 ${index + 1} 可以访问`);
-                        } else {
-                            console.error(`视频 ${index + 1} 无法访问: ${xhr.status}`);
-                        }
-                    };
-                    xhr.onerror = function() {
-                        console.error(`视频 ${index + 1} 请求错误`);
-                    };
-                    xhr.send();
-                    
-                    // 监听视频的错误事件
-                    video.addEventListener('error', function(e) {
-                        console.error(`视频 ${index + 1} 加载错误:`, e);
-                    });
-                });
-            }
-            
             // 初始化
             function init() {
-                // 预加载所有视频
-                preloadVideos();
-                
-                // 手动预加载第二个视频
-                const video2 = document.getElementById('slideVideo2');
-                if (video2) {
-                    video2.load();
-                    
-                    // 监听加载事件
-                    video2.addEventListener('loadeddata', function() {
-                        console.log('第二个视频已预加载完成');
-                    });
-                    
-                    // 监听错误事件
-                    video2.addEventListener('error', function(e) {
-                        console.error('第二个视频加载错误:', e);
-                    });
-                }
-                
-                // 检查所有视频
-                checkAllVideos();
-                
-                // 如果当前幻灯片是视频，播放视频
-                const currentSlide = slidesArray[currentIndex];
-                if (currentSlide.classList.contains('video-slide')) {
-                    handleVideoPlayback(currentSlide);
-                } else {
-                    // 如果是图片，设置自动轮播
-                    autoSlideTimer = setTimeout(() => {
-                        nextSlide();
-                    }, 6000);
-                }
+                // 设置自动轮播
+                autoSlideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 6000);
                 
                 // 绑定按钮事件
                 if (prevBtn) {
@@ -1050,11 +824,9 @@
                     });
                     
                     slider.addEventListener('mouseleave', () => {
-                        if (!slidesArray[currentIndex].classList.contains('video-slide')) {
-                            autoSlideTimer = setTimeout(() => {
-                                nextSlide();
-                            }, 6000);
-                        }
+                        autoSlideTimer = setTimeout(() => {
+                            nextSlide();
+                        }, 6000);
                     });
                 }
             }
@@ -1065,35 +837,35 @@
             // Lightbox functionality
             const artworks = [
                 {
-                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.jpg",
+                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp",
                     title: "Sound of a kettle",
                     year: "2022",
                     medium: "Mixed Media, Found Objects",
                     size: "Variable Dimensions"
                 },
                 {
-                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.jpg",
+                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp",
                     title: "Sound of a kettle",
                     year: "2022",
                     medium: "Mixed Media, Found Objects",
                     size: "Variable Dimensions"
                 },
                 {
-                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.jpg",
+                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp",
                     title: "Untitled",
                     year: "2017",
                     medium: "Mixed Media, Found Objects",
                     size: "Variable Dimensions"
                 },
                 {
-                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.jpg",
+                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp",
                     title: "Untitled",
                     year: "2017",
                     medium: "Mixed Media, Found Objects",
                     size: "Variable Dimensions"
                 },
                 {
-                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.jpg",
+                    image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp",
                     title: "Untitled",
                     year: "2017",
                     medium: "Mixed Media, Found Objects",
@@ -1141,7 +913,7 @@
                 artworkMedium.textContent = artwork.medium;
                 artworkSize.textContent = artwork.size;
             }
-            
+
             // 视频弹框功能
             window.openVideoLightbox = function(videoSrc, title, year) {
                 const videoLightbox = document.getElementById('video-lightbox');
@@ -1170,7 +942,7 @@
                     console.error('视频自动播放失败:', error);
                 });
             };
-            
+
             window.closeVideoLightbox = function() {
                 const videoLightbox = document.getElementById('video-lightbox');
                 const lightboxVideo = document.getElementById('lightbox-video');
@@ -1184,7 +956,7 @@
                 // 恢复背景滚动
                 document.body.style.overflow = '';
             };
-            
+
             // 键盘事件监听
             document.addEventListener('keydown', function(e) {
                 const videoLightbox = document.getElementById('video-lightbox');

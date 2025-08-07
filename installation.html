@@ -114,7 +114,11 @@
             height: 100%;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
-            background: transparent;
+            background-color: #000; /* 添加黑色背景 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 防止内容溢出 */
         }
 
         .slide.active {
@@ -125,7 +129,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center center;
             display: block;
+        }
+
+        /* webp格式图片特殊处理 - 不裁剪 */
+        .slide img[src$=".webp"] {
+            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
         }
 
         .slider-nav {
@@ -161,19 +175,6 @@
 
         .slider-nav.next {
             right: -50px;
-        }
-
-        /* 视频幻灯片样式 */
-        .slide.video-slide {
-            position: relative;
-            background: transparent;
-        }
-        
-        .slide.video-slide video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: transparent;
         }
 
         /* 轮播图描述样式 */
@@ -237,6 +238,63 @@
             margin: 5px 0 10px;
         }
 
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .slide img[src$=".webp"] {
+                max-width: 90%;
+            }
+            
+            /* 竖屏webp图片在平板上的特殊处理 */
+            .slide img[src*="webvideo_001"],
+            .slide img[src*="webvideo_002"],
+            .slide img[src*="webvideo_003"],
+            .slide img[src*="webvideo_004"],
+            .slide img[src*="webvideo_005"],
+            .slide img[src*="webvideo_006"],
+            .slide img[src*="webvideo_007"],
+            .slide img[src*="webvideo_008"],
+            .slide img[src*="webvideo_009"],
+            .slide img[src*="webvideo_011"],
+            .slide img[src*="webvideo_012"],
+            .slide img[src*="webvideo_013"],
+            .slide img[src*="webvideo_014"],
+            .slide img[src*="webvideo_015"],
+            .slide img[src*="webvideo_016"],
+            .slide img[src*="webvideo_017"],
+            .slide img[src*="webvideo_018"],
+            .slide img[src*="webvideo_019"] {
+                max-width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide img[src$=".webp"] {
+                max-width: 95%;
+            }
+            
+            /* 竖屏webp图片在手机上的特殊处理 */
+            .slide img[src*="webvideo_001"],
+            .slide img[src*="webvideo_002"],
+            .slide img[src*="webvideo_003"],
+            .slide img[src*="webvideo_004"],
+            .slide img[src*="webvideo_005"],
+            .slide img[src*="webvideo_006"],
+            .slide img[src*="webvideo_007"],
+            .slide img[src*="webvideo_008"],
+            .slide img[src*="webvideo_009"],
+            .slide img[src*="webvideo_011"],
+            .slide img[src*="webvideo_012"],
+            .slide img[src*="webvideo_013"],
+            .slide img[src*="webvideo_014"],
+            .slide img[src*="webvideo_015"],
+            .slide img[src*="webvideo_016"],
+            .slide img[src*="webvideo_017"],
+            .slide img[src*="webvideo_018"],
+            .slide img[src*="webvideo_019"] {
+                max-width: 85%;
+            }
+        }
+
         @media (max-width: 768px) {
             main {
                 padding: 20px;
@@ -293,95 +351,59 @@
         <!-- 添加轮播图 -->
         <div class="slider">
             <div class="slides">
-                <div class="slide active video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_001.mp4" type="video/mp4">
-                    </video>
+                <div class="slide active">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_001.webp" alt="Installation 001">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_002.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_002.webp" alt="Installation 002">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_003.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_003.webp" alt="Installation 003">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_004.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_004.webp" alt="Installation 004">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_005.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_005.webp" alt="Installation 005">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_006.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_006.webp" alt="Installation 006">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_007.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_007.webp" alt="Installation 007">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_008.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_008.webp" alt="Installation 008">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_009.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_009.webp" alt="Installation 009">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_011.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_011.webp" alt="Installation 011">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_012.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_012.webp" alt="Installation 012">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_013.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_013.webp" alt="Installation 013">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_014.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_014.webp" alt="Installation 014">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_015.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_015.webp" alt="Installation 015">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_016.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_016.webp" alt="Installation 016">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_017.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_017.webp" alt="Installation 017">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_018.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_018.webp" alt="Installation 018">
                 </div>
-                <div class="slide video-slide">
-                    <video muted playsinline autoplay preload="auto" style="background: transparent; object-fit: cover;">
-                        <source src="images/02installation/00_SLIDESHOW/2524_webvideo_019.mp4" type="video/mp4">
-                    </video>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_019.webp" alt="Installation 019">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -408,7 +430,7 @@
                     <!-- 2020 -->
                     <a href="installation/leading-to-k-shoppingstreat-kanazawa.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_038_leading_to_K_shoppingstreat_KANAZAWA/01_2523_webpic_IMG_8254.jpg" alt="leading to K shoppingstreat KANAZAWA">
+                            <img src="images/02installation/02_038_leading_to_K_shoppingstreat_KANAZAWA/01_2523_webpic_IMG_8254.webp" alt="leading to K shoppingstreat KANAZAWA">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">leading to K shoppingstreat_KANAZAWA</h2>
@@ -420,7 +442,7 @@
                     <!-- 2019 -->
                     <a href="installation/im-just-a-dog-k51.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_037_im_just_a_dog_k51/01_2523_webpic_IMG_3628.jpg" alt="im just a dog k51">
+                            <img src="images/02installation/02_037_im_just_a_dog_k51/01_2523_webpic_IMG_3628.webp" alt="im just a dog k51">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">I'M JUST A DOG_k51</h2>
@@ -432,7 +454,7 @@
                     <!-- 2018 -->
                     <a href="installation/chasing-a-little-past-kanazawa.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_036_chasing_a_little_past_KANAZAWA/2523_webpic_18EA_kioku_MG_8228_installation_000.jpg" alt="chasing a little past KANAZAWA">
+                            <img src="images/02installation/02_036_chasing_a_little_past_KANAZAWA/2523_webpic_18EA_kioku_MG_8228_installation_000.webp" alt="chasing a little past KANAZAWA">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">chasing a little past_KANAZAWA</h2>
@@ -444,7 +466,7 @@
                     <!-- 2017 -->
                     <a href="installation/in-the-bush.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_035_in_the_bush_NAKANOJYO/01_2523_webpic_IMG_6367.jpg" alt="in the bush NAKANOJYO">
+                            <img src="images/02installation/02_035_in_the_bush_NAKANOJYO/01_2523_webpic_IMG_6367.webp" alt="in the bush NAKANOJYO">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">in the bush_NAKANOJYO</h2>
@@ -455,7 +477,7 @@
 
                     <a href="installation/chasing-a-little-past-openart.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_034_chasing_a_little_past_OPENART/01_2523_webpic_IMG_5824_02.jpg" alt="chasing a little past OPENART">
+                            <img src="images/02installation/02_034_chasing_a_little_past_OPENART/01_2523_webpic_IMG_5824_02.webp" alt="chasing a little past OPENART">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">chasing a little past_OPENART</h2>
@@ -467,7 +489,7 @@
                     <!-- 2016 -->
                     <a href="installation/chasing-a-little-past-lad.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_033_chasing_a_little_past_LAD/01_2523_webpic_IMG_5384.jpg" alt="chasing a little past LAD">
+                            <img src="images/02installation/02_033_chasing_a_little_past_LAD/01_2523_webpic_IMG_5384.webp" alt="chasing a little past LAD">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">chasing a little past_LAD</h2>
@@ -478,7 +500,7 @@
 
                     <a href="installation/chasing-a-little-past-titanik.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_032_chasing_a_little_past_titanik/01_2236_web_IMG_4412_installation_000.jpg" alt="chasing a little past titanik">
+                            <img src="images/02installation/02_032_chasing_a_little_past_titanik/01_2236_web_IMG_4412_installation_000.webp" alt="chasing a little past titanik">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">chasing a little past_titanik</h2>
@@ -489,7 +511,7 @@
 
                     <a href="installation/chasing-a-little-past-ostrale.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_031_chasing_a_little_past_ostrale/00_2523_webpic_IMG_3602_installation_000.jpg" alt="chasing a little past ostrale">
+                            <img src="images/02installation/02_031_chasing_a_little_past_ostrale/00_2523_webpic_IMG_3602_installation_000.webp" alt="chasing a little past ostrale">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">chasing a little past_ostrale</h2>
@@ -501,7 +523,7 @@
                     <!-- 2015 -->
                     <a href="installation/blink-blink-blink-to-forget.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_030_blink3_to_forget_NAKANOJYO/01_2523_webpic_IMG_3030.jpg" alt="blink3 to forget NAKANOJYO">
+                            <img src="images/02installation/02_030_blink3_to_forget_NAKANOJYO/01_2523_webpic_IMG_3030.webp" alt="blink3 to forget NAKANOJYO">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">blink3 to forget_NAKANOJYO</h2>
@@ -512,7 +534,7 @@
 
                     <a href="installation/never-talk-in-the-garden.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_029_never_talk_in_the_garden_TWS_HONGO/01_2523_webpic_Screenshot_01_A.jpg" alt="never talk in the garden TWS HONGO">
+                            <img src="images/02installation/02_029_never_talk_in_the_garden_TWS_HONGO/01_2523_webpic_Screenshot_01_A.webp" alt="never talk in the garden TWS HONGO">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">never talk in the garden_TWS_HONGO</h2>
@@ -524,7 +546,7 @@
                     <!-- 2014 -->
                     <a href="installation/chasing-little-pasts-tws.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_027_charsing_little_pasts_TWS /00_2236_webpic_IMG_1890_installation_000.jpg" alt="charsing little pasts TWS">
+                            <img src="images/02installation/02_027_charsing_little_pasts_TWS /00_2236_webpic_IMG_1890_installation_000.webp" alt="charsing little pasts TWS">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">chasing little pasts_TWS</h2>
@@ -535,7 +557,7 @@
 
                     <a href="installation/im_just_a_dog_tws.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_025_i_m_just_a_dog_TWS/00_2526_webpic_IMG_1510_02.jpg" alt="i'm just a dog TWS">
+                            <img src="images/02installation/02_025_i_m_just_a_dog_TWS/00_2526_webpic_IMG_1510_02.webp" alt="i'm just a dog TWS">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">I'M JUST A DOG_TWS</h2>
@@ -546,7 +568,7 @@
 
                     <a href="installation/still-sigh-with-water.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_024_still_sign_with_water_TWS/00_2526_webpic_IMG_1115.jpg" alt="still sign with water TWS">
+                            <img src="images/02installation/02_024_still_sign_with_water_TWS/00_2526_webpic_IMG_1115.webp" alt="still sign with water TWS">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">still sign with water_TWS</h2>
@@ -558,7 +580,7 @@
                     <!-- 2013 -->
                     <a href="installation/i_m_just_a_dog_superbien!.html" class="installation-item">
                         <div class="installation-image">
-                            <img src="images/02installation/02_023_i_m_just_a_dog_superbien!/00_2527_webpic_IMG_1025.jpg" alt="i'm just a dog superbien!">
+                            <img src="images/02installation/02_023_i_m_just_a_dog_superbien!/00_2527_webpic_IMG_1025.webp" alt="i'm just a dog superbien!">
                         </div>
                         <div class="installation-content">
                             <h2 class="installation-title">I'M JUST A DOG_superbien!</h2>
@@ -585,7 +607,7 @@
     <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 视频幻灯片处理
+            // 幻灯片处理
             const slides = document.querySelectorAll('.slide');
             const slidesArray = Array.from(slides);
             const prevBtn = document.querySelector('.slider-nav.prev');
@@ -601,143 +623,23 @@
                 }
             });
             
-            // 预加载所有视频
-            function preloadVideos() {
-                slidesArray.forEach((slide) => {
-                    if (slide.classList.contains('video-slide')) {
-                        const video = slide.querySelector('video');
-                        if (video) {
-                            video.load();
-                        }
-                    }
-                });
-            }
-            
-            // 处理视频播放
-            function handleVideoPlayback(slide) {
-                if (!slide || !slide.classList.contains('video-slide')) return false;
-                
-                // 停止所有其他视频
-                slidesArray.forEach((otherSlide) => {
-                    if (otherSlide !== slide && otherSlide.classList.contains('video-slide')) {
-                        const otherVideo = otherSlide.querySelector('video');
-                        if (otherVideo) {
-                            otherVideo.pause();
-                            otherVideo.currentTime = 0;
-                        }
-                    }
-                });
-                
-                // 获取当前视频
-                const video = slide.querySelector('video');
-                if (!video) return false;
-                
-                // 重置视频
-                video.currentTime = 0;
-                
-                // 设置视频事件
-                video.onended = function() {
-                    console.log('视频播放结束，切换到下一张');
-                    nextSlide();
-                };
-                
-                video.onerror = function(e) {
-                    console.error('视频播放错误:', e);
-                    nextSlide();
-                };
-                
-                // 播放视频
-                try {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            console.error('视频播放失败:', error);
-                            // 尝试重新创建视频元素
-                            recreateVideoElement(slide);
-                        });
-                    }
-                } catch (e) {
-                    console.error('播放视频时出错:', e);
-                    recreateVideoElement(slide);
-                }
-                
-                return true;
-            }
-            
-            // 重新创建视频元素
-            function recreateVideoElement(slide) {
-                const oldVideo = slide.querySelector('video');
-                if (!oldVideo) return;
-                
-                const videoSrc = oldVideo.querySelector('source').getAttribute('src');
-                if (!videoSrc) return;
-                
-                // 移除旧视频
-                slide.removeChild(oldVideo);
-                
-                // 创建新视频
-                const newVideo = document.createElement('video');
-                newVideo.setAttribute('muted', '');
-                newVideo.setAttribute('playsinline', '');
-                newVideo.setAttribute('autoplay', '');
-                newVideo.setAttribute('preload', 'auto');
-                newVideo.style.background = 'transparent';
-                newVideo.style.objectFit = 'cover';
-                newVideo.style.width = '100%';
-                newVideo.style.height = '100%';
-                
-                // 创建新的source元素
-                const source = document.createElement('source');
-                source.setAttribute('src', videoSrc);
-                source.setAttribute('type', 'video/mp4');
-                newVideo.appendChild(source);
-                
-                // 添加到幻灯片
-                slide.appendChild(newVideo);
-                
-                // 设置事件
-                newVideo.onended = function() {
-                    console.log('重建的视频播放结束，切换到下一张');
-                    nextSlide();
-                };
-                
-                // 尝试播放
-                setTimeout(() => {
-                    try {
-                        newVideo.play().catch(e => console.error('重建视频播放失败:', e));
-                    } catch (e) {
-                        console.error('重建视频播放出错:', e);
-                    }
-                }, 100);
-            }
-            
             // 切换到指定幻灯片
             function goToSlide(index) {
                 if (isTransitioning) return;
                 isTransitioning = true;
                 
-                // 清除自动轮播定时器
+                // 清除自动轮播计时器
                 clearTimeout(autoSlideTimer);
                 
-                // 处理循环
-                if (index >= slidesArray.length) {
-                    index = 0;
-                } else if (index < 0) {
+                // 处理索引循环
+                if (index < 0) {
                     index = slidesArray.length - 1;
+                } else if (index >= slidesArray.length) {
+                    index = 0;
                 }
                 
                 // 移除当前幻灯片的激活状态
                 slidesArray[currentIndex].classList.remove('active');
-                
-                // 如果当前是视频幻灯片，停止视频
-                const currentSlide = slidesArray[currentIndex];
-                if (currentSlide.classList.contains('video-slide')) {
-                    const video = currentSlide.querySelector('video');
-                    if (video) {
-                        video.pause();
-                        video.currentTime = 0;
-                    }
-                }
                 
                 // 更新当前索引
                 currentIndex = index;
@@ -746,15 +648,10 @@
                 const newSlide = slidesArray[currentIndex];
                 newSlide.classList.add('active');
                 
-                // 如果新幻灯片是视频，播放视频
-                if (newSlide.classList.contains('video-slide')) {
-                    handleVideoPlayback(newSlide);
-                } else {
-                    // 如果是图片，设置自动轮播
-                    autoSlideTimer = setTimeout(() => {
-                        nextSlide();
-                    }, 6000);
-                }
+                // 设置自动轮播
+                autoSlideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 6000);
                 
                 // 延迟重置过渡状态
                 setTimeout(() => {
@@ -774,19 +671,10 @@
             
             // 初始化
             function init() {
-                // 预加载视频
-                preloadVideos();
-                
-                // 如果当前幻灯片是视频，播放视频
-                const currentSlide = slidesArray[currentIndex];
-                if (currentSlide.classList.contains('video-slide')) {
-                    handleVideoPlayback(currentSlide);
-                } else {
-                    // 如果是图片，设置自动轮播
-                    autoSlideTimer = setTimeout(() => {
-                        nextSlide();
-                    }, 6000);
-                }
+                // 设置自动轮播
+                autoSlideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 6000);
                 
                 // 绑定按钮事件
                 if (prevBtn) {
@@ -820,11 +708,9 @@
                     });
                     
                     slider.addEventListener('mouseleave', () => {
-                        if (!slidesArray[currentIndex].classList.contains('video-slide')) {
-                            autoSlideTimer = setTimeout(() => {
-                                nextSlide();
-                            }, 6000);
-                        }
+                        autoSlideTimer = setTimeout(() => {
+                            nextSlide();
+                        }, 6000);
                     });
                 }
             }
