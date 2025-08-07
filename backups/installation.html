@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - KIYOMI+TETSUHIRO UOZUMI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Installation page specific styles */
+        main {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px - 200px);
+            padding: 20px 50px;
+        }
+
+        .installation-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .installation-item {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+            height: 100%;
+        }
+
+        .installation-item:hover {
+            opacity: 0.8;
+        }
+
+        .installation-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            margin-bottom: 15px;
+        }
+
+        .installation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left center;
+        }
+
+        .installation-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .installation-title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .installation-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .see-more {
+            color: #666;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+
+        .see-more:hover,
+        .see-more:active {
+            color: #999;
+        }
+
+        .see-more::after {
+            content: " >>";
+            font-family: monospace;
+        }
+
+        /* 轮播图样式 */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 56.25%;
+            overflow: visible;
+            background: transparent;
+        }
+
+        .slides {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-color: #000; /* 添加黑色背景 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 防止内容溢出 */
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+        }
+
+        /* webp格式图片特殊处理 - 不裁剪 */
+        .slide img[src$=".webp"] {
+            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .slider:hover .slider-nav {
+            opacity: 1;
+        }
+
+        .slider-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-nav.prev {
+            left: -50px;
+        }
+
+        .slider-nav.next {
+            right: -50px;
+        }
+
+        /* 轮播图描述样式 */
+        .slider-description {
+            max-width: 1300px;
+            margin: 10px auto 25px;
+            text-align: left;
+            padding: 0;
+        }
+        
+        .slider-description p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* 年份分组样式 */
+        .year-section {
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .year-title {
+            font-size: 22px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .year-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        /* 项目列表样式 */
+        .projects-section {
+            width: 100%;
+        }
+
+        .projects-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .installation-year {
+            color: #666;
+            font-size: 16px;
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .installation-location {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 5px 0 10px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .slide img[src$=".webp"] {
+                max-width: 90%;
+            }
+            
+            /* 竖屏webp图片在平板上的特殊处理 */
+            .slide img[src*="webvideo_001"],
+            .slide img[src*="webvideo_002"],
+            .slide img[src*="webvideo_003"],
+            .slide img[src*="webvideo_004"],
+            .slide img[src*="webvideo_005"],
+            .slide img[src*="webvideo_006"],
+            .slide img[src*="webvideo_007"],
+            .slide img[src*="webvideo_008"],
+            .slide img[src*="webvideo_009"],
+            .slide img[src*="webvideo_011"],
+            .slide img[src*="webvideo_012"],
+            .slide img[src*="webvideo_013"],
+            .slide img[src*="webvideo_014"],
+            .slide img[src*="webvideo_015"],
+            .slide img[src*="webvideo_016"],
+            .slide img[src*="webvideo_017"],
+            .slide img[src*="webvideo_018"],
+            .slide img[src*="webvideo_019"] {
+                max-width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide img[src$=".webp"] {
+                max-width: 95%;
+            }
+            
+            /* 竖屏webp图片在手机上的特殊处理 */
+            .slide img[src*="webvideo_001"],
+            .slide img[src*="webvideo_002"],
+            .slide img[src*="webvideo_003"],
+            .slide img[src*="webvideo_004"],
+            .slide img[src*="webvideo_005"],
+            .slide img[src*="webvideo_006"],
+            .slide img[src*="webvideo_007"],
+            .slide img[src*="webvideo_008"],
+            .slide img[src*="webvideo_009"],
+            .slide img[src*="webvideo_011"],
+            .slide img[src*="webvideo_012"],
+            .slide img[src*="webvideo_013"],
+            .slide img[src*="webvideo_014"],
+            .slide img[src*="webvideo_015"],
+            .slide img[src*="webvideo_016"],
+            .slide img[src*="webvideo_017"],
+            .slide img[src*="webvideo_018"],
+            .slide img[src*="webvideo_019"] {
+                max-width: 85%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            .installation-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 20px 0;
+            }
+
+            .projects-items {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .installation-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUMI</div>
+        <nav class="nav-desktop">
+            <a href="index.html">TOP</a>
+            <a href="project.html">PROJECT</a>
+            <a href="installation.html" class="active">INSTALLATION</a>
+            <a href="sculpture.html">SCULPTURE</a>
+            <a href="drawing.html">DRAWING</a>
+            <a href="about.html">ABOUT US</a>
+        </nav>
+        <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <a href="index.html">TOP</a>
+        <a href="project.html">PROJECT</a>
+        <a href="installation.html" class="active">INSTALLATION</a>
+        <a href="sculpture.html">SCULPTURE</a>
+        <a href="drawing.html">DRAWING</a>
+        <a href="about.html">ABOUT US</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- 添加轮播图 -->
+        <div class="slider">
+            <div class="slides">
+                <div class="slide active">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_001.webp" alt="Installation 001">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_002.webp" alt="Installation 002">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_003.webp" alt="Installation 003">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_004.webp" alt="Installation 004">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_005.webp" alt="Installation 005">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_006.webp" alt="Installation 006">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_007.webp" alt="Installation 007">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_008.webp" alt="Installation 008">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_009.webp" alt="Installation 009">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_011.webp" alt="Installation 011">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_012.webp" alt="Installation 012">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_013.webp" alt="Installation 013">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_014.webp" alt="Installation 014">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_015.webp" alt="Installation 015">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_016.webp" alt="Installation 016">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_017.webp" alt="Installation 017">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_018.webp" alt="Installation 018">
+                </div>
+                <div class="slide">
+                    <img src="images/02installation/00_SLIDESHOW/2524_webvideo_019.webp" alt="Installation 019">
+                </div>
+            </div>
+            <button class="slider-nav prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-nav next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="slider-description">
+            <p>
+                need description. need description. need description. need description. need description. 
+                need description. need description. need description. need description. need description.
+                need description. need description. need description. need description. need description. 
+                need description. need description. need description. need description. need description. 
+            </p>
+        </div>
+
+        <div class="installation-grid">
+            <!-- 按年份从新到旧排列的项目 -->
+            <div class="projects-section">
+                <div class="projects-items">
+                    <!-- 2020 -->
+                    <a href="installation/leading-to-k-shoppingstreat-kanazawa.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_038_leading_to_K_shoppingstreat_KANAZAWA/01_2523_webpic_IMG_8254.webp" alt="leading to K shoppingstreat KANAZAWA">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">leading to K shoppingstreat_KANAZAWA</h2>
+                            <p class="installation-year">2020</p>
+                            <p class="installation-location">KANAIWA ONO ART PROJECT, Artist in Residence, 21st Century Museum of Contemporary Art, Kanazawa JAPAN</p>
+                        </div>
+                    </a>
+
+                    <!-- 2019 -->
+                    <a href="installation/im-just-a-dog-k51.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_037_im_just_a_dog_k51/01_2523_webpic_IMG_3628.webp" alt="im just a dog k51">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">I'M JUST A DOG_k51</h2>
+                            <p class="installation-year">2019</p>
+                            <p class="installation-location">OPEN STUDIO, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <!-- 2018 -->
+                    <a href="installation/chasing-a-little-past-kanazawa.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_036_chasing_a_little_past_KANAZAWA/2523_webpic_18EA_kioku_MG_8228_installation_000.webp" alt="chasing a little past KANAZAWA">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_KANAZAWA</h2>
+                            <p class="installation-year">2018</p>
+                            <p class="installation-location">Culture City of East Asia 2018 Kanazawa "Altering Home", 21st Century Museum of Contemporary Art, Kanazawa JAPAN</p>
+                        </div>
+                    </a>
+
+                    <!-- 2017 -->
+                    <a href="installation/in-the-bush.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_035_in_the_bush_NAKANOJYO/01_2523_webpic_IMG_6367.webp" alt="in the bush NAKANOJYO">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">in the bush_NAKANOJYO</h2>
+                            <p class="installation-year">2017</p>
+                            <p class="installation-location">NAKANOJYO BIENNALE 2017, Gunma JAPAN</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/chasing-a-little-past-openart.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_034_chasing_a_little_past_OPENART/01_2523_webpic_IMG_5824_02.webp" alt="chasing a little past OPENART">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_OPENART</h2>
+                            <p class="installation-year">2017</p>
+                            <p class="installation-location">OPEN ART, Orebro SWEDEN</p>
+                        </div>
+                    </a>
+
+                    <!-- 2016 -->
+                    <a href="installation/chasing-a-little-past-lad.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_033_chasing_a_little_past_LAD/01_2523_webpic_IMG_5384.webp" alt="chasing a little past LAD">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_LAD</h2>
+                            <p class="installation-year">2016</p>
+                            <p class="installation-location">LAD Gallary, Aichi JAPAN</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/chasing-a-little-past-titanik.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_032_chasing_a_little_past_titanik/01_2236_web_IMG_4412_installation_000.webp" alt="chasing a little past titanik">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_titanik</h2>
+                            <p class="installation-year">2016</p>
+                            <p class="installation-location">TITANIK Artist in Residence, Turuk FINLAND</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/chasing-a-little-past-ostrale.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_031_chasing_a_little_past_ostrale/00_2523_webpic_IMG_3602_installation_000.webp" alt="chasing a little past ostrale">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing a little past_ostrale</h2>
+                            <p class="installation-year">2016</p>
+                            <p class="installation-location">OSTRALE, Dresden GERMANY</p>
+                        </div>
+                    </a>
+
+                    <!-- 2015 -->
+                    <a href="installation/blink-blink-blink-to-forget.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_030_blink3_to_forget_NAKANOJYO/01_2523_webpic_IMG_3030.webp" alt="blink3 to forget NAKANOJYO">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">blink3 to forget_NAKANOJYO</h2>
+                            <p class="installation-year">2015</p>
+                            <p class="installation-location">NAKANOJYO BIENNALE 2015, Gunma JAPAN</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/never-talk-in-the-garden.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_029_never_talk_in_the_garden_TWS_HONGO/01_2523_webpic_Screenshot_01_A.webp" alt="never talk in the garden TWS HONGO">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">never talk in the garden_TWS_HONGO</h2>
+                            <p class="installation-year">2015</p>
+                            <p class="installation-location">TOKYO WONDER SITE, Tokyo JAPAN</p>
+                        </div>
+                    </a>
+
+                    <!-- 2014 -->
+                    <a href="installation/chasing-little-pasts-tws.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_027_charsing_little_pasts_TWS /00_2236_webpic_IMG_1890_installation_000.jpg" alt="charsing little pasts TWS">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">chasing little pasts_TWS</h2>
+                            <p class="installation-year">2014</p>
+                            <p class="installation-location">Kunstraum Kreuzberg/Bethanien TWS artist in residence, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/im_just_a_dog_tws.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_025_i_m_just_a_dog_TWS/00_2526_webpic_IMG_1510_02.webp" alt="i'm just a dog TWS">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">I'M JUST A DOG_TWS</h2>
+                            <p class="installation-year">2014</p>
+                            <p class="installation-location">Kunstraum Kreuzberg/Bethanien TWS artist in residence, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <a href="installation/still-sigh-with-water.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_024_still_sign_with_water_TWS/00_2526_webpic_IMG_1115.webp" alt="still sign with water TWS">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">still sign with water_TWS</h2>
+                            <p class="installation-year">2014</p>
+                            <p class="installation-location">Kunstraum Kreuzberg/Bethanien TWS artist in residence, Berlin GERMANY</p>
+                        </div>
+                    </a>
+
+                    <!-- 2013 -->
+                    <a href="installation/i_m_just_a_dog_superbien!.html" class="installation-item">
+                        <div class="installation-image">
+                            <img src="images/02installation/02_023_i_m_just_a_dog_superbien!/00_2527_webpic_IMG_1025.webp" alt="i'm just a dog superbien!">
+                        </div>
+                        <div class="installation-content">
+                            <h2 class="installation-title">I'M JUST A DOG_superbien!</h2>
+                            <p class="installation-year">2013</p>
+                            <p class="installation-location">Superbien!, Berlin GERMANY</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 幻灯片处理
+            const slides = document.querySelectorAll('.slide');
+            const slidesArray = Array.from(slides);
+            const prevBtn = document.querySelector('.slider-nav.prev');
+            const nextBtn = document.querySelector('.slider-nav.next');
+            let currentIndex = 0;
+            let isTransitioning = false;
+            let autoSlideTimer = null;
+            
+            // 查找当前激活的幻灯片索引
+            slidesArray.forEach((slide, index) => {
+                if (slide.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+            
+            // 切换到指定幻灯片
+            function goToSlide(index) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
+                // 清除自动轮播计时器
+                clearTimeout(autoSlideTimer);
+                
+                // 处理索引循环
+                if (index < 0) {
+                    index = slidesArray.length - 1;
+                } else if (index >= slidesArray.length) {
+                    index = 0;
+                }
+                
+                // 移除当前幻灯片的激活状态
+                slidesArray[currentIndex].classList.remove('active');
+                
+                // 更新当前索引
+                currentIndex = index;
+                
+                // 添加新幻灯片的激活状态
+                const newSlide = slidesArray[currentIndex];
+                newSlide.classList.add('active');
+                
+                // 设置自动轮播
+                autoSlideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 6000);
+                
+                // 延迟重置过渡状态
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 800);
+            }
+            
+            // 下一张幻灯片
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+            
+            // 上一张幻灯片
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+            
+            // 初始化
+            function init() {
+                // 设置自动轮播
+                autoSlideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 6000);
+                
+                // 绑定按钮事件
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        prevSlide();
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        nextSlide();
+                    });
+                }
+                
+                // 键盘导航
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                    }
+                });
+                
+                // 鼠标悬停暂停自动轮播
+                const slider = document.querySelector('.slider');
+                if (slider) {
+                    slider.addEventListener('mouseenter', () => {
+                        clearTimeout(autoSlideTimer);
+                    });
+                    
+                    slider.addEventListener('mouseleave', () => {
+                        autoSlideTimer = setTimeout(() => {
+                            nextSlide();
+                        }, 6000);
+                    });
+                }
+            }
+            
+            // 暴露函数到全局作用域
+            window.nextSlide = nextSlide;
+            window.prevSlide = prevSlide;
+            window.goToSlide = goToSlide;
+            
+            // 初始化
+            init();
+        });
+    </script>
+</body>
+</html> 

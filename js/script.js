@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     // 视频结束时切换到下一张
                     video.onended = function() {
                         nextSlide();
-                        handleVideoSlide(slides[currentSlide]);
                     };
                     
                     // 视频加载错误时处理
@@ -313,35 +312,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sculpture artwork信息
     const sculptureInfo = [
         { 
-            src: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.jpg",
+            src: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp",
             title: "sound of kettle", 
             year: "2020", 
             medium: "kettle, sound, soundsystem", 
             size: "W: 200mm, H: 600mm, D: 200mm" 
         },
         { 
-            src: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.jpg",
+            src: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp",
             title: "sound of a dog", 
             year: "2020", 
             medium: "mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)", 
             size: "Variable Dimensions" 
         },
         { 
-            src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.jpg",
+            src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp",
             title: "anonymous_bob with bangs", 
             year: "2017", 
             medium: "cotton, glue, brass", 
             size: "W: 350mm, H: 350mm, D: 250mm" 
         },
         { 
-            src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.jpg",
+            src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp",
             title: "anonymous_braided hair", 
             year: "2017", 
             medium: "cotton, glue, brass", 
             size: "W: 350mm, H: 350mm, D: 250mm" 
         },
         { 
-            src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.jpg",
+            src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp",
             title: "anonymous girl_billiards ball", 
             year: "2017", 
             medium: "cotton, glue, billiards ball", 
@@ -352,70 +351,70 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2025 - Swimmer artwork信息
     const drawingSwimmerInfo = [
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.webp",
             title: "dropping swimmer_01",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.webp",
             title: "dropping swimmer_02",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.webp",
             title: "dropping swimmer_03",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.webp",
             title: "dropping swimmer_04",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.webp",
             title: "dropping swimmer_05",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.webp",
             title: "dropping swimmer_06",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.webp",
             title: "dropping swimmer_07",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.webp",
             title: "dropping swimmer_08",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.webp",
             title: "dropping swimmer_09",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.jpg",
+            src: "images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.webp",
             title: "dropping swimmer_10",
             year: "2025",
             medium: "oil pastel, paper",
@@ -426,196 +425,196 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2025 - Object artwork信息
     const drawingObjectInfo = [
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1.webp",
             title: "corner scissors",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2.webp",
             title: "hole puncher",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3.webp",
             title: "paint roller",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4.webp",
             title: "kettle",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5.webp",
             title: "mailbox",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6.webp",
             title: "cup",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7.webp",
             title: "Screw-cap container",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8.webp",
             title: "Elementary school student",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9.webp",
             title: "Japanese pillar box",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10.webp",
             title: "hand mirror",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11.webp",
             title: "iron kettle",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12.webp",
             title: "Tools for picking blueberries",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13.webp",
             title: "glasses",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14.webp",
             title: "shade lamp",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15.webp",
             title: "glass",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16.webp",
             title: "paper fan",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17.webp",
             title: "Comb",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18.webp",
             title: "spatula",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19.webp",
             title: "pliers",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20.webp",
             title: "Broken telephone",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21.webp",
             title: "reagent bottle",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22.webp",
             title: "Glasses case",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23.webp",
             title: "Lamp shade",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24.webp",
             title: "Plastic container",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25.webp",
             title: "torch",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26.webp",
             title: "clip wallet",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27.webp",
             title: "fruit basket",
             year: "2025",
             medium: "oil pastel, paper",
             size: "W: 210mm, H: 297mm"
         },
         {
-            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28.jpg",
+            src: "images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28.webp",
             title: "school bag",
             year: "2025",
             medium: "oil pastel, paper",
@@ -700,147 +699,147 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2024 artwork信息
     const drawing2024Info = [
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8890.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8890.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8887.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8887.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8878.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8878.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8872.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8872.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8866.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8866.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8863.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8863.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8854.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8854.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8860.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8860.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8851.jpg",
+            src: "images/02drawing/01_images/D_2024/2502_ipad_IMG_8851.webp",
             title: "Just a Small Part of the Story",
             year: "2024",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9102.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9102.webp",
             title: "turn around_bobbed hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9105.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9105.webp",
             title: "turn around_straight hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9108.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9108.webp",
             title: "turn around_twintail hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9110.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9110.webp",
             title: "turn around_bobbed hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9113.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9113.webp",
             title: "turn around_straight hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9116.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9116.webp",
             title: "turn around_twintail hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9174.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9174.webp",
             title: "turn around_One Length Bob Hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9180.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9180.webp",
             title: "turn around_glasses",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9189.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9189.webp",
             title: "turn around_long hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9200.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9200.webp",
             title: "turn around_One Length Bob Hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9206.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9206.webp",
             title: "turn around_long hair",
             year: "2024",
             medium: "acrylic paint, ply-wood",
             size: "W: 720mm, H: 960mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9212.jpg",
+            src: "images/02drawing/01_images/D_2024/2521_webpic_IMG_9212.webp",
             title: "turn around_glasses",
             year: "2024",
             medium: "acrylic paint, ply-wood",
@@ -851,63 +850,63 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2023 artwork信息
     const drawing2023Info = [
         {
-            src: "images/02drawing/01_images/D_2023/2501_web_IMG_8733_02.jpg",
+            src: "images/02drawing/01_images/D_2023/2501_web_IMG_8733_02.webp",
             title: "little off_there are seven",
             year: "2023",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 1340mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2501_web_IMG_8727_02.jpg",
+            src: "images/02drawing/01_images/D_2023/2501_web_IMG_8727_02.webp",
             title: "little off_there are nine",
             year: "2023",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 1340mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2501_web_IMG_8721_02.jpg",
+            src: "images/02drawing/01_images/D_2023/2501_web_IMG_8721_02.webp",
             title: "little off_there are eight",
             year: "2023",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 1340mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01.jpg",
+            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01.webp",
             title: "When a necklace breaks,..._01",
             year: "2023",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02.jpg",
+            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02.webp",
             title: "When a necklace breaks,..._02",
             year: "2023",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03.jpg",
+            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03.webp",
             title: "When a necklace breaks,..._03",
             year: "2023",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04.jpg",
+            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04.webp",
             title: "When a necklace breaks,..._04",
             year: "2023",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05.jpg",
+            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05.webp",
             title: "When a necklace breaks,..._05",
             year: "2023",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
             size: "W: 210mm, H: 280mm, D: 12mm"
         },
         {
-            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06.jpg",
+            src: "images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06.webp",
             title: "When a necklace breaks,..._06",
             year: "2023",
             medium: "acrylic paint, permanent marker, ply-wood with a slit on the back",
@@ -918,35 +917,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2022 artwork信息
     const drawing2022Info = [
         {
-            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8715.jpg",
+            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8715.webp",
             title: "Endless_Untitled 2",
             year: "2022",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 760mm, H: 760mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8712.jpg",
+            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8712.webp",
             title: "Endless_Untitled 1",
             year: "2022",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 960mm, H: 960mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8707.jpg",
+            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8707.webp",
             title: "little off_there are five",
             year: "2022",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 950mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8710.jpg",
+            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8710.webp",
             title: "little off_there are six",
             year: "2022",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 950mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8652.jpg",
+            src: "images/02drawing/01_images/D_2022/2521_webpic_IMG_8652.webp",
             title: "Endless_Untitled 3",
             year: "2022",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
@@ -957,21 +956,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2021 artwork信息
     const drawing2021Info = [
         {
-            src: "images/02drawing/01_images/D_2021/2521_webpic_IMG_8608.jpg",
+            src: "images/02drawing/01_images/D_2021/2521_webpic_IMG_8608.webp",
             title: "little off_there are two",
             year: "2021",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 650mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2021/2521_webpic_IMG_8600.jpg",
+            src: "images/02drawing/01_images/D_2021/2521_webpic_IMG_8600.webp",
             title: "little off_there are three",
             year: "2021",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 650mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2021/2521_webpic_IMG_8612.jpg",
+            src: "images/02drawing/01_images/D_2021/2521_webpic_IMG_8612.webp",
             title: "little off_there are four",
             year: "2021",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
@@ -982,70 +981,70 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2019 artwork信息
     const drawing2019Info = [
         {
-            src: "images/02drawing/01_images/D_2019/1939_ipad_IMG_7941.jpg",
+            src: "images/02drawing/01_images/D_2019/1939_ipad_IMG_7941.webp",
             title: "little off_DIVE",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 573mm, H: 720mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1939_ipad_IMG_7715.jpg",
+            src: "images/02drawing/01_images/D_2019/1939_ipad_IMG_7715.webp",
             title: "little off_SWIN",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 960mm, H: 670mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7929.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7929.webp",
             title: "little off_SPIKE",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 573mm, H: 720mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7897.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7897.webp",
             title: "little off_BLACK SWAN",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 570mm, H: 570mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7902.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7902.webp",
             title: "little off_BARD CAGE",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 570mm, H: 475mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7909.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7909.webp",
             title: "little off_BLACK SWANS",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 570mm, H: 570mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7893.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7893.webp",
             title: "little off_BLACK BARD",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 570mm, H: 405mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1939_ipad_IMG_7742.jpg",
+            src: "images/02drawing/01_images/D_2019/1939_ipad_IMG_7742.webp",
             title: "little off_FLY",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 950mm, H: 650mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7887.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7887.webp",
             title: "little off_there is one",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
             size: "W: 650mm, H: 950mm, D: 10mm"
         },
         {
-            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7923.jpg",
+            src: "images/02drawing/01_images/D_2019/1938_ipad_IMG_7923.webp",
             title: "little off_FLY",
             year: "2019",
             medium: "pencil, oil pastel, ply-wood with a slit on the back",
@@ -1056,14 +1055,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drawing 2016 artwork信息
     const drawing2016Info = [
         {
-            src: "images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891.jpg",
+            src: "images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891.webp",
             title: "on the stage_yellow skirt",
             year: "2016",
             medium: "pencil, oil pastel, pin hole, paper",
             size: "W: 650mm, H: 500mm"
         },
         {
-            src: "images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892.jpg",
+            src: "images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892.webp",
             title: "on the stage_dark bule skirt",
             year: "2016",
             medium: "pencil, oil pastel, pin hole, paper",
