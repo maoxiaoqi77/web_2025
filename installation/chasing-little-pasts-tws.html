@@ -75,9 +75,18 @@
         .video-section {
             margin-bottom: 60px;
             max-height: 80vh; /* 限制视频容器最大高度为视口高度的80% */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;
+            width: 100%;
+        }
+
+        /* 让视频容器与上方文本同宽 */
+        .videos-grid {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .video-item {
+            width: 100%;
         }
 
         .video-section video {
@@ -290,6 +299,14 @@
                 gap: 10px;
             }
 
+            /* 小屏保持视频占满文本宽度 */
+            .video-section {
+                max-height: none;
+            }
+            .video-section video {
+                max-height: 60vh;
+            }
+
             .lightbox-content {
                 max-width: 98%;
                 max-height: 98%;
@@ -389,12 +406,7 @@
                 What appears to be a random assemblage of stories reflects the ambiguity of our memories and history, as if measuring and recording the world with an arbitrary, nonsensical ruler.
                 Ultimately, this work invites the audience to immerse themselves in the indescribable stories hidden within everyday life.
                 
-                日本語文ーーーー
-                「<strong>CHASING LITTLE PASTS</strong>」は、Uozumi Atelierが街角で見つけた不要物や廃棄されたものを素材とし、その土地でフィールドレコーディングを行って制作する、サイトスペシフィックなサウンドインスタレーションです。
-                現地で集めた壊れた家電や家具、使い古された道具などを使い、空間に複数のスピーカーを設置。スピーカーからは、その場所ならではの音が様々な方向から響き渡ります。音は電球の点灯とシンクロし、光と音が一体となった環境をつくり出します。
-                この作品は、物と音が語る断片的な物語を非文脈的に再構成した空間体験です。来場者は答えのない新たな物語に触れ、過去と現在、国や時代の境界を超えた多様な記憶を感じ取ります。
-                一見無意味に寄せ集められた物語は、まるで出鱈目な物差しで世界を測り、記録しているかのように、私たちの記憶や歴史の曖昧さを映し出します。
-                そしてこの作品は、日常に潜んでいる名状しがたい物語に身を委ねる体験を促します。</p>
+                </p>
                 
             <div class="media-gallery">
                 <div class="video-section">
