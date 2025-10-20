@@ -781,24 +781,24 @@
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture" onclick="openLightbox(0)">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture" onclick="sculptureOpenLightbox(0)">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture" onclick="openLightbox(1)">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture" onclick="sculptureOpenLightbox(1)">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture" onclick="openLightbox(2)">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture" onclick="sculptureOpenLightbox(2)">
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox" id="lightbox" onclick="sculptureCloseLightbox()">
         <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
-            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+            <button class="lightbox-close" onclick="sculptureCloseLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="sculptureChangeImage(-1)">&#8249;</button>
+            <button class="lightbox-nav lightbox-next" onclick="sculptureChangeImage(1)">&#8250;</button>
             
             <div class="lightbox-image-section">
                 <img id="lightbox-img" src="" alt="">
@@ -857,9 +857,20 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 移动端导航菜单
+            const menuBtn = document.querySelector('.menu-btn');
+            const navMobile = document.querySelector('.nav-mobile');
+            
+            if (menuBtn && navMobile) {
+                menuBtn.addEventListener('click', function() {
+                    menuBtn.classList.toggle('active');
+                    navMobile.classList.toggle('active');
+                });
+            }
+            
+
             // 幻灯片处理
             const slides = document.querySelectorAll('.slide');
             const slidesArray = Array.from(slides);
@@ -990,7 +1001,7 @@
             const artworkMedium = document.getElementById('artwork-medium');
             const artworkSize = document.getElementById('artwork-size');
             
-            window.openLightbox = function(index) {
+            window.sculptureOpenLightbox = function(index) {
                 currentArtworkIndex = index;
                 updateLightboxContent();
                 lightbox.classList.add('active');
@@ -1002,14 +1013,14 @@
                 document.body.style.overflow = 'hidden';
             };
             
-            window.closeLightbox = function() {
+            window.sculptureCloseLightbox = function() {
                 lightbox.classList.remove('active');
                 
                 // 恢复背景滚动
                 document.body.style.overflow = '';
             };
             
-            window.changeImage = function(direction) {
+            window.sculptureChangeImage = function(direction) {
                 currentArtworkIndex = (currentArtworkIndex + direction + artworks.length) % artworks.length;
                 updateLightboxContent();
             };

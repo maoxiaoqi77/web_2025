@@ -7,61 +7,255 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 新闻内容样式 */
-        .news-content p {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
-            line-height: 1.5;
-            max-height: 3em; /* 限制高度为2行文本 */
+        /* TOP页面专属：全屏slideshow样式 */
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
         }
         
-        .news-content p.expanded {
-            -webkit-line-clamp: unset;
-            display: block;
-            max-height: none;
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+            min-height: 100vh;
         }
         
-        /* 确保br标签在折叠状态下不会占用过多空间 */
-        .news-content p:not(.expanded) br {
-            display: none;
-        }
-
-        .news-content p.expanded br {
-            display: block;
-            margin-bottom: 1em;
-            margin-top: 1em;
-        }
-        
-        .see-more {
-            display: inline-block;
-            color: #666;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-            cursor: pointer;
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: background 0.3s ease;
         }
         
-        .see-more:hover {
+        /* 滚动到news区域时的导航栏样式 */
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* slideshow区域：导航栏文字为白色 */
+        .header .logo {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        
+        .header .nav-desktop a {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        
+        .header .nav-desktop a.active {
+            color: #fff;  /* 选中状态也是白色 */
+        }
+        
+        .header .menu-btn {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        
+        /* news区域（滚动后）：导航栏文字恢复默认颜色 */
+        .header.scrolled .logo {
             color: #333;
         }
         
-        .see-more::after {
-            content: ">>";
-            margin-left: 5px;
+        .header.scrolled .nav-desktop a {
+            color: #999;  /* 普通链接为浅灰色 */
         }
         
-        .see-more.less::after {
-            content: "<<";
+        .header.scrolled .nav-desktop a.active {
+            color: #333;  /* 选中状态为深灰色，更突出 */
         }
         
-        .see-more.hidden {
-            display: none;
+        .header.scrolled .nav-desktop a:hover {
+            color: #666;  /* hover状态为中灰色 */
         }
+        
+        .header.scrolled .menu-btn {
+            color: #333;
+        }
+        
+        main {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: none !important;
+            width: 100%;
+        }
+        
+        .slider {
+            position: relative !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+            overflow: hidden !important;
+            z-index: 1 !important;
+        }
+        
+        .slides {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        /* 隐藏切换按钮 */
+        .slider-nav {
+            display: none !important;
+        }
+        
+        /* 新闻区域样式 */
+        .news {
+            margin-top: 80px !important;
+            position: relative;
+            z-index: 100;
+            background: white;
+            padding: 50px 90px !important;
+            max-width: none !important;
+        }
+        
+        .news h2 {
+            text-align: left;
+            margin-bottom: 60px;
+            font-size: 32px;
+            padding-left: 0;
+        }
+        
+        /* News网格 - 改为垂直排列 */
+        .news-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 80px !important;
+            padding: 0 !important;
+        }
+        
+        /* 每个news item改为横向布局 */
+        .news-item {
+            display: grid !important;
+            grid-template-columns: 3fr 2fr !important;
+            gap: 60px !important;
+            align-items: start !important;
+            background: white !important;
+        }
+        
+        .news-item img {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16/9 !important;
+            object-fit: cover !important;
+        }
+        
+        .news-content {
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 0;
+        }
+        
+        .news-content h3 {
+            font-size: 25px;
+            margin-bottom: 20px;
+            margin-top: 0;
+            color: #000;
+            font-weight: 400;
+            order: 1;
+            line-height: 1.4;
+        }
+        
+        .news-content time {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+            order: 2;
+        }
+        
+        /* 显示所有文字，去掉see more */
+        .news-content p {
+            display: block !important;
+            -webkit-line-clamp: unset !important;
+            -webkit-box-orient: unset !important;
+            max-height: none !important;
+            overflow: visible !important;
+            line-height: 1.6;
+            font-size: 15px;
+            color: #000;
+            order: 3;
+        }
+        
+        .see-more {
+            display: none !important;
+        }
+        
+        /* iPad和中等屏幕 */
+        @media (max-width: 1200px) {
+            .news {
+                padding: 40px 60px !important;
+                margin-top: 60px !important;
+            }
+            
+            .news-grid {
+                gap: 60px !important;
+            }
+            
+            .news-item {
+                gap: 40px !important;
+            }
+        }
+        
+        /* 平板 */
+        @media (max-width: 768px) {
+            .news {
+                padding: 30px 40px !important;
+                margin-top: 40px !important;
+            }
+            
+            .news h2 {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+            
+            .news-grid {
+                gap: 50px !important;
+            }
+            
+            .news-item {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+        }
+        
+        /* 手机 */
+        @media (max-width: 480px) {
+            .news {
+                padding: 20px 20px !important;
+                margin-top: 30px !important;
+            }
+            
+            .news h2 {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .news-grid {
+                gap: 40px !important;
+            }
+            
+            .news-content h3 {
+                font-size: 22px;
+            }
+        }
+        
         
         /* 视频幻灯片样式 */
         .slide.video-slide {
@@ -76,42 +270,38 @@
             background: transparent;
         }
         
-        /* 幻灯片样式更新 - 添加黑色背景和居中显示 */
+        /* 幻灯片样式更新 - 填满全屏 */
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
-            background-color: #000; /* 添加黑色背景 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden; /* 防止内容溢出 */
+            background-color: #000 !important;
+            overflow: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .slide.active {
             opacity: 1;
         }
 
-        /* 默认所有图片都填充整个容器 */
+        /* 所有图片都填满整个屏幕，放大并裁切 */
         .slide img {
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100vw;
+            min-height: 100vh;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
             object-fit: cover;
             object-position: center center;
             display: block;
-        }
-
-        /* webp格式图片特殊处理 - 不裁剪 */
-        .slide img[src$=".webp"] {
-            object-fit: contain;
-            max-height: 100%;
-            max-width: 100%;
-            width: auto;
-            height: auto;
         }
 
         /* 新闻图片样式 - 保持3:2比例 */
@@ -245,8 +435,8 @@
                 <article class="news-item">
                     <img src="images/02top/news/001_La Isla Salon.webp" alt="News Image 1">
                     <div class="news-content">
-                        <time>26.03.2025</time>
-                        <h3> Showing our drawings in La Isla Salon</h3>
+                        <h3>Showing our drawings in La Isla Salon</h3>
+                        <time>26 March 2025</time>
                         <p>I'm currently exhibiting a selection of my drawings at La Isla Salon. You're warmly invited to visit and enjoy the show!
                             <br>
                             La Isla Salon
@@ -259,8 +449,8 @@
                 <article class="news-item">
                     <img src="images/02top/news/hallo mitsuko.webp" alt="News Image 2">
                     <div class="news-content">
-                        <time>11.06.2025</time>
                         <h3>N.O.P in Castal Poběžovice</h3>
+                        <time>11 June 2025</time>
                         <p>With the guidance and support of the town of Poběžovice, The Japanese artist
                             duo KIYOMI + TETSUHIRO UOZUMI who live and work in Berlin will create an
                             
@@ -301,88 +491,19 @@
 
     <script src="js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查文本行数并控制"See More"按钮显示
-            function checkTextLines() {
-                const newsItems = document.querySelectorAll('.news-item');
-                
-                newsItems.forEach(item => {
-                    const paragraph = item.querySelector('p');
-                    const seeMoreLink = item.querySelector('.see-more');
-                    const paragraphContent = paragraph.textContent.trim();
-                    
-                    // 检查是否有br标签或者文本内容足够长
-                    const hasBrTags = paragraph.querySelectorAll('br').length > 0;
-                    
-                    // 如果有br标签或者文本长度超过一定值，则显示"See More"按钮
-                    if (hasBrTags || paragraphContent.length > 150) {
-                        seeMoreLink.classList.remove('hidden');
-                    } else {
-                        // 如果没有br标签且文本较短，则使用原来的行数检测方法
-                        // 创建一个临时容器用于测量
-                        const tempDiv = document.createElement('div');
-                        tempDiv.style.position = 'absolute';
-                        tempDiv.style.visibility = 'hidden';
-                        tempDiv.style.width = paragraph.offsetWidth + 'px';
-                        tempDiv.style.fontSize = window.getComputedStyle(paragraph).fontSize;
-                        tempDiv.style.fontFamily = window.getComputedStyle(paragraph).fontFamily;
-                        tempDiv.style.lineHeight = '1.5';
-                        tempDiv.style.padding = '0';
-                        tempDiv.style.margin = '0';
-                        tempDiv.textContent = paragraphContent;
-                        document.body.appendChild(tempDiv);
-                        
-                        // 计算单行高度
-                        const singleLineHeight = parseInt(window.getComputedStyle(paragraph).lineHeight) || parseInt(window.getComputedStyle(paragraph).fontSize) * 1.5;
-                        
-                        // 获取完整文本高度
-                        const fullTextHeight = tempDiv.offsetHeight;
-                        
-                        // 计算行数
-                        const numberOfLines = Math.round(fullTextHeight / singleLineHeight);
-                        
-                        // 移除临时元素
-                        document.body.removeChild(tempDiv);
-                        
-                        // 根据行数决定是否显示"See More"链接
-                        if (numberOfLines <= 2) {
-                            seeMoreLink.classList.add('hidden');
-                        } else {
-                            seeMoreLink.classList.remove('hidden');
-                        }
-                    }
-                });
+        // 监听滚动，当进入news区域时改变导航栏背景
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            const slider = document.querySelector('.slider');
+            const sliderHeight = slider ? slider.offsetHeight : window.innerHeight;
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            
+            // 当滚动超过slideshow高度的80%时，添加scrolled类
+            if (scrollPosition > sliderHeight * 0.8) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-            
-            // 切换文本展开/折叠状态
-            function toggleTextExpansion() {
-                const newsItems = document.querySelectorAll('.news-item');
-                
-                newsItems.forEach(item => {
-                    const paragraph = item.querySelector('p');
-                    const seeMoreLink = item.querySelector('.see-more');
-                    
-                    if (seeMoreLink) {
-                        seeMoreLink.addEventListener('click', function() {
-                            paragraph.classList.toggle('expanded');
-                            this.classList.toggle('less');
-                            
-                            if (paragraph.classList.contains('expanded')) {
-                                this.textContent = 'See Less';
-                            } else {
-                                this.textContent = 'See More';
-                            }
-                        });
-                    }
-                });
-            }
-            
-            // 初始化
-            checkTextLines();
-            toggleTextExpansion();
-            
-            // 窗口大小改变时重新检查
-            window.addEventListener('resize', checkTextLines);
         });
     </script>
 </body>

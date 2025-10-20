@@ -7,90 +7,180 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/lightbox-fix.css">
-    <style>
-        main {
-            margin-top: 70px;
-            padding: 0;
-            min-height: calc(100vh - 70px - 200px);
-        }
-        .back-link {
-            display: inline-block;
-            color: #666;
-            text-decoration: none;
-            margin-bottom: 20px;
-            transition: color 0.3s;
-            margin-left: 50px;
-            margin-top: 40px; 
+        <style>
+        /* 全屏封面图样式 */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            position: relative !important;
         }
 
-        .back-link:hover {
+        body {
+            overflow-y: auto !important;
+            min-height: 100vh !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        /* 封面图区域：导航栏文字为白色 */
+        .header .logo {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .header .nav-desktop a {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .header .nav-desktop a.active {
+            color: #fff;
+        }
+
+        .header .menu-btn span {
+            background: #fff;
+            transition: background 0.3s ease;
+        }
+
+        /* 滚动后：导航栏背景和文字颜色变化 */
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .header.scrolled .logo {
             color: #333;
         }
 
+        .header.scrolled .nav-desktop a {
+            color: #999;  /* 普通链接为浅灰色 */
+        }
+
+        .header.scrolled .nav-desktop a.active {
+            color: #333;  /* 选中状态为深灰色，更突出 */
+        }
+
+        .header.scrolled .nav-desktop a:hover {
+            color: #666;  /* hover状态为中灰色 */
+        }
+
+        .header.scrolled .menu-btn span {
+            background: #333;
+        }
+
+        main {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+            overflow-x: hidden;
+        }
+
+        
+
+        
+
+        
+
+        
+
+                /* 封面图 - 16:9比例，宽度占满 */
         .project-header {
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 50px 20px 50px;
+            width: 100vw;
+            height: 56.25vw;  /* 16:9 = 9/16 = 0.5625 */
             position: relative;
-            overflow: hidden;
-            aspect-ratio: 16/9;
+            margin: 0;
+            padding: 0;
+            background: #000;
         }
 
         .project-header img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: left center;
-            margin: 0;
+            display: block;
         }
 
+        
+
+        
+
+        /* 内容区域 - 左右布局 */
         .project-content {
-            max-width: 1300px;
-            margin: 30px auto;
+            max-width: none;
+            margin: 40px 90px 80px;
             padding: 0;
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 80px;
+            align-items: start;
         }
 
+        /* 左侧：标题和描述 */
         .project-title {
             font-size: 32px;
             color: #333;
             margin-bottom: 30px;
+            font-weight: 400;
         }
 
         .project-description {
             font-size: 16px;
             line-height: 1.8;
             color: #666;
-            margin-bottom: 80px;
             white-space: pre-line;
         }
 
+        /* 右侧：视频和画廊 */
         .media-gallery {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        .video-section {
-            margin-bottom: 60px;
-            max-height: 80vh; /* 限制视频容器最大高度为视口高度的80% */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 40px;
         }
 
-        .video-section video {
+        /* 视频区域 - 每个视频占一排 */
+        .video-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .videos-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .video-item {
+            width: 100%;
+        }
+
+        .video-item video {
             width: 100%;
             height: auto;
-            max-height: 80vh; /* 限制视频最大高度为视口高度的80% */
-            object-fit: contain; /* 确保视频完整显示 */
+            max-height: 70vh;
+            object-fit: contain;
+            display: block;
         }
 
+        /* 画廊网格 */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            margin-bottom: 40px;
         }
 
         .gallery-item {
@@ -110,92 +200,9 @@
             object-fit: cover;
         }
 
-        .media-title {
-            font-size: 14px;
-            color: #666;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        /* Lightbox styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 95%;
-            max-height: 95%;
-            width: auto;
-            height: auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 85vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            z-index: 10;
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 15px 20px;
-            transition: opacity 0.3s, color 0.3s;
-            z-index: 10;
-            opacity: 0.7;
-        }
-
-        .lightbox-nav:hover {
-            opacity: 1;
-            color: #fff;
-        }
-
-        .lightbox-prev {
-            left: -70px;
-        }
-
-        .lightbox-next {
-            right: -70px;
-        }
-
+        /* Other Installations */
         .other-installations {
+            grid-column: 1 / -1;
             margin-top: 80px;
             padding-top: 40px;
             border-top: 1px solid #eee;
@@ -245,39 +252,38 @@
             line-height: 1.4;
         }
 
-        @media (max-width: 1200px) {
+        /* 响应式设计 */
+        @media (max-width: 1400px) {
+            .project-content {
+                margin: 40px 60px 80px;
+                padding: 0;
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .project-content {
+                grid-template-columns: 1fr;
+                margin: 40px 40px 80px;
+                padding: 0;
+                gap: 50px;
+            }
+
             .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .thumbnails-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        @media (max-width: 1400px) {
-            .project-header {
-                max-width: 100%;
-                margin: 0 50px 20px 50px;
-                aspect-ratio: 16/9;
-            }
-
-            .project-content {
-                max-width: 100%;
-                padding: 0 50px;
-            }
-        }
-
         @media (max-width: 768px) {
-            .back-link {
-                margin-left: 20px;
-            }
             
-            .project-header {
-                aspect-ratio: 16/9;
-                margin: 0 20px 20px 20px;
-                width: calc(100% - 40px);
-            }
 
             .project-content {
-                padding: 0 20px;
-                margin: 40px auto;
+                margin: 40px 20px 40px;
+                padding: 0;
             }
 
             .project-title {
@@ -285,59 +291,23 @@
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
-            }
-
-            .lightbox-content {
-                max-width: 98%;
-                max-height: 98%;
-            }
-
-            .lightbox-close {
-                top: -40px;
-                right: 0;
-                font-size: 24px;
-            }
-
-            .lightbox-nav {
-                font-size: 24px;
-                padding: 10px 15px;
-            }
-
-            .lightbox-prev {
-                left: -50px;
-            }
-
-            .lightbox-next {
-                right: -50px;
             }
 
             .thumbnails-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
-
-            .thumbnail-title {
-                font-size: 12px;
-            }
         }
 
         @media (max-width: 480px) {
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
 
             .thumbnails-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .lightbox-prev {
-                left: 10px;
-            }
-
-            .lightbox-next {
-                right: 10px;
             }
         }
     </style>
@@ -372,14 +342,15 @@
     </nav>
 
     <!-- Main Content -->
-    <main>
-        <a href="../installation.html#chasing-a-little-past-ostrale" class="back-link">← Back to INSTALLATION</a>
-        <div class="project-header">
+    <div class="project-header">
             <img src="../images/02installation/02_031_chasing_a_little_past_ostrale/00_2523_webpic_IMG_3602_installation_000.webp" alt="chasing a little past ostrale">
         </div>
 
+    <main>
+        
         <div class="project-content">
-            <h1 class="project-title">chasing a little past_ostrale</h1>
+            <div class="project-info">
+                <h1 class="project-title">chasing a little past_ostrale</h1>
             <p class="project-description">"<strong>CHASING LITTLE PASTS</strong>" is a site-specific sound installation created by Uozumi Atelier using discarded objects found on the streets, combined with field recordings made at each location.
                 Broken home appliances, furniture, and worn-out tools collected locally become the material for the work. Multiple speakers are installed throughout the space, emitting sounds characteristic of the site from various directions. These sounds synchronize with lighting bulbs that flicker in unison, creating an environment where light and sound merge as one.
                 The installation reconstructs fragmented stories told by objects and sounds in a non-linear, non-contextual way. Visitors encounter new, unresolved narratives and sense diverse memories that transcend boundaries of time, place, and nationality.
@@ -387,6 +358,9 @@
                 Ultimately, this work invites the audience to immerse themselves in the indescribable stories hidden within everyday life.
                 
                 </p>
+            </div>
+
+
                 
             <div class="media-gallery">
                 <div class="video-section">
@@ -535,6 +509,26 @@
                 });
             }
         })();
+    </script>
+
+    <script>
+        // 监听滚动，当滑出封面图后改变导航栏样式
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            const projectHeader = document.querySelector('.project-header');
+            
+            if (header && projectHeader) {
+                const headerHeight = projectHeader.offsetHeight;
+                const scrollPosition = window.scrollY || window.pageYOffset;
+                
+                // 当滚动超过封面图高度的80%时，添加scrolled类
+                if (scrollPosition > headerHeight * 0.8) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+        });
     </script>
 </body>
 </html> 
