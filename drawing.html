@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Drawing - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -180,26 +180,32 @@
             background: none;
             border: none;
             z-index: 10;
+            touch-action: manipulation;
         }
 
         .lightbox-nav {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            color: #333;
+            color: white;
             font-size: 40px;
             cursor: pointer;
-            background: none;
+            background: transparent;
             border: none;
-            padding: 20px;
-            transition: opacity 0.3s, color 0.3s;
-            z-index: 10;
-            opacity: 0.7;
+            border-radius: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            opacity: 0.8;
+            touch-action: manipulation;
         }
 
         .lightbox-nav:hover {
             opacity: 1;
-            color: #000;
         }
 
         .lightbox-prev {
@@ -209,8 +215,97 @@
         .lightbox-next {
             right: 20px;
         }
+        
+        /* 桌面端大屏：按钮距离弹框有间距 */
+        @media (min-width: 1400px) {
+            .lightbox.active .lightbox-prev {
+                left: calc((100vw - 1200px) / 2 - 70px);
+            }
 
-        @media (max-width: 1200px) {
+            .lightbox.active .lightbox-next {
+                right: calc((100vw - 1200px) / 2 - 70px);
+            }
+        }
+
+        /* iPad和平板优化 (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .lightbox {
+                overflow-y: auto;
+                padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .lightbox-content {
+                width: 90%;
+                max-width: 900px;
+                height: auto;
+                max-height: none;
+                flex-direction: column;
+                margin: 80px auto 60px;
+                overflow-y: visible;
+                box-sizing: border-box;
+            }
+
+            .lightbox-image-section {
+                flex: none;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+                padding: 30px;
+                min-height: 400px;
+            }
+
+            .lightbox-info-section {
+                flex: none;
+                width: 100%;
+                padding: 30px 30px 40px;
+                overflow-y: visible;
+            }
+
+            .artwork-title {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+
+            .artwork-details {
+                font-size: 16px;
+            }
+
+            .lightbox-nav {
+                font-size: 48px;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .lightbox-prev {
+                left: 15px !important;
+            }
+
+            .lightbox-next {
+                right: 15px !important;
+            }
+            
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+                color: white;
+                z-index: 1010;
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 1200px) and (min-width: 1025px) {
             .gallery-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -262,11 +357,11 @@
             }
 
             .lightbox-prev {
-                left: 15px;
+                left: 15px !important;
             }
 
             .lightbox-next {
-                right: 15px;
+                right: 15px !important;
             }
             
             .lightbox-close {
@@ -277,6 +372,18 @@
             }
         }
 
+        /* 竖屏时：圆形按钮 */
+        @media (max-width: 1024px) and (orientation: portrait) {
+            .lightbox-nav {
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+            
+            .lightbox-nav:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+        }
+
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -284,16 +391,17 @@
             }
 
             .lightbox-nav {
-                font-size: 32px;
-                padding: 15px;
+                font-size: 28px;
+                width: 44px;
+                height: 44px;
             }
 
             .lightbox-prev {
-                left: 10px;
+                left: 10px !important;
             }
 
             .lightbox-next {
-                right: 10px;
+                right: 10px !important;
             }
 
             .gallery-group h3 {
@@ -399,11 +507,11 @@
         <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUMI</div>
         <nav class="nav-desktop">
             <a href="index.html">TOP</a>
-            <a href="project.html">PROJECT</a>
             <a href="installation.html">INSTALLATION</a>
             <a href="sculpture.html">SCULPTURE</a>
             <a href="drawing.html" class="active">DRAWING</a>
-            <a href="about.html">ABOUT US</a>
+            <a href="project.html">PROJECT</a>
+            <a href="about.html">ABOUT</a>
         </nav>
         <div class="menu-btn">
             <span></span>
@@ -415,11 +523,11 @@
     <!-- Mobile Navigation -->
     <nav class="nav-mobile">
         <a href="index.html">TOP</a>
-        <a href="project.html">PROJECT</a>
         <a href="installation.html">INSTALLATION</a>
         <a href="sculpture.html">SCULPTURE</a>
         <a href="drawing.html" class="active">DRAWING</a>
-        <a href="about.html">ABOUT US</a>
+        <a href="project.html">PROJECT</a>
+        <a href="about.html">ABOUT</a>
     </nav>
 
     <!-- Main Content -->

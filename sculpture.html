@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sculpture - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -233,37 +233,132 @@
             background: none;
             border: none;
             z-index: 10;
+            touch-action: manipulation;
         }
 
         .lightbox-nav {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            color: #333;
+            color: white;
             font-size: 40px;
             cursor: pointer;
-            background: none;
+            background: transparent;
             border: none;
-            padding: 20px;
-            transition: opacity 0.3s, color 0.3s;
-            z-index: 10;
-            opacity: 0.7;
+            border-radius: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            opacity: 0.8;
+            touch-action: manipulation;
         }
 
         .lightbox-nav:hover {
             opacity: 1;
-            color: #000;
         }
 
         .lightbox-prev {
-            left: 15px;
+            left: 20px;
         }
 
         .lightbox-next {
             right: 20px;
         }
+        
+        /* 桌面端大屏：按钮距离弹框有间距 */
+        @media (min-width: 1400px) {
+            .lightbox.active .lightbox-prev {
+                left: calc((100vw - 1200px) / 2 - 70px);
+            }
 
-        @media (max-width: 1200px) {
+            .lightbox.active .lightbox-next {
+                right: calc((100vw - 1200px) / 2 - 70px);
+            }
+        }
+
+        /* iPad和平板优化 (768px - 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .lightbox {
+                overflow-y: auto;
+                padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .lightbox.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .lightbox-content {
+                width: 90%;
+                max-width: 900px;
+                height: auto;
+                max-height: none;
+                flex-direction: column;
+                margin: 80px auto 60px;
+                overflow-y: visible;
+                box-sizing: border-box;
+            }
+
+            .lightbox-image-section {
+                flex: none;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+                padding: 30px;
+                min-height: 400px;
+            }
+
+            .lightbox-info-section {
+                flex: none;
+                width: 100%;
+                padding: 30px 30px 40px;
+                overflow-y: visible;
+            }
+
+            .artwork-title {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+
+            .artwork-details {
+                font-size: 16px;
+            }
+
+            .lightbox-nav {
+                font-size: 48px;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .lightbox-prev {
+                left: 15px !important;
+            }
+
+            .lightbox-next {
+                right: 15px !important;
+            }
+            
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+                color: white;
+                z-index: 1010;
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 1200px) and (min-width: 1025px) {
             .gallery-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -315,11 +410,11 @@
             }
 
             .lightbox-prev {
-                left: 15px;
+                left: 15px !important;
             }
 
             .lightbox-next {
-                right: 15px;
+                right: 15px !important;
             }
             
             .lightbox-close {
@@ -330,6 +425,18 @@
             }
         }
 
+        /* 竖屏时：圆形按钮 */
+        @media (max-width: 1024px) and (orientation: portrait) {
+            .lightbox-nav {
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+            
+            .lightbox-nav:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+        }
+
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -337,16 +444,17 @@
             }
 
             .lightbox-nav {
-                font-size: 32px;
-                padding: 15px;
+                font-size: 28px;
+                width: 44px;
+                height: 44px;
             }
 
             .lightbox-prev {
-                left: 10px;
+                left: 10px !important;
             }
 
             .lightbox-next {
-                right: 10px;
+                right: 10px !important;
             }
 
             .gallery-group h3 {
@@ -542,10 +650,34 @@
         .video-info .artwork-title {
             font-size: 20px;
             margin-bottom: 10px;
+            color: white;
         }
         
         .video-info .artwork-year {
             font-size: 16px;
+            color: #ccc;
+        }
+        
+        .video-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        
+        .video-detail-item {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .video-detail-label {
+            font-weight: normal;
+            color: #999;
+        }
+        
+        .video-detail-value {
             color: #ccc;
         }
         
@@ -571,11 +703,11 @@
         <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUMI</div>
         <nav class="nav-desktop">
             <a href="index.html">TOP</a>
-            <a href="project.html">PROJECT</a>
             <a href="installation.html">INSTALLATION</a>
             <a href="sculpture.html" class="active">SCULPTURE</a>
             <a href="drawing.html">DRAWING</a>
-            <a href="about.html">ABOUT US</a>
+            <a href="project.html">PROJECT</a>
+            <a href="about.html">ABOUT</a>
         </nav>
         <div class="menu-btn">
             <span></span>
@@ -587,11 +719,11 @@
     <!-- Mobile Navigation -->
     <nav class="nav-mobile">
         <a href="index.html">TOP</a>
-        <a href="project.html">PROJECT</a>
         <a href="installation.html">INSTALLATION</a>
         <a href="sculpture.html" class="active">SCULPTURE</a>
         <a href="drawing.html">DRAWING</a>
-        <a href="about.html">ABOUT US</a>
+        <a href="project.html">PROJECT</a>
+        <a href="about.html">ABOUT</a>
     </nav>
 
     <!-- Main Content -->
@@ -631,40 +763,31 @@
 
         <!-- Gallery Section -->
         <section class="gallery-section">
-            <!-- Sculpture 2022 -->
-            <div class="gallery-group">
-                <h3>Sculpture 2022</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sculpture 2022" onclick="openLightbox(0)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp" alt="Sculpture 2022" onclick="openLightbox(1)">
-                    </div>
-                    <div class="gallery-item video-gallery-item">
-                        <div class="video-thumbnail">
-                            <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sound of a kettle video">
-                            <div class="play-button" onclick="openVideoLightbox('images/02sculpture/01_images/S_2022/2330_sound_of_a_kettle.mp4', 'Sound of a kettle', '2022')">
-                                <i class="fas fa-play"></i>
-                            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item video-gallery-item">
+                    <div class="video-thumbnail" onclick="openVideoLightbox('images/02sculpture/01_images/S_2017/IMG_0782.mp4', 'Sound of a dog', '2020', 'mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)', null)" style="cursor: pointer;">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp" alt="Sound of a dog video">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Sculpture 2017 -->
-            <div class="gallery-group">
-                <h3>Sculpture 2017</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture 2017" onclick="openLightbox(2)">
+                <div class="gallery-item video-gallery-item">
+                    <div class="video-thumbnail" onclick="openVideoLightbox('images/02sculpture/01_images/S_2022/2330_sound_of_a_kettle.mp4', 'Sound of a kettle', '2020', 'kettle, sound, soundsystem', '200mm, 600mm, 200mm')" style="cursor: pointer;">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sound of a kettle video">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture 2017" onclick="openLightbox(3)">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture 2017" onclick="openLightbox(4)">
-                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture" onclick="openLightbox(0)">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture" onclick="openLightbox(1)">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture" onclick="openLightbox(2)">
                 </div>
             </div>
         </section>
@@ -699,12 +822,26 @@
             <div class="video-container">
                 <video id="lightbox-video" controls>
                     <source src="" type="video/mp4">
+                    <source src="" type="video/quicktime">
                     Your browser does not support the video tag.
                 </video>
             </div>
             <div class="video-info">
                 <div class="artwork-title" id="video-title">Video Title</div>
-                <div class="artwork-year" id="video-year">2022</div>
+                <div class="video-details">
+                    <div class="video-detail-item">
+                        <span class="video-detail-label">Year:</span>
+                        <span class="video-detail-value" id="video-year">2022</span>
+                    </div>
+                    <div class="video-detail-item" id="video-material-container">
+                        <span class="video-detail-label">Material:</span>
+                        <span class="video-detail-value" id="video-material"></span>
+                    </div>
+                    <div class="video-detail-item" id="video-size-container" style="display: none;">
+                        <span class="video-detail-label">Size:</span>
+                        <span class="video-detail-value" id="video-size"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -815,20 +952,6 @@
                         nextSlide();
                     }
                 });
-                
-                // 鼠标悬停暂停自动轮播
-                const slider = document.querySelector('.slider');
-                if (slider) {
-                    slider.addEventListener('mouseenter', () => {
-                        clearTimeout(autoSlideTimer);
-                    });
-                    
-                    slider.addEventListener('mouseleave', () => {
-                        autoSlideTimer = setTimeout(() => {
-                            nextSlide();
-                        }, 6000);
-                    });
-                }
             }
             
             // 初始化
@@ -836,20 +959,6 @@
 
             // Lightbox functionality
             const artworks = [
-                {
-                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp",
-                    title: "Sound of a kettle",
-                    year: "2022",
-                    medium: "kettle, sound, soundsystem",
-                    size: "200mm, 600mm, 200mm"
-                },
-                {
-                    image: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp",
-                    title: "Sound of a dog",
-                    year: "2022",
-                    medium: "mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)",
-                    size: "---, ---, ---"
-                },
                 {
                     image: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp",
                     title: "anonymous_bob with bangs",
@@ -915,14 +1024,25 @@
             }
 
             // 视频弹框功能
-            window.openVideoLightbox = function(videoSrc, title, year) {
+            window.openVideoLightbox = function(videoSrc, title, year, material, size) {
                 const videoLightbox = document.getElementById('video-lightbox');
                 const lightboxVideo = document.getElementById('lightbox-video');
                 const videoTitle = document.getElementById('video-title');
                 const videoYear = document.getElementById('video-year');
+                const videoMaterial = document.getElementById('video-material');
+                const videoSize = document.getElementById('video-size');
+                const videoMaterialContainer = document.getElementById('video-material-container');
+                const videoSizeContainer = document.getElementById('video-size-container');
                 
                 // 设置视频源
-                lightboxVideo.querySelector('source').src = videoSrc;
+                const sources = lightboxVideo.querySelectorAll('source');
+                const videoType = videoSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
+                sources[0].src = videoSrc;
+                sources[0].type = videoType;
+                if (sources[1]) {
+                    sources[1].src = videoSrc;
+                    sources[1].type = videoType;
+                }
                 
                 // 重新加载视频
                 lightboxVideo.load();
@@ -930,6 +1050,22 @@
                 // 设置标题和年份
                 videoTitle.textContent = title;
                 videoYear.textContent = year;
+                
+                // 设置材料信息
+                if (material) {
+                    videoMaterial.textContent = material;
+                    videoMaterialContainer.style.display = 'flex';
+                } else {
+                    videoMaterialContainer.style.display = 'none';
+                }
+                
+                // 设置尺寸信息
+                if (size) {
+                    videoSize.textContent = size;
+                    videoSizeContainer.style.display = 'flex';
+                } else {
+                    videoSizeContainer.style.display = 'none';
+                }
                 
                 // 显示弹框
                 videoLightbox.classList.add('active');

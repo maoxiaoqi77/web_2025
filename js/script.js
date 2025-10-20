@@ -163,22 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
             handleManualSlide('next');
         });
     });
-
-    // 鼠标悬停时暂停自动轮播
-    const slider = document.querySelector('.slider');
-    if (slider) {
-        slider.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-            // 不暂停视频播放
-        });
-        slider.addEventListener('mouseleave', () => {
-            // 如果当前不是视频幻灯片，则恢复自动轮播
-            const currentSlideElement = slides[currentSlide];
-            if (!currentSlideElement.classList.contains('video-slide')) {
-                resetAutoSlide();
-            }
-        });
-    }
     
     // 初始化处理当前幻灯片（如果是视频）
     if (slides.length > 0) {

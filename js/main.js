@@ -69,17 +69,6 @@ nextBtn.addEventListener('click', () => handleManualSlide('next'));
 // 自动播放
 let slideInterval = setInterval(nextSlide, 5000);
 
-// 鼠标悬停时暂停自动播放
-const slider = document.querySelector('.slider');
-slider.addEventListener('mouseenter', () => {
-    clearInterval(slideInterval);
-});
-
-// 鼠标离开时恢复自动播放
-slider.addEventListener('mouseleave', () => {
-    resetAutoSlide();
-});
-
 // 导航栏滚动效果
 let lastScrollTop = 0;
 window.addEventListener('scroll', () => {

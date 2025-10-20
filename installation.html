@@ -25,12 +25,7 @@
             flex-direction: column;
             text-decoration: none;
             color: inherit;
-            transition: opacity 0.3s;
             height: 100%;
-        }
-
-        .installation-item:hover {
-            opacity: 0.8;
         }
 
         .installation-image {
@@ -57,6 +52,11 @@
             font-weight: 400;
             color: #333;
             margin-bottom: 10px;
+            transition: text-decoration 0.3s;
+        }
+
+        .installation-item:hover .installation-title {
+            text-decoration: underline;
         }
 
         .installation-description {
@@ -133,15 +133,6 @@
             display: block;
         }
 
-        /* webp格式图片特殊处理 - 不裁剪 */
-        .slide img[src$=".webp"] {
-            object-fit: contain;
-            max-height: 100%;
-            max-width: 100%;
-            width: auto;
-            height: auto;
-        }
-
         .slider-nav {
             position: absolute;
             top: 50%;
@@ -202,14 +193,14 @@
             font-size: 22px;
             font-weight: 500;
             color: #333;
-            margin-bottom: 25px;
+            margin-bottom: 40px;
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
         }
 
         .year-items {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 40px;
         }
 
@@ -220,8 +211,9 @@
 
         .projects-items {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 40px;
+            row-gap: 60px;
         }
 
         .installation-year {
@@ -240,58 +232,28 @@
 
         /* 响应式调整 */
         @media (max-width: 768px) {
-            .slide img[src$=".webp"] {
-                max-width: 90%;
-            }
-            
-            /* 竖屏webp图片在平板上的特殊处理 */
-            .slide img[src*="webvideo_001"],
-            .slide img[src*="webvideo_002"],
-            .slide img[src*="webvideo_003"],
-            .slide img[src*="webvideo_004"],
-            .slide img[src*="webvideo_005"],
-            .slide img[src*="webvideo_006"],
-            .slide img[src*="webvideo_007"],
-            .slide img[src*="webvideo_008"],
-            .slide img[src*="webvideo_009"],
-            .slide img[src*="webvideo_011"],
-            .slide img[src*="webvideo_012"],
-            .slide img[src*="webvideo_013"],
-            .slide img[src*="webvideo_014"],
-            .slide img[src*="webvideo_015"],
-            .slide img[src*="webvideo_016"],
-            .slide img[src*="webvideo_017"],
-            .slide img[src*="webvideo_018"],
-            .slide img[src*="webvideo_019"] {
-                max-width: 80%;
+            .slideshow-container {
+                padding-top: 75%;
             }
         }
 
         @media (max-width: 480px) {
-            .slide img[src$=".webp"] {
-                max-width: 95%;
+            .slideshow-container {
+                padding-top: 100%;
+            }
+        }
+
+        /* iPad和中等屏幕 */
+        @media (max-width: 1200px) {
+            .year-items {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
             }
             
-            /* 竖屏webp图片在手机上的特殊处理 */
-            .slide img[src*="webvideo_001"],
-            .slide img[src*="webvideo_002"],
-            .slide img[src*="webvideo_003"],
-            .slide img[src*="webvideo_004"],
-            .slide img[src*="webvideo_005"],
-            .slide img[src*="webvideo_006"],
-            .slide img[src*="webvideo_007"],
-            .slide img[src*="webvideo_008"],
-            .slide img[src*="webvideo_009"],
-            .slide img[src*="webvideo_011"],
-            .slide img[src*="webvideo_012"],
-            .slide img[src*="webvideo_013"],
-            .slide img[src*="webvideo_014"],
-            .slide img[src*="webvideo_015"],
-            .slide img[src*="webvideo_016"],
-            .slide img[src*="webvideo_017"],
-            .slide img[src*="webvideo_018"],
-            .slide img[src*="webvideo_019"] {
-                max-width: 85%;
+            .projects-items {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+                row-gap: 50px;
             }
         }
 
@@ -306,13 +268,36 @@
                 padding: 20px 0;
             }
 
+            .year-items {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
             .projects-items {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                row-gap: 40px;
             }
 
             .installation-title {
                 font-size: 16px;
+            }
+            
+            .year-title {
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* 手机竖屏 */
+        @media (max-width: 480px) {
+            .year-items {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .projects-items {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
     </style>
@@ -323,11 +308,11 @@
         <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">KIYOMI+TETSUHIRO UOZUMI</div>
         <nav class="nav-desktop">
             <a href="index.html">TOP</a>
-            <a href="project.html">PROJECT</a>
             <a href="installation.html" class="active">INSTALLATION</a>
             <a href="sculpture.html">SCULPTURE</a>
             <a href="drawing.html">DRAWING</a>
-            <a href="about.html">ABOUT US</a>
+            <a href="project.html">PROJECT</a>
+            <a href="about.html">ABOUT</a>
         </nav>
         <div class="menu-btn">
             <span></span>
@@ -339,11 +324,11 @@
     <!-- Mobile Navigation -->
     <nav class="nav-mobile">
         <a href="index.html">TOP</a>
-        <a href="project.html">PROJECT</a>
         <a href="installation.html" class="active">INSTALLATION</a>
         <a href="sculpture.html">SCULPTURE</a>
         <a href="drawing.html">DRAWING</a>
-        <a href="about.html">ABOUT US</a>
+        <a href="project.html">PROJECT</a>
+        <a href="about.html">ABOUT</a>
     </nav>
 
     <!-- Main Content -->
@@ -696,20 +681,6 @@
                         nextSlide();
                     }
                 });
-                
-                // 鼠标悬停暂停自动轮播
-                const slider = document.querySelector('.slider');
-                if (slider) {
-                    slider.addEventListener('mouseenter', () => {
-                        clearTimeout(autoSlideTimer);
-                    });
-                    
-                    slider.addEventListener('mouseleave', () => {
-                        autoSlideTimer = setTimeout(() => {
-                            nextSlide();
-                        }, 6000);
-                    });
-                }
             }
             
             // 暴露函数到全局作用域

@@ -412,12 +412,6 @@ main {
     border-radius: 0;
     overflow: hidden;
     box-shadow: none;
-    transition: opacity 0.3s;
-}
-
-.news-item:hover {
-    opacity: 0.8;
-    transform: none;
 }
 
 .news-item img {
@@ -566,31 +560,48 @@ main {
     z-index: 1002;
 }
 
-.optimized-lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 36px;
-    padding: 10px 20px;
-    cursor: pointer;
-    z-index: 1001;
-    border-radius: 5px;
-}
+        .optimized-lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 40px;
+            cursor: pointer;
+            border-radius: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            opacity: 0.8;
+        }
 
-.optimized-lightbox-nav:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
+        .optimized-lightbox-nav:hover {
+            opacity: 1;
+        }
 
-.optimized-lightbox-prev {
-    left: -60px;
-}
+        .optimized-lightbox-prev {
+            left: 20px;
+        }
 
-.optimized-lightbox-next {
-    right: -60px;
-}
+        .optimized-lightbox-next {
+            right: 20px;
+        }
+        
+        /* 桌面端大屏：按钮距离弹框有间距 */
+        @media (min-width: 1400px) {
+            .optimized-lightbox.active .optimized-lightbox-prev {
+                left: calc((100vw - 1200px) / 2 - 70px);
+            }
+
+            .optimized-lightbox.active .optimized-lightbox-next {
+                right: calc((100vw - 1200px) / 2 - 70px);
+            }
+        }
 
 /* 添加artwork信息区域样式 */
 .optimized-lightbox-info-section {
@@ -628,13 +639,42 @@ main {
     display: inline-block;
 }
 
-@media (max-width: 1200px) {
+/* iPad和平板优化 (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .optimized-lightbox-nav {
+        font-size: 48px;
+        width: 60px;
+        height: 60px;
+    }
+
     .optimized-lightbox-prev {
-        left: 10px;
+        left: 15px !important;
     }
 
     .optimized-lightbox-next {
-        right: 10px;
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .optimized-lightbox-prev {
+        left: 10px !important;
+    }
+
+    .optimized-lightbox-next {
+        right: 10px !important;
+    }
+}
+
+/* 竖屏时：圆形按钮 */
+@media (max-width: 1024px) and (orientation: portrait) {
+    .optimized-lightbox-nav {
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .optimized-lightbox-nav:hover {
+        background: rgba(0, 0, 0, 0.8);
     }
 }
 
