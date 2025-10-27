@@ -87,15 +87,17 @@
             width: 100%;
         }
         
+        /* 幻灯片容器 - 16:9比例，宽度占满 */
         .slider {
             position: relative !important;
             width: 100vw !important;
-            height: 100vh !important;
+            height: 56.25vw !important; /* 16:9 = 9/16 = 0.5625 */
             margin: 0 !important;
             padding: 0 !important;
             max-width: none !important;
             overflow: hidden !important;
             z-index: 1 !important;
+            background: #000 !important;
         }
         
         .slides {
@@ -115,7 +117,7 @@
         
         /* 新闻区域样式 */
         .news {
-            margin-top: 80px !important;
+            margin-top: 0 !important;
             position: relative;
             z-index: 100;
             background: white;
@@ -201,7 +203,6 @@
         @media (max-width: 1200px) {
             .news {
                 padding: 40px 60px !important;
-                margin-top: 60px !important;
             }
             
             .news-grid {
@@ -217,7 +218,6 @@
         @media (max-width: 768px) {
             .news {
                 padding: 30px 40px !important;
-                margin-top: 40px !important;
             }
             
             .news h2 {
@@ -239,7 +239,6 @@
         @media (max-width: 480px) {
             .news {
                 padding: 20px 20px !important;
-                margin-top: 30px !important;
             }
             
             .news h2 {
@@ -270,13 +269,13 @@
             background: transparent;
         }
         
-        /* 幻灯片样式更新 - 填满全屏 */
+        /* 幻灯片样式更新 - 保持16:9比例 */
         .slide {
             position: absolute !important;
             top: 0 !important;
             left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 100% !important;
+            height: 100% !important;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
             background-color: #000 !important;
@@ -289,15 +288,15 @@
             opacity: 1;
         }
 
-        /* 所有图片都填满整个屏幕，放大并裁切 */
+        /* 所有图片都填满容器，保持16:9比例 */
         .slide img {
             position: absolute;
             top: 50%;
             left: 50%;
-            min-width: 100vw;
-            min-height: 100vh;
-            width: 100vw;
-            height: 100vh;
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: 100%;
             transform: translate(-50%, -50%);
             object-fit: cover;
             object-position: center center;
@@ -492,10 +491,12 @@
     <script src="js/script.js"></script>
     <script>
         // 监听滚动，当进入news区域时改变导航栏背景
-        window.addEventListener('scroll', function() {
+        function updateHeaderStyle() {
             const header = document.querySelector('.header');
             const slider = document.querySelector('.slider');
-            const sliderHeight = slider ? slider.offsetHeight : window.innerHeight;
+            if (!header || !slider) return;
+            
+            const sliderHeight = slider.offsetHeight;
             const scrollPosition = window.scrollY || window.pageYOffset;
             
             // 当滚动超过slideshow高度的80%时，添加scrolled类
@@ -504,7 +505,13 @@
             } else {
                 header.classList.remove('scrolled');
             }
-        });
+        }
+        
+        window.addEventListener('scroll', updateHeaderStyle);
+        window.addEventListener('resize', updateHeaderStyle);
+        
+        // 页面加载时也检查一次
+        document.addEventListener('DOMContentLoaded', updateHeaderStyle);
     </script>
 </body>
 </html> 
