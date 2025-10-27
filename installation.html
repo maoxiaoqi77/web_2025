@@ -9,15 +9,18 @@
     <style>
         /* Installation page specific styles */
         main {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px - 200px);
-            padding: 20px 50px;
+            margin-top: 70px !important;
+            min-height: calc(100vh - 70px - 200px) !important;
+            padding: 50px 90px !important;
+            max-width: none !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
 
         .installation-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px 0;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 40px 0 !important;
         }
 
         .installation-item {
@@ -88,9 +91,9 @@
         /* 轮播图样式 */
         .slider {
             position: relative;
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
             padding-top: 56.25%;
             overflow: visible;
             background: transparent;
@@ -170,8 +173,8 @@
 
         /* 轮播图描述样式 */
         .slider-description {
-            max-width: 1300px;
-            margin: 10px auto 25px;
+            max-width: none;
+            margin: 10px 0 25px;
             text-align: left;
             padding: 0;
         }
@@ -245,6 +248,10 @@
 
         /* iPad和中等屏幕 */
         @media (max-width: 1200px) {
+            main {
+                padding: 40px 60px !important;
+            }
+            
             .year-items {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 30px;
@@ -259,7 +266,7 @@
 
         @media (max-width: 768px) {
             main {
-                padding: 20px;
+                padding: 30px 40px !important;
             }
 
             .installation-grid {
@@ -290,6 +297,10 @@
         
         /* 手机竖屏 */
         @media (max-width: 480px) {
+            main {
+                padding: 20px 20px !important;
+            }
+            
             .year-items {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -579,8 +590,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                     <i class="fab fa-instagram"></i>
+                    <span class="footer-social-text">INSTAGRAM</span>
                 </a>
             </div>
         </div>

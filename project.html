@@ -11,14 +11,17 @@
         main {
             margin-top: 70px;
             min-height: calc(100vh - 70px - 200px);
-            padding: 20px 50px;
+            padding: 50px 90px !important;
+            max-width: none !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
 
         .slider {
             position: relative;
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
             padding-top: 56.25%;
             overflow: visible;
         }
@@ -92,8 +95,8 @@
         .project-hero {
             position: relative;
             width: 100%;
-            max-width: 1300px;
-            margin: 0 auto 50px;
+            max-width: none !important;
+            margin: 0 0 50px 0 !important;
             padding-top: 56.25%;
         }
 
@@ -109,8 +112,8 @@
 
         .project-section {
             width: 100%;
-            max-width: 1300px;
-            margin: 0 auto 80px;
+            max-width: none !important;
+            margin: 0 0 80px 0 !important;
         }
 
         .project-preview {
@@ -157,7 +160,7 @@
         .project-gallery:has(.video-container) {
             display: block;
             max-width: 100%;
-            margin: 30px auto;
+            margin: 30px 0;
         }
 
         .gallery-item {
@@ -174,8 +177,8 @@
         /* 视频包装器样式 */
         .project-video-wrapper {
             width: 100%;
-            max-width: 1300px;
-            margin: 40px auto;
+            max-width: none !important;
+            margin: 40px 0 !important;
             padding: 0;
         }
         
@@ -199,7 +202,7 @@
         .image-container {
             width: 100%;
             max-width: 100%;
-            margin: 0 auto;
+            margin: 0;
             overflow: hidden;
         }
         
@@ -232,13 +235,25 @@
             transform: scale(1.02);
         }
         
-        @media screen and (max-width: 1340px) {
-            .project-video-wrapper {
-                max-width: calc(100% - 40px);
-                margin: 30px auto;
+        /* 响应式断点 */
+        @media (max-width: 1200px) {
+            main {
+                padding: 40px 60px !important;
             }
         }
 
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 40px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 20px !important;
+            }
+        }
+        
         .play-icon {
             position: absolute;
             top: 50%;
@@ -262,8 +277,8 @@
 
         .project-intro {
             width: 100%;
-            max-width: 1300px;
-            margin: 0 auto 80px;
+            max-width: none !important;
+            margin: 0 0 80px 0 !important;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 100px;
@@ -361,7 +376,7 @@
             }
             
             .slider-description {
-                margin: 3px auto 20px;
+                margin: 3px 0 20px 0;
             }
 
             .project-intro {
@@ -396,7 +411,7 @@
             /* 移动端视频容器样式 */
             .project-video-wrapper {
                 max-width: 100%;
-                margin: 20px auto;
+                margin: 20px 0;
             }
             
             .video-container {
@@ -541,8 +556,8 @@
 
         /* 轮播图描述样式 */
         .slider-description {
-            max-width: 1300px;
-            margin: 5px auto 25px;
+            max-width: none !important;
+            margin: 5px 0 25px 0 !important;
             text-align: left;
             padding: 0;
         }
@@ -848,8 +863,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                     <i class="fab fa-instagram"></i>
+                    <span class="footer-social-text">INSTAGRAM</span>
                 </a>
             </div>
         </div>

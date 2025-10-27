@@ -31,7 +31,7 @@ br {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 50px;
+    padding: 15px 90px;
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: space-between;
@@ -271,7 +271,7 @@ main {
 
 @media (max-width: 768px) {
     .header {
-        padding: 12px 20px;
+        padding: 12px 40px;
     }
 
     .logo {
@@ -474,41 +474,73 @@ main {
 }
 
 .footer-content {
-    max-width: 1300px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     display: flex;
-    justify-content: flex-end;
-    padding: 0 50px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 90px;
+    gap: 10px;
 }
 
 .footer-social {
     display: flex;
-    gap: 20px;
+    align-items: center;
 }
 
-.footer-social a {
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: #333;
-    font-size: 24px;
-    transition: color 0.3s;
+    text-decoration: none;
+    transition: opacity 0.3s;
 }
 
-.footer-social a:hover {
+.footer-social-link:hover {
     opacity: 0.7;
 }
 
+.footer-social-link i {
+    font-size: 24px;
+}
+
+.footer-social-text {
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
 /* 响应式设计 */
+@media (max-width: 1200px) {
+    .header {
+        padding: 15px 60px;
+    }
+
+    .footer-content {
+        padding: 0 60px;
+    }
+}
+
 @media (max-width: 768px) {
     .footer {
         padding: 20px 0 40px;
     }
 
     .footer-content {
-        padding: 0 20px;
-        justify-content: flex-end;
+        padding: 0 40px;
+        justify-content: flex-start;
     }
 
     .footer-social {
-        justify-content: flex-end;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        padding: 0 20px;
     }
 }
 

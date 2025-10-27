@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Main container styles */
+        main {
+            padding: 50px 90px !important;
+            max-width: none !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+        
+        /* Slider样式覆盖 */
+        .slider {
+            max-width: none !important;
+            margin: 0 !important;
+            width: 100% !important;
+        }
+        
         /* Gallery specific styles */
         .gallery-section {
             margin-top: 60px;
@@ -448,7 +463,18 @@
             }
         }
 
+        /* 响应式设计 - 中等屏幕 */
+        @media (max-width: 1200px) {
+            main {
+                padding: 40px 60px !important;
+            }
+        }
+        
         @media (max-width: 768px) {
+            main {
+                padding: 30px 40px !important;
+            }
+            
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
@@ -522,6 +548,10 @@
         }
 
         @media (max-width: 480px) {
+            main {
+                padding: 20px 20px !important;
+            }
+            
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -861,8 +891,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/uozumiuozumi/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
                     <i class="fab fa-instagram"></i>
+                    <span class="footer-social-text">INSTAGRAM</span>
                 </a>
             </div>
         </div>
