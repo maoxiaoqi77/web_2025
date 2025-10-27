@@ -15,6 +15,37 @@ const nextBtn = document.querySelector('.slider-nav.next');
 let currentSlide = 0;
 const totalSlides = slides.length;
 
+// 随机化幻灯片顺序
+function shuffleSlides() {
+    const slidesContainer = document.querySelector('.slides');
+    if (!slidesContainer || slides.length === 0) return;
+    
+    const slidesArray = Array.from(slides);
+    
+    // Fisher-Yates 洗牌算法
+    for (let i = slidesArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [slidesArray[i], slidesArray[j]] = [slidesArray[j], slidesArray[i]];
+    }
+    
+    // 清空并重新添加打乱顺序的幻灯片
+    slidesContainer.innerHTML = '';
+    slidesArray.forEach(slide => {
+        slide.classList.remove('active');
+        slidesContainer.appendChild(slide);
+    });
+    
+    // 显示第一张（现在是随机的第一张）
+    if (slidesArray.length > 0) {
+        slidesArray[0].classList.add('active');
+    }
+}
+
+// 页面加载后立即执行随机化
+if (slides.length > 0) {
+    shuffleSlides();
+}
+
 function showSlide(n) {
     // 处理边界情况
     if (n >= totalSlides) {
