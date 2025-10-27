@@ -776,22 +776,22 @@
                     <img src="images/02sculpture/00_SLIDESHOW/01_2520_weppic_IMG_0772_slide.webp" alt="Sculpture 1">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/02_2527_webvideo_soundogdog.webp" alt="Sound of a dog">
+                    <img src="images/02sculpture/00_SLIDESHOW/02_2527_webvideo_soundogdog.webp" alt="Sound of a dog" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.webp" alt="Sculpture 3">
+                    <img src="images/02sculpture/00_SLIDESHOW/03_2527_webpic_slideshow_IMG_0757_04.webp" alt="Sculpture 3" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.webp" alt="Sound of a kettle">
+                    <img src="images/02sculpture/00_SLIDESHOW/04_2527_webvideo_sound_of_a_kettle.webp" alt="Sound of a kettle" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/05_2527_webpic_slideshow_IMG_5529_02.webp" alt="Sculpture 5">
+                    <img src="images/02sculpture/00_SLIDESHOW/05_2527_webpic_slideshow_IMG_5529_02.webp" alt="Sculpture 5" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/06_2527_webpic_slideshow_IMG_5537_02.webp" alt="Sculpture 6">
+                    <img src="images/02sculpture/00_SLIDESHOW/06_2527_webpic_slideshow_IMG_5537_02.webp" alt="Sculpture 6" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02sculpture/00_SLIDESHOW/07_2527_webpic_slidshow_IMG_5521_02.webp" alt="Sculpture 7">
+                    <img src="images/02sculpture/00_SLIDESHOW/07_2527_webpic_slidshow_IMG_5521_02.webp" alt="Sculpture 7" loading="lazy">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -807,7 +807,7 @@
             <div class="gallery-grid">
                 <div class="gallery-item video-gallery-item">
                     <div class="video-thumbnail" onclick="openVideoLightbox('images/02sculpture/01_images/S_2017/IMG_0782.mp4', 'Sound of a dog', '2020', 'mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)', null)" style="cursor: pointer;">
-                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp" alt="Sound of a dog video">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp" alt="Sound of a dog video" loading="lazy">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -815,20 +815,20 @@
                 </div>
                 <div class="gallery-item video-gallery-item">
                     <div class="video-thumbnail" onclick="openVideoLightbox('images/02sculpture/01_images/S_2022/2330_sound_of_a_kettle_compressed.mp4', 'Sound of a kettle', '2020', 'kettle, sound, soundsystem', '200mm, 600mm, 200mm')" style="cursor: pointer;">
-                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sound of a kettle video">
+                        <img src="images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp" alt="Sound of a kettle video" loading="lazy">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture" onclick="sculptureOpenLightbox(0)">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture" onclick="sculptureOpenLightbox(0)" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture" onclick="sculptureOpenLightbox(1)">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture" onclick="sculptureOpenLightbox(1)" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture" onclick="sculptureOpenLightbox(2)">
+                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture" onclick="sculptureOpenLightbox(2)" loading="lazy">
                 </div>
             </div>
         </section>
@@ -842,7 +842,7 @@
             <button class="lightbox-nav lightbox-next" onclick="sculptureChangeImage(1)">&#8250;</button>
             
             <div class="lightbox-image-section">
-                <img id="lightbox-img" src="" alt="">
+                <img id="lightbox-img" src="" alt="" loading="lazy">
             </div>
             
             <div class="lightbox-info-section">
@@ -861,7 +861,7 @@
         <div class="video-lightbox-content" onclick="event.stopPropagation()">
             <button class="lightbox-close" onclick="closeVideoLightbox()">&times;</button>
             <div class="video-container">
-                <video id="lightbox-video" controls>
+                <video id="lightbox-video" controls preload="metadata">
                     <source src="" type="video/mp4">
                     <source src="" type="video/quicktime">
                     Your browser does not support the video tag.
