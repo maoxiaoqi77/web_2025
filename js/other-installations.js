@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const thumbnailImage = document.createElement('div');
         thumbnailImage.className = 'thumbnail-image';
         thumbnailImage.style.width = '100%';
-        thumbnailImage.style.aspectRatio = '4/3';
+        thumbnailImage.style.aspectRatio = '16/9';
         thumbnailImage.style.marginBottom = '10px';
         thumbnailImage.style.overflow = 'hidden';
         
