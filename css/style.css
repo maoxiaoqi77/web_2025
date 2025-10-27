@@ -592,8 +592,16 @@ main {
     z-index: 1002;
 }
 
+        /* Lightbox内容容器需要相对定位 */
+        .optimized-lightbox-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .optimized-lightbox-nav {
-            position: fixed;
+            position: absolute;
             top: 50%;
             transform: translateY(-50%);
             background: transparent;
@@ -616,22 +624,23 @@ main {
             opacity: 1;
         }
 
+        /* 按钮在图片外侧，距离图片50px */
         .optimized-lightbox-prev {
-            left: 20px;
+            left: -80px; /* 图片外侧，50px按钮宽度 + 30px间距 */
         }
 
         .optimized-lightbox-next {
-            right: 20px;
+            right: -80px; /* 图片外侧，50px按钮宽度 + 30px间距 */
         }
         
-        /* 桌面端大屏：按钮距离弹框有间距 */
+        /* 桌面端大屏：按钮在图片外侧更远 */
         @media (min-width: 1400px) {
-            .optimized-lightbox.active .optimized-lightbox-prev {
-                left: calc((100vw - 1200px) / 2 - 70px);
+            .optimized-lightbox-prev {
+                left: -100px;
             }
 
-            .optimized-lightbox.active .optimized-lightbox-next {
-                right: calc((100vw - 1200px) / 2 - 70px);
+            .optimized-lightbox-next {
+                right: -100px;
             }
         }
 
@@ -679,22 +688,24 @@ main {
         height: 60px;
     }
 
+    /* 平板上按钮在图片外侧，但距离更近 */
     .optimized-lightbox-prev {
-        left: 15px !important;
+        left: -70px !important;
     }
 
     .optimized-lightbox-next {
-        right: 15px !important;
+        right: -70px !important;
     }
 }
 
+/* 中等桌面屏幕 */
 @media (max-width: 1200px) and (min-width: 1025px) {
     .optimized-lightbox-prev {
-        left: 10px !important;
+        left: -70px !important;
     }
 
     .optimized-lightbox-next {
-        right: 10px !important;
+        right: -70px !important;
     }
 }
 
