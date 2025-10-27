@@ -7,21 +7,125 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Main container styles */
+
+        /* Header 在 slideshow 上时的样式 */
+        .header {
+            background: transparent !important;
+        }
+        
+        .header .logo {
+            color: #fff !important;
+        }
+        
+        .header .nav-desktop a {
+            color: #fff !important;
+        }
+        
+        .header .nav-desktop a.active {
+            color: #fff !important;
+        }
+        
+        .header .nav-desktop a:hover {
+            color: #ccc !important;
+        }
+        
+        .header .menu-btn span {
+            background-color: #fff !important;
+        }
+        
+        /* Header 滚动后的样式 */
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .header.scrolled .logo {
+            color: #333 !important;
+        }
+        
+        .header.scrolled .nav-desktop a {
+            color: #333 !important;
+        }
+        
+        .header.scrolled .nav-desktop a.active {
+            color: #333 !important;
+        }
+        
+        .header.scrolled .nav-desktop a:hover {
+            color: #666 !important;
+        }
+        
+        .header.scrolled .menu-btn span {
+            background-color: #333 !important;
+        }
+        
         main {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: none !important;
+            width: 100%;
+        }
+        
+        /* 全屏 Slideshow - 16:9 比例 */
+        .slider {
+            position: relative !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+            overflow: hidden !important;
+            z-index: 1 !important;
+            background: #000 !important;
+        }
+        
+        .slides {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+        }
+
+        /* 隐藏切换按钮 */
+        .slider-nav {
+            display: none !important;
+        }
+
+        /* 内容区域样式 */
+        .gallery-grid {
+            margin-top: 0 !important;
+            position: relative;
+            z-index: 100;
+            background: white;
             padding: 50px 90px !important;
             max-width: none !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
         }
-        
-        /* Slider样式覆盖 */
-        .slider {
-            max-width: none !important;
-            margin: 0 !important;
-            width: 100% !important;
-        }
-        
+
         /* Gallery specific styles */
         .gallery-section {
             margin-top: 60px;
@@ -465,13 +569,15 @@
 
         /* 响应式设计 - 中等屏幕 */
         @media (max-width: 1200px) {
-            main {
+            
+            .gallery-grid {
                 padding: 40px 60px !important;
             }
         }
         
         @media (max-width: 768px) {
-            main {
+            
+            .gallery-grid {
                 padding: 30px 40px !important;
             }
             
@@ -548,7 +654,8 @@
         }
 
         @media (max-width: 480px) {
-            main {
+            
+            .gallery-grid {
                 padding: 20px 20px !important;
             }
             
@@ -899,6 +1006,30 @@
         </div>
     </footer>
 
+    <script>
+        // 监听滚动，当离开slideshow区域时改变导航栏背景
+        function updateHeaderStyle() {
+            const header = document.querySelector('.header');
+            const slider = document.querySelector('.slider');
+            if (!header || !slider) return;
+            
+            const sliderHeight = slider.offsetHeight;
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            
+            // 当滚动超过slideshow高度的80%时，添加scrolled类
+            if (scrollPosition > sliderHeight * 0.8) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        window.addEventListener('scroll', updateHeaderStyle);
+        window.addEventListener('resize', updateHeaderStyle);
+        
+        // 页面加载时也检查一次
+        document.addEventListener('DOMContentLoaded', updateHeaderStyle);
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 移动端导航菜单

@@ -8,19 +8,127 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Installation page specific styles */
+        
+        /* Header 在 slideshow 上时的样式 */
+        .header {
+            background: transparent !important;
+        }
+        
+        .header .logo {
+            color: #fff !important;
+        }
+        
+        .header .nav-desktop a {
+            color: #fff !important;
+        }
+        
+        .header .nav-desktop a.active {
+            color: #fff !important;
+        }
+        
+        .header .nav-desktop a:hover {
+            color: #ccc !important;
+        }
+        
+        .header .menu-btn span {
+            background-color: #fff !important;
+        }
+        
+        /* Header 滚动后的样式 */
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .header.scrolled .logo {
+            color: #333 !important;
+        }
+        
+        .header.scrolled .nav-desktop a {
+            color: #333 !important;
+        }
+        
+        .header.scrolled .nav-desktop a.active {
+            color: #333 !important;
+        }
+        
+        .header.scrolled .nav-desktop a:hover {
+            color: #666 !important;
+        }
+        
+        .header.scrolled .menu-btn span {
+            background-color: #333 !important;
+        }
+        
         main {
-            margin-top: 70px !important;
-            min-height: calc(100vh - 70px - 200px) !important;
-            padding: 50px 90px !important;
+            padding: 0 !important;
+            margin: 0 !important;
             max-width: none !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
+            width: 100%;
+        }
+        
+        /* 全屏 Slideshow - 16:9 比例 */
+        .slider {
+            position: relative !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+            overflow: hidden !important;
+            z-index: 1 !important;
+            background: #000 !important;
+        }
+        
+        .slides {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 防止内容溢出 */
         }
 
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+        }
+
+        /* 隐藏切换按钮 */
+        .slider-nav {
+            display: none !important;
+        }
+        
+        /* 内容区域样式 */
         .installation-grid {
+            margin-top: 0 !important;
+            position: relative;
+            z-index: 100;
+            background: white;
+            padding: 50px 90px !important;
             max-width: none !important;
-            margin: 0 !important;
-            padding: 40px 0 !important;
         }
 
         .installation-item {
@@ -86,89 +194,6 @@
         .see-more::after {
             content: " >>";
             font-family: monospace;
-        }
-
-        /* 轮播图样式 */
-        .slider {
-            position: relative;
-            width: 100% !important;
-            max-width: none !important;
-            margin: 0 !important;
-            padding-top: 56.25%;
-            overflow: visible;
-            background: transparent;
-        }
-
-        .slides {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: transparent;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            background-color: #000; /* 添加黑色背景 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden; /* 防止内容溢出 */
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-        }
-
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .slider:hover .slider-nav {
-            opacity: 1;
-        }
-
-        .slider-nav:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .slider-nav.prev {
-            left: -50px;
-        }
-
-        .slider-nav.next {
-            right: -50px;
         }
 
         /* 轮播图描述样式 */
@@ -248,7 +273,7 @@
 
         /* iPad和中等屏幕 */
         @media (max-width: 1200px) {
-            main {
+            .installation-grid {
                 padding: 40px 60px !important;
             }
             
@@ -265,14 +290,8 @@
         }
 
         @media (max-width: 768px) {
-            main {
-                padding: 30px 40px !important;
-            }
-
             .installation-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 20px 0;
+                padding: 30px 40px !important;
             }
 
             .year-items {
@@ -297,7 +316,7 @@
         
         /* 手机竖屏 */
         @media (max-width: 480px) {
-            main {
+            .installation-grid {
                 padding: 20px 20px !important;
             }
             
@@ -408,12 +427,6 @@
             <button class="slider-nav next">
                 <i class="fas fa-chevron-right"></i>
             </button>
-        </div>
-        
-        <div class="slider-description">
-            <p>
-                We create site-specific installations that merge sound, light, and materials from daily life to reveal hidden stories of place and people. 
-            </p>
         </div>
 
         <div class="installation-grid">
@@ -599,6 +612,30 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // 监听滚动，当离开slideshow区域时改变导航栏背景
+        function updateHeaderStyle() {
+            const header = document.querySelector('.header');
+            const slider = document.querySelector('.slider');
+            if (!header || !slider) return;
+            
+            const sliderHeight = slider.offsetHeight;
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            
+            // 当滚动超过slideshow高度的80%时，添加scrolled类
+            if (scrollPosition > sliderHeight * 0.8) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        window.addEventListener('scroll', updateHeaderStyle);
+        window.addEventListener('resize', updateHeaderStyle);
+        
+        // 页面加载时也检查一次
+        document.addEventListener('DOMContentLoaded', updateHeaderStyle);
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 幻灯片处理
