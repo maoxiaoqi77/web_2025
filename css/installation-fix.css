@@ -58,7 +58,7 @@
 
 .other-installations .thumbnail-image {
     width: 100% !important;
-    aspect-ratio: 4/3 !important;
+    aspect-ratio: 16/9 !important;
     margin-bottom: 10px !important;
     overflow: hidden !important;
 }

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const imageContainer = item.querySelector('.thumbnail-image');
             if (imageContainer) {
                 imageContainer.style.width = '100%';
-                imageContainer.style.aspectRatio = '4/3';
+                imageContainer.style.aspectRatio = '16/9';
                 imageContainer.style.marginBottom = '10px';
                 imageContainer.style.overflow = 'hidden';
                 
