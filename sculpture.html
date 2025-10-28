@@ -103,14 +103,6 @@
             opacity: 1;
         }
 
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-        }
-
         /* 隐藏切换按钮 */
         .slider-nav {
             display: none !important;
@@ -191,9 +183,15 @@
         }
         
         .slide img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
             width: 100%;
             height: 100%;
-            object-fit: contain !important; /* 使用!important确保优先级，与drawing.html一致 */
+            transform: translate(-50%, -50%);
+            object-fit: cover;
             object-position: center center;
             display: block;
         }
@@ -214,25 +212,36 @@
         }
         
         .slide.video-slide video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 保持contain以保持原始比例 */
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            object-position: center center;
             background: transparent;
         }
         
-        /* 竖版视频特殊样式 */
+        /* 竖版视频特殊样式 - 现在也使用cover填充整个画面 */
         .slide.video-slide.vertical-video {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
         }
         
         .slide.video-slide.vertical-video video {
-            max-height: 100%;
-            width: auto;
-            max-width: 100%;
-            margin: 0 auto;
-            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            object-position: center center;
+            background: transparent;
         }
 
         /* Gallery group styles */
@@ -880,7 +889,7 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/02sculpture/00_SLIDESHOW/01_2520_weppic_IMG_0772_slide.webp" alt="Sculpture 1">
+                    <img src="images/02sculpture/00_SLIDESHOW/01_2542_weppic_IMG_0772_slide2.webp" alt="Sculpture 1">
                 </div>
                 <div class="slide">
                     <img src="images/02sculpture/00_SLIDESHOW/02_2527_webvideo_soundogdog.webp" alt="Sound of a dog" loading="lazy">
@@ -1044,6 +1053,32 @@
             }
             
 
+            // 随机化幻灯片顺序
+            function shuffleSlides() {
+                const slidesContainer = document.querySelector('.slides');
+                if (!slidesContainer || slides.length === 0) return;
+                
+                const slidesArray = Array.from(slides);
+                
+                // Fisher-Yates 洗牌算法
+                for (let i = slidesArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [slidesArray[i], slidesArray[j]] = [slidesArray[j], slidesArray[i]];
+                }
+                
+                // 清空并重新添加打乱顺序的幻灯片
+                slidesContainer.innerHTML = '';
+                slidesArray.forEach(slide => {
+                    slide.classList.remove('active');
+                    slidesContainer.appendChild(slide);
+                });
+                
+                // 显示第一张（现在是随机的第一张）
+                if (slidesArray.length > 0) {
+                    slidesArray[0].classList.add('active');
+                }
+            }
+
             // 幻灯片处理
             const slides = document.querySelectorAll('.slide');
             const slidesArray = Array.from(slides);
@@ -1108,6 +1143,11 @@
             
             // 初始化
             function init() {
+                // 随机化幻灯片顺序
+                if (slides.length > 0) {
+                    shuffleSlides();
+                }
+                
                 // 设置自动轮播
                 autoSlideTimer = setTimeout(() => {
                     nextSlide();
