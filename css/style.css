@@ -107,6 +107,11 @@ br {
     background: #333 !important;
 }
 
+/* 强制让激活状态下的汉堡菜单线条是黑色，覆盖HTML文件中的白色规则 */
+.header .menu-btn.active span {
+    background-color: #333 !important;
+}
+
 /* 移动端导航菜单 */
 .nav-mobile {
     display: none;
