@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chasing a little past - KIYOMI+TETSUHIRO UOZUMI</title>
+    <title>charsing little pasts - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/lightbox-fix.css">
@@ -211,6 +211,57 @@
             display: flex;
             flex-direction: column;
             gap: 40px;
+        }
+
+        /* 视频缩略图样式 */
+        .video-gallery-item {
+            position: relative;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+        
+        .video-thumbnail img,
+        .video-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-thumbnail video {
+            display: block;
+            pointer-events: none;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .play-button i {
+            color: white;
+            font-size: 24px;
+            margin-left: 4px;
+        }
+        
+        .video-thumbnail:hover .play-button {
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
         /* 画廊网格 */
@@ -685,6 +736,51 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* 视频弹框样式 */
+        .video-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .video-lightbox.active {
+            display: flex;
+        }
+        
+        .video-lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            width: 1000px;
+            position: relative;
+            background: black;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 宽高比 */
+            position: relative;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
     </head>
 <body>
@@ -718,14 +814,14 @@
 
     <!-- Main Content -->
     <div class="project-header">
-            <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/00_2540_basic_16x9_18EA_kioku_MG_8228_installation_000.webp" alt="chasing a little past kanazawa">
+            <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/00_2540_basic_16x9_18EA_kioku_MG_8228_installation_000.webp" alt="charsing little pasts kanazawa">
         </div>
 
     <main>
         
         <div class="project-content">
             <div class="project-info">
-                <h1 class="project-title">chasing a little past</h1>
+                <h1 class="project-title">charsing little pasts</h1>
                 <div class="project-info">
                     <p class="project-year">2018</p>
                     <p class="project-location">Culture City of East Asia 2018 Kanazawa "Altering Home", 21st Century Museum of Contemporary Art, Kanazawa JAPAN</p>
@@ -744,42 +840,72 @@
 
                 
             <div class="media-gallery">
+                <!-- 视频部分 -->
+                <div class="video-section" style="margin-bottom: 20px;">
+                    <div class="gallery-grid">
+                        <div class="gallery-item video-gallery-item">
+                            <div class="video-thumbnail" onclick="openSimpleVideoLightbox('../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2524_webvideo_003.mp4')" style="cursor: pointer;">
+                                <video src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2524_webvideo_003.mp4" muted preload="metadata" playsinline></video>
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-item video-gallery-item">
+                            <div class="video-thumbnail" onclick="openSimpleVideoLightbox('../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2524_webvideo_004.mp4')" style="cursor: pointer;">
+                                <video src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2524_webvideo_004.mp4" muted preload="metadata" playsinline></video>
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-item video-gallery-item">
+                            <div class="video-thumbnail" onclick="openSimpleVideoLightbox('../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2524_webvideo_005.mp4')" style="cursor: pointer;">
+                                <video src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2524_webvideo_005.mp4" muted preload="metadata" playsinline></video>
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/00_2540_basic_16x9_18EA_kioku_MG_8228_installation_000.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(0)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/00_2540_basic_16x9_18EA_kioku_MG_8228_installation_000.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(0)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8221.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(1)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8221.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(1)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8226.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(2)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8226.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(2)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8228.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(3)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8228.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(3)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8234.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(4)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8234.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(4)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8238.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(5)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8238.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(5)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8253.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(6)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8253.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(6)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8255.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(7)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8255.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(7)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8258.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(8)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8258.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(8)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8263.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(9)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8263.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(9)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8267.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(10)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8267.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(10)">
                     </div>
                     <div class="gallery-item">
-                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8275.webp" alt="chasing a little past kanazawa detail" onclick="openLightbox(11)">
+                        <img src="../images/02installation/02_036_chasing_a_little_past_KANAZAWA/ipad_18EA_kioku_MG_8275.webp" alt="charsing little pasts kanazawa detail" onclick="openLightbox(11)">
                     </div>
                 </div>
                 <div class="gallery-copyright">
@@ -801,6 +927,19 @@
             <button class="optimized-lightbox-nav optimized-lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
             <img id="lightbox-img" src="" alt="">
             <button class="optimized-lightbox-nav optimized-lightbox-next" onclick="changeImage(1)">&#8250;</button>
+        </div>
+    </div>
+
+    <!-- Video Lightbox -->
+    <div class="video-lightbox" id="video-lightbox" onclick="closeSimpleVideoLightbox()">
+        <div class="video-lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeSimpleVideoLightbox()" style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; font-size: 30px; cursor: pointer; z-index: 1001; border-radius: 50%; display: flex; align-items: center; justify-content: center;">&times;</button>
+            <div class="video-container">
+                <video id="simple-video-player" controls preload="metadata">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </div>
 
@@ -921,6 +1060,69 @@
                 } else {
                     header.classList.remove('scrolled');
                 }
+            }
+        });
+
+        // 简化的视频弹窗功能（只播放视频，无标题等信息）
+        window.openSimpleVideoLightbox = function(videoSrc) {
+            const videoLightbox = document.getElementById('video-lightbox');
+            const videoPlayer = document.getElementById('simple-video-player');
+            const source = videoPlayer.querySelector('source');
+            
+            if (!videoLightbox || !videoPlayer) return;
+            
+            // 设置视频源
+            source.src = videoSrc;
+            source.type = 'video/mp4';
+            
+            // 清空之前的状态
+            videoPlayer.currentTime = 0;
+            videoPlayer.removeAttribute('poster');
+            
+            // 添加错误处理
+            videoPlayer.onerror = function(e) {
+                console.error('视频加载失败:', {
+                    src: videoSrc,
+                    error: videoPlayer.error
+                });
+            };
+            
+            // 重新加载视频
+            videoPlayer.load();
+            
+            // 显示弹窗
+            videoLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // 自动播放视频
+            videoPlayer.oncanplay = function() {
+                videoPlayer.play().catch(function(error) {
+                    console.log('自动播放被阻止:', error);
+                });
+            };
+        };
+
+        window.closeSimpleVideoLightbox = function() {
+            const videoLightbox = document.getElementById('video-lightbox');
+            const videoPlayer = document.getElementById('simple-video-player');
+            
+            if (!videoLightbox || !videoPlayer) return;
+            
+            // 暂停视频
+            videoPlayer.pause();
+            
+            // 隐藏弹窗
+            videoLightbox.classList.remove('active');
+            
+            // 恢复背景滚动
+            document.body.style.overflow = '';
+        };
+
+        // 键盘事件：按ESC关闭视频弹窗
+        document.addEventListener('keydown', function(e) {
+            const videoLightbox = document.getElementById('video-lightbox');
+            if (videoLightbox && videoLightbox.classList.contains('active') && e.key === 'Escape') {
+                closeSimpleVideoLightbox();
             }
         });
     </script>

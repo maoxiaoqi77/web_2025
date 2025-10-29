@@ -119,13 +119,20 @@
         /* Project page specific styles */
         
         /* 内容区域包装 */
-        .project-intro,
         .project-section {
             margin-top: 75px !important;
             position: relative;
             z-index: 100;
             background: white;
             padding: 50px 90px !important;
+            max-width: none !important;
+        }
+        
+        .project-intro {
+            margin-top: 75px !important;
+            position: relative;
+            z-index: 100;
+            background: white;
             max-width: none !important;
         }
         
@@ -336,6 +343,10 @@
                 padding: 40px 60px !important;
             }
             
+            .project-intro {
+                padding: 40px 60px !important;
+            }
+            
             .slider-description,
             .slider + .intro-content {
                 padding: 0 60px !important;
@@ -348,6 +359,10 @@
                 padding: 30px 40px !important;
             }
             
+            .project-intro {
+                padding: 30px 40px !important;
+            }
+            
             .slider-description,
             .slider + .intro-content {
                 padding: 0 40px !important;
@@ -357,6 +372,10 @@
         @media (max-width: 480px) {
             
             .project-section {
+                padding: 20px 20px !important;
+            }
+            
+            .project-intro {
                 padding: 20px 20px !important;
             }
             
@@ -388,13 +407,14 @@
         }
 
         .project-intro {
-            width: 100%;
+            width: 100% !important;
             max-width: none !important;
             margin: 0 0 80px 0 !important;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 100px;
-            padding: 40px 0;
+            padding: 40px 90px !important;
+            box-sizing: border-box !important;
         }
 
         .intro-item {
@@ -470,12 +490,9 @@
             margin-left: 5px;
         }
 
-        /* 移动端样式 */
+        /* 移动端样式 - 与上面的@media (max-width: 768px)合并，避免重复 */
+        /* 已在上面定义，这里只添加特定样式 */
         @media screen and (max-width: 768px) {
-            
-            .project-section {
-                padding: 30px 40px !important;
-            }
             
             /* slideshow下方标题在移动端的样式 */
             .intro-content .intro-title {
@@ -490,7 +507,6 @@
             .project-intro {
                 grid-template-columns: 1fr !important;
                 gap: 60px !important;
-                padding: 20px 0 !important;
                 margin-bottom: 60px;
             }
 
@@ -650,12 +666,14 @@
         /* 轮播图描述样式 */
         .slider-description {
             max-width: none !important;
+            width: 100% !important;
             margin: 5px 0 25px 0 !important;
             text-align: left;
             padding: 0 90px !important;
             background: white;
             position: relative;
             z-index: 100;
+            box-sizing: border-box !important;
         }
         
         .slider-description p {

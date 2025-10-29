@@ -22,7 +22,7 @@ const installationData = [
     },
     {
         id: "chasing-a-little-past-kanazawa",
-        title: "chasing a little past_KANAZAWA",
+        title: "charsing little pasts_KANAZAWA",
         thumbnail: "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/00_2540_basic_16x9_18EA_kioku_MG_8228_installation_000.webp",
         year: "2018"
     },
@@ -34,31 +34,31 @@ const installationData = [
     },
     {
         id: "chasing-a-little-past-openart",
-        title: "chasing a little past_OPENART",
+        title: "charsing little pasts_OPENART",
         thumbnail: "../images/02installation/02_034_chasing_a_little_past_OPENART/00_2540_basic_16x9_IMG_5824_02.webp",
         year: "2017"
     },
     {
         id: "chasing-a-little-past-lad",
-        title: "chasing a little past_LAD",
+        title: "charsing little pasts_LAD",
         thumbnail: "../images/02installation/02_033_chasing_a_little_past_LAD/00_2540_basic_16x9_IMG_5384.webp",
         year: "2016"
     },
     {
         id: "chasing-a-little-past-titanik",
-        title: "chasing a little past_titanik",
+        title: "charsing little pasts_titanik",
         thumbnail: "../images/02installation/02_032_chasing_a_little_past_titanik/00_2540_basic_16x9_IMG_4412_installation_000.webp",
         year: "2016"
     },
     {
         id: "chasing-a-little-past-ostrale",
-        title: "chasing a little past_ostrale",
+        title: "charsing little pasts_ostrale",
         thumbnail: "../images/02installation/02_031_chasing_a_little_past_ostrale/00_2540_basic_16x9_IMG_3602.webp",
         year: "2016"
     },
     {
         id: "blink-blink-blink-to-forget",
-        title: "blink3 to forget_NAKANOJYO",
+        title: "charsing little pasts_NAKANOJYO",
         thumbnail: "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/00_2540_basic_16x9_IMG_3030.webp",
         year: "2015"
     },

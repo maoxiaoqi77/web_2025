@@ -1259,18 +1259,53 @@
                 const videoMaterialContainer = document.getElementById('video-material-container');
                 const videoSizeContainer = document.getElementById('video-size-container');
                 
-                // 设置视频源
+                // 设置视频源 - 确保路径正确
                 const sources = lightboxVideo.querySelectorAll('source');
-                const videoType = videoSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
-                sources[0].src = videoSrc;
+                
+                // 使用原始路径（GitHub Pages应该能处理相对路径）
+                const actualVideoSrc = videoSrc;
+                const videoType = actualVideoSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
+                
+                // 设置两个source元素（提供兼容性）
+                sources[0].src = actualVideoSrc;
                 sources[0].type = videoType;
                 if (sources[1]) {
-                    sources[1].src = videoSrc;
+                    sources[1].src = actualVideoSrc;
                     sources[1].type = videoType;
                 }
                 
+                // 清空之前可能的错误和加载状态
+                lightboxVideo.removeAttribute('poster');
+                lightboxVideo.currentTime = 0;
+                
+                // 添加错误处理
+                lightboxVideo.onerror = function(e) {
+                    console.error('视频加载失败:', {
+                        src: actualVideoSrc,
+                        error: lightboxVideo.error,
+                        code: lightboxVideo.error ? lightboxVideo.error.code : 'unknown'
+                    });
+                };
+                
+                // 添加加载事件监听
+                lightboxVideo.onloadstart = function() {
+                    console.log('开始加载视频:', actualVideoSrc);
+                };
+                
+                lightboxVideo.oncanplay = function() {
+                    console.log('视频可以播放:', actualVideoSrc);
+                };
+                
+                lightboxVideo.oncanplaythrough = function() {
+                    console.log('视频完全加载:', actualVideoSrc);
+                };
+                
                 // 重新加载视频
-                lightboxVideo.load();
+                try {
+                    lightboxVideo.load();
+                } catch (error) {
+                    console.error('加载视频时出错:', error);
+                }
                 
                 // 设置标题和年份
                 videoTitle.textContent = title;

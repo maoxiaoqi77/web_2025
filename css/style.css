@@ -102,15 +102,20 @@ br {
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
+/* 导航菜单打开时，关闭按钮显示为黑色 */
+.menu-btn.active span {
+    background: #333 !important;
+}
+
 /* 移动端导航菜单 */
 .nav-mobile {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 0;
     left: 0;
     width: 100%;
-    background: white;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 70px 20px 20px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 999;
     transform: translateY(-100%);
@@ -126,9 +131,8 @@ br {
     display: block;
     padding: 15px;
     text-decoration: none;
-    color: #999;
+    color: #333;
     border-bottom: 1px solid #eee;
-    transition: color 0.3s;
 }
 
 .nav-mobile a:hover,
@@ -137,7 +141,7 @@ br {
 }
 
 .nav-mobile a.active {
-    color: #999;
+    color: #333;
 }
 
 /* 主要内容区域 */
@@ -289,6 +293,16 @@ main {
 
     .news {
         padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 12px 20px;
+    }
+
+    .logo {
+        font-size: 18px;
     }
 
     .news h2 {
@@ -515,7 +529,7 @@ main {
 /* 响应式设计 */
 @media (max-width: 1200px) {
     .header {
-        padding: 15px 60px;
+        padding: 15px 60px !important;
     }
 
     .footer-content {
@@ -524,6 +538,10 @@ main {
 }
 
 @media (max-width: 768px) {
+    .header {
+        padding: 12px 40px !important;
+    }
+
     .footer {
         padding: 20px 0 40px;
     }
@@ -539,6 +557,10 @@ main {
 }
 
 @media (max-width: 480px) {
+    .header {
+        padding: 12px 20px !important;
+    }
+
     .footer-content {
         padding: 0 20px;
     }
