@@ -833,4 +833,59 @@ main {
 .artwork-details span:not(.label) {
     display: inline-block;
     max-width: calc(100% - 85px);
+}
+
+/* Project 页面对齐修复 - 使顶部内容与 project-section 对齐 */
+/* slider-description 和 slider + intro-content 使用与 project-section 相同的响应式 padding */
+.slider-description,
+.slider + .intro-content {
+    padding-left: 90px !important;
+    padding-right: 90px !important;
+}
+
+@media (max-width: 1200px) {
+    .slider-description,
+    .slider + .intro-content {
+        padding-left: 60px !important;
+        padding-right: 60px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-description,
+    .slider + .intro-content {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-description,
+    .slider + .intro-content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+/* project-intro 内的元素对齐 - 需要同时设置上下和左右 padding 以覆盖 project.html 中的 padding: 30px 0 */
+.project-intro {
+    padding: 40px 90px !important;
+}
+
+@media (max-width: 1200px) {
+    .project-intro {
+        padding: 40px 60px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-intro {
+        padding: 30px 40px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-intro {
+        padding: 30px 20px !important;
+    }
 } 
