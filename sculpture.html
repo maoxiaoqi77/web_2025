@@ -33,6 +33,19 @@
             background-color: #fff !important;
         }
         
+        /* 确保menu-btn可以点击 */
+        .menu-btn {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            z-index: 1001 !important;
+            position: relative !important;
+        }
+        
+        /* 确保nav-mobile的z-index足够高 */
+        .nav-mobile {
+            z-index: 1002 !important;
+        }
+        
         /* Header 滚动后的样式 */
         .header.scrolled {
             background: rgba(255, 255, 255, 0.95) !important;
@@ -1047,10 +1060,61 @@
             const navMobile = document.querySelector('.nav-mobile');
             
             if (menuBtn && navMobile) {
-                menuBtn.addEventListener('click', function() {
-                    menuBtn.classList.toggle('active');
-                    navMobile.classList.toggle('active');
+                console.log('Sculpture: 找到菜单按钮和导航菜单');
+                
+                // 定义处理函数
+                function handleMenuClick(event) {
+                    console.log('Sculpture: 菜单按钮被点击');
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    const isActive = navMobile.classList.contains('active');
+                    console.log('Sculpture: 当前状态', isActive);
+                    
+                    if (isActive) {
+                        navMobile.classList.remove('active');
+                        menuBtn.classList.remove('active');
+                        console.log('Sculpture: 关闭菜单');
+                    } else {
+                        navMobile.classList.add('active');
+                        menuBtn.classList.add('active');
+                        console.log('Sculpture: 打开菜单');
+                    }
+                }
+                
+                // 确保按钮可以点击
+                menuBtn.style.pointerEvents = 'auto';
+                menuBtn.style.cursor = 'pointer';
+                menuBtn.style.zIndex = '1001';
+                menuBtn.style.position = 'relative';
+                
+                // 移除可能存在的旧事件监听器（通过克隆节点）
+                const newMenuBtn = menuBtn.cloneNode(true);
+                menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+                const finalMenuBtn = document.querySelector('.menu-btn');
+                
+                // 绑定点击事件
+                finalMenuBtn.addEventListener('click', handleMenuClick);
+                console.log('Sculpture: 已绑定click事件');
+                
+                // 添加触摸事件支持（针对平板设备）
+                finalMenuBtn.addEventListener('touchend', function(event) {
+                    console.log('Sculpture: 菜单按钮被触摸');
+                    event.preventDefault();
+                    handleMenuClick(event);
+                }, { passive: false });
+                
+                // 点击页面其他区域关闭菜单
+                document.addEventListener('click', function(event) {
+                    const finalNavMobile = document.querySelector('.nav-mobile');
+                    const btn = document.querySelector('.menu-btn');
+                    if (btn && finalNavMobile && !btn.contains(event.target) && !finalNavMobile.contains(event.target)) {
+                        finalNavMobile.classList.remove('active');
+                        btn.classList.remove('active');
+                    }
                 });
+            } else {
+                console.error('Sculpture: 未找到菜单按钮或导航菜单', { menuBtn, navMobile });
             }
             
 
@@ -1263,8 +1327,22 @@
                 const sources = lightboxVideo.querySelectorAll('source');
                 
                 // 使用原始路径（GitHub Pages应该能处理相对路径）
-                const actualVideoSrc = videoSrc;
+                let actualVideoSrc = videoSrc.trim();
+                // 确保路径格式正确
+                if (actualVideoSrc.startsWith('/')) {
+                    actualVideoSrc = actualVideoSrc.substring(1);
+                }
+                console.log('准备加载视频，路径:', actualVideoSrc);
                 const videoType = actualVideoSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
+                
+                // 清空之前可能的错误和加载状态
+                lightboxVideo.removeAttribute('poster');
+                lightboxVideo.currentTime = 0;
+                // 先清空src和source，避免缓存问题
+                lightboxVideo.src = '';
+                sources.forEach(s => {
+                    s.removeAttribute('src');
+                });
                 
                 // 设置两个source元素（提供兼容性）
                 sources[0].src = actualVideoSrc;
@@ -1274,17 +1352,23 @@
                     sources[1].type = videoType;
                 }
                 
-                // 清空之前可能的错误和加载状态
-                lightboxVideo.removeAttribute('poster');
-                lightboxVideo.currentTime = 0;
-                
                 // 添加错误处理
                 lightboxVideo.onerror = function(e) {
                     console.error('视频加载失败:', {
                         src: actualVideoSrc,
                         error: lightboxVideo.error,
-                        code: lightboxVideo.error ? lightboxVideo.error.code : 'unknown'
+                        code: lightboxVideo.error ? lightboxVideo.error.code : 'unknown',
+                        networkState: lightboxVideo.networkState,
+                        readyState: lightboxVideo.readyState
                     });
+                    // 如果source方式失败，尝试直接使用src属性
+                    if (lightboxVideo.error && (lightboxVideo.error.code === 4 || lightboxVideo.networkState === 3)) {
+                        console.log('尝试使用直接src属性加载视频:', actualVideoSrc);
+                        lightboxVideo.removeAttribute('src');
+                        sources.forEach(s => s.removeAttribute('src'));
+                        lightboxVideo.src = actualVideoSrc;
+                        lightboxVideo.load();
+                    }
                 };
                 
                 // 添加加载事件监听
@@ -1292,12 +1376,28 @@
                     console.log('开始加载视频:', actualVideoSrc);
                 };
                 
+                // 自动播放标志
+                let autoPlayAttempted = false;
+                
+                // 自动播放函数
+                function attemptAutoPlay() {
+                    if (!autoPlayAttempted) {
+                        autoPlayAttempted = true;
+                        lightboxVideo.play().catch(error => {
+                            console.error('视频自动播放失败:', error);
+                            autoPlayAttempted = false; // 允许重试
+                        });
+                    }
+                }
+                
                 lightboxVideo.oncanplay = function() {
                     console.log('视频可以播放:', actualVideoSrc);
+                    attemptAutoPlay();
                 };
                 
                 lightboxVideo.oncanplaythrough = function() {
                     console.log('视频完全加载:', actualVideoSrc);
+                    attemptAutoPlay();
                 };
                 
                 // 重新加载视频
@@ -1305,6 +1405,16 @@
                     lightboxVideo.load();
                 } catch (error) {
                     console.error('加载视频时出错:', error);
+                    // 如果load()失败，尝试直接设置src
+                    console.log('尝试直接设置src属性:', actualVideoSrc);
+                    lightboxVideo.removeAttribute('src');
+                    sources.forEach(s => s.removeAttribute('src'));
+                    lightboxVideo.src = actualVideoSrc;
+                    try {
+                        lightboxVideo.load();
+                    } catch (e) {
+                        console.error('直接设置src也失败:', e);
+                    }
                 }
                 
                 // 设置标题和年份
@@ -1333,10 +1443,14 @@
                 // 禁止背景滚动
                 document.body.style.overflow = 'hidden';
                 
-                // 自动播放视频
-                lightboxVideo.play().catch(error => {
-                    console.error('视频自动播放失败:', error);
-                });
+                // 尝试立即播放（如果视频已经准备好）
+                setTimeout(function() {
+                    if (lightboxVideo.readyState >= 3) {
+                        lightboxVideo.play().catch(error => {
+                            console.error('视频立即自动播放失败:', error);
+                        });
+                    }
+                }, 100);
             };
 
             window.closeVideoLightbox = function() {

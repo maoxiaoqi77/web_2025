@@ -241,36 +241,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 确保菜单按钮存在后再绑定事件
     if (menuBtn && navMobile) {
-        // 移除可能存在的旧事件监听器
-        menuBtn.removeEventListener('click', handleMenuClick);
+        // 菜单点击处理函数（先定义）
+        function handleMenuClick(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            navMobile.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            console.log('菜单按钮被点击，当前状态:', navMobile.classList.contains('active'));
+        }
         
-        // 绑定新的点击事件
+        // 文档点击处理函数（先定义）
+        function handleDocumentClick(event) {
+            if (menuBtn && navMobile && !menuBtn.contains(event.target) && !navMobile.contains(event.target)) {
+                navMobile.classList.remove('active');
+                menuBtn.classList.remove('active');
+            }
+        }
+        
+        // 绑定点击事件
         menuBtn.addEventListener('click', handleMenuClick);
         
         // 点击页面其他区域关闭菜单
-        document.removeEventListener('click', handleDocumentClick);
         document.addEventListener('click', handleDocumentClick);
-    }
-    
-    // 菜单点击处理函数
-    function handleMenuClick(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        navMobile.classList.toggle('active');
-        menuBtn.classList.toggle('active');
-        console.log('菜单按钮被点击，当前状态:', navMobile.classList.contains('active'));
-    }
-    
-    // 文档点击处理函数
-    function handleDocumentClick(event) {
-        if (menuBtn && navMobile && !menuBtn.contains(event.target) && !navMobile.contains(event.target)) {
-            navMobile.classList.remove('active');
-            menuBtn.classList.remove('active');
-        }
-    }
-    
-    // 添加触摸事件支持（针对平板设备）
-    if (menuBtn) {
+        
+        // 添加触摸事件支持（针对平板设备）
         menuBtn.addEventListener('touchstart', function(event) {
             event.preventDefault();
             handleMenuClick(event);
