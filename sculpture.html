@@ -11,6 +11,11 @@
         /* Header 在 slideshow 上时的样式 */
         .header {
             background: transparent !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
         }
         
         .header .logo {
@@ -33,22 +38,22 @@
             background-color: #fff !important;
         }
         
-        /* 菜单打开时，关闭按钮显示为黑色 */
-        .header .menu-btn.active span {
-            background-color: #333 !important;
-        }
-        
-        /* 确保menu-btn可以点击 */
+        /* 确保menu-btn可以点击，且z-index高于nav-mobile，避免被白色背景覆盖 */
         .menu-btn {
             pointer-events: auto !important;
             cursor: pointer !important;
-            z-index: 1001 !important;
+            z-index: 1003 !important;
             position: relative !important;
         }
         
-        /* 确保nav-mobile的z-index足够高 */
+        /* 确保nav-mobile的z-index足够高，但低于header和menu-btn */
         .nav-mobile {
-            z-index: 1002 !important;
+            z-index: 999 !important;
+        }
+        
+        /* 确保header始终在最上层 */
+        .header {
+            z-index: 1000 !important;
         }
         
         /* Header 滚动后的样式 */
@@ -606,7 +611,7 @@
                 padding: 40px 60px !important;
             }
         }
-        
+
         @media (max-width: 768px) {
             
             .gallery-grid {
@@ -1391,6 +1396,23 @@
                     console.log('开始加载视频:', actualVideoSrc);
                 };
                 
+                lightboxVideo.onloadeddata = function() {
+                    console.log('视频数据已加载:', actualVideoSrc);
+                };
+                
+                lightboxVideo.onloadedmetadata = function() {
+                    console.log('视频元数据已加载:', actualVideoSrc, 'duration:', lightboxVideo.duration);
+                };
+                
+                lightboxVideo.onprogress = function() {
+                    if (lightboxVideo.buffered.length > 0) {
+                        const bufferedEnd = lightboxVideo.buffered.end(lightboxVideo.buffered.length - 1);
+                        const duration = lightboxVideo.duration;
+                        const percent = duration > 0 ? (bufferedEnd / duration * 100).toFixed(1) : 0;
+                        console.log('视频加载进度:', percent + '%');
+                    }
+                };
+                
                 // 自动播放标志
                 let autoPlayAttempted = false;
                 
@@ -1400,6 +1422,11 @@
                         autoPlayAttempted = true;
                         lightboxVideo.play().catch(error => {
                             console.error('视频自动播放失败:', error);
+                            console.error('错误详情:', {
+                                name: error.name,
+                                message: error.message,
+                                code: error.code
+                            });
                             autoPlayAttempted = false; // 允许重试
                         });
                     }
@@ -1415,16 +1442,33 @@
                     attemptAutoPlay();
                 };
                 
-                // 重新加载视频
+                // 重新加载视频 - 添加时间戳避免缓存问题
                 try {
+                    // 先尝试使用source元素加载
                     lightboxVideo.load();
+                    
+                    // 如果加载失败，尝试直接设置src（带时间戳避免缓存）
+                    setTimeout(function() {
+                        if (lightboxVideo.readyState === 0 || lightboxVideo.error) {
+                            console.log('source方式失败，尝试直接src方式:', actualVideoSrc);
+                            lightboxVideo.removeAttribute('src');
+                            sources.forEach(s => {
+                                s.removeAttribute('src');
+                            });
+                            // 添加时间戳避免缓存，但只在GitHub Pages上
+                            const videoUrl = actualVideoSrc + (window.location.hostname.includes('github.io') ? '?v=' + Date.now() : '');
+                            lightboxVideo.src = videoUrl;
+                            lightboxVideo.load();
+                        }
+                    }, 500);
                 } catch (error) {
                     console.error('加载视频时出错:', error);
-                    // 如果load()失败，尝试直接设置src
+                    // 最后备选：直接设置src
                     console.log('尝试直接设置src属性:', actualVideoSrc);
                     lightboxVideo.removeAttribute('src');
                     sources.forEach(s => s.removeAttribute('src'));
-                    lightboxVideo.src = actualVideoSrc;
+                    const videoUrl = actualVideoSrc + (window.location.hostname.includes('github.io') ? '?v=' + Date.now() : '');
+                    lightboxVideo.src = videoUrl;
                     try {
                         lightboxVideo.load();
                     } catch (e) {
