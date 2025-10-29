@@ -33,6 +33,11 @@
             background-color: #fff !important;
         }
         
+        /* 菜单打开时，关闭按钮显示为黑色 */
+        .header .menu-btn.active span {
+            background-color: #333 !important;
+        }
+        
         /* 确保menu-btn可以点击 */
         .menu-btn {
             pointer-events: auto !important;
@@ -68,6 +73,11 @@
         }
         
         .header.scrolled .menu-btn span {
+            background-color: #333 !important;
+        }
+        
+        /* 滚动后，菜单打开时关闭按钮也是黑色 */
+        .header.scrolled .menu-btn.active span {
             background-color: #333 !important;
         }
         
@@ -1328,11 +1338,16 @@
                 
                 // 使用原始路径（GitHub Pages应该能处理相对路径）
                 let actualVideoSrc = videoSrc.trim();
-                // 确保路径格式正确
+                // 确保路径格式正确 - 移除开头的斜杠（避免绝对路径）
                 if (actualVideoSrc.startsWith('/')) {
                     actualVideoSrc = actualVideoSrc.substring(1);
                 }
-                console.log('准备加载视频，路径:', actualVideoSrc);
+                // 确保路径不以 ./ 开头（统一使用相对路径）
+                if (actualVideoSrc.startsWith('./')) {
+                    actualVideoSrc = actualVideoSrc.substring(2);
+                }
+                console.log('准备加载视频，原始路径:', videoSrc);
+                console.log('处理后的路径:', actualVideoSrc);
                 const videoType = actualVideoSrc.endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
                 
                 // 清空之前可能的错误和加载状态
