@@ -88,3 +88,42 @@
 1. 确保每个安装页面只引用一次`installation-data.js`和`other-installations.js`
 2. 如果发现"Other Installations"部分显示了重复的内容，可以运行`fix-other-installations.sh`脚本修复
 3. 添加新的安装页面后，记得更新`js/installation-data.js`文件 
+
+## 响应式图片构建与改写（新）
+
+安装依赖：
+
+```bash
+npm i
+```
+
+（如果未自动安装）手动安装：
+
+```bash
+npm i sharp fast-glob cheerio fs-extra picomatch
+```
+
+生成多档图片并批量改写 HTML：
+
+```bash
+# 先对关键页面试跑（仅输出变更，未写盘）
+npm run images:rewrite:sample
+
+# 正式生成三档资源并改写全站 HTML
+npm run images:build
+```
+
+回滚：
+
+```bash
+npm run images:revert
+```
+
+规则摘要：
+- 仅处理本地 `/images/**` 下的 jpg/jpeg/png/webp 文件，输出到 `images/_gen/` 保持子目录结构。
+- 生成宽度档：400/960/1600（不放大原图）。WebP 质量默认 75，若 >220KB 自动降到 70；不应大于原图体积。
+- HTML 改写为 `<picture>`：
+  - `<source type="image/webp" srcset="...-400.webp 400w, ...-960.webp 960w, ...-1600.webp 1600w">`
+  - `<img src="原图" srcset="...-400.jpg 400w, ...-960.jpg 960w, ...-1600.jpg 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 960px, 1600px" loading="lazy" decoding="async">`
+  - 若原 `<img>` 带 `data-priority`：移除 lazy，添加 `fetchpriority="high"`。
+- 可重复执行（idempotent），不会重复插入；回退会把 `<picture data-responsive="1">` 还原为其内部 `<img>`。 

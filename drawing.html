@@ -651,7 +651,30 @@
                 overflow-y: visible;
             }
         }
+
+        /* Center images inside slideshow on drawing page (keep intrinsic ratio, no fill) */
+        .slider .slides .slide {
+            position: relative;
+        }
+        .slider .slides .slide picture,
+        .slider .slides .slide img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .slider .slides .slide img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: none; /* keep natural ratio, do not force fill */
+            object-position: center center;
+        }
     </style>
+    
+    <script src="js/perf.js" defer></script>
+    <script src="js/slideshow-loader.js" defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -1144,7 +1167,7 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
     <script>
         // 监听滚动，当离开slideshow区域时改变导航栏背景
         function updateHeaderStyle() {

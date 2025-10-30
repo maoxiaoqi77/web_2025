@@ -1,0 +1,19 @@
+{
+  "name": "web-2025",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images:gen": "node tools/gen-images.js",
+    "images:rewrite:sample": "HTML_GLOB='**/*.html' node tools/rewriter.js --dry --sample",
+    "images:rewrite": "HTML_GLOB='**/*.html' node tools/rewriter.js",
+    "images:revert": "HTML_GLOB='**/*.html' node tools/rewriter.js --revert",
+    "images:build": "npm run images:gen && npm run images:rewrite"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "picomatch": "^4.0.2",
+    "sharp": "^0.33.5"
+  }
+}
