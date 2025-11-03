@@ -7,12 +7,18 @@
     "images:rewrite:sample": "HTML_GLOB='**/*.html' node tools/rewriter.js --dry --sample",
     "images:rewrite": "HTML_GLOB='**/*.html' node tools/rewriter.js",
     "images:revert": "HTML_GLOB='**/*.html' node tools/rewriter.js --revert",
-    "images:build": "npm run images:gen && npm run images:rewrite"
+    "images:build": "npm run images:gen && npm run images:rewrite",
+    "responsive:gen": "node tools/generate-responsive-images.js",
+    "responsive:convert": "node tools/convert-to-picture.js",
+    "responsive:convert:dry": "node tools/convert-to-picture.js --dry-run",
+    "responsive:revert": "node tools/convert-to-picture.js --revert",
+    "responsive:build": "npm run responsive:gen && npm run responsive:convert"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
+    "glob": "^10.4.5",
     "picomatch": "^4.0.2",
     "sharp": "^0.33.5"
   }

@@ -1,0 +1,43 @@
+# 清理清单 - 可以安全删除的文件和目录
+
+## 备份目录（可以删除，如果确认优化效果满意）
+backup_all_20251031_095904/
+backup_all_20251031_095203/
+images_backup_20251030_200657/
+images_backup_20251030_194105/
+
+## 临时目录
+temp_frames_53088/
+temp_frames_49713/
+
+## 日志目录
+logs/
+
+## Node.js依赖（开发工具，不需要）
+node_modules/
+package-lock.json
+
+## 文档文件（可选，不影响网站运行）
+*.md（保留README.md如果存在）
+DEPLOY_CHECKLIST.md
+CLEANUP_LIST.txt
+
+## 工具脚本（开发工具，不需要）
+tools/
+*.sh
+*.py
+verify.sh
+
+## Git相关（版本控制，本地保留）
+.git/
+.gitignore
+.gitattributes
+
+## 系统文件
+.DS_Store
+.Rhistory
+
+## 配置文件（可选）
+package.json（如果不需要在服务器运行npm）
+nginx.conf.example（只是示例）
+

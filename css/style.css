@@ -13,6 +13,49 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* 自定义图标（替代 Font Awesome，减少 70KB+ 外部加载） */
+/* 左右箭头 */
+.fa-chevron-left::before {
+    content: "‹";
+    font-size: 1.5em;
+    font-weight: 300;
+    display: inline-block;
+}
+
+.fa-chevron-right::before {
+    content: "›";
+    font-size: 1.5em;
+    font-weight: 300;
+    display: inline-block;
+}
+
+/* Instagram 图标 - 使用 SVG 内联（保持原样式）*/
+.fa-instagram,
+.fab.fa-instagram {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath fill="%23333" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"%3E%3C/path%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+
+/* 播放按钮图标 - 使用 SVG 内联（保持原样式）*/
+.fa-play,
+.fas.fa-play {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"%3E%3Cpath fill="white" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"%3E%3C/path%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-left: 4px; /* 视觉居中调整 */
+}
+
 /* br标签段间距样式 - 更强的实现 */
 br {
     content: " ";
@@ -166,6 +209,7 @@ main {
     margin: 0 auto;
     padding-top: 56.25%;
     overflow: visible;
+    min-height: 400px; /* 确保有最小高度 */
 }
 
 .slides {
@@ -175,6 +219,27 @@ main {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: #cccccc;
+}
+
+/* 加载指示器 */
+.slides:not([data-loaded])::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid #ddd;
+    border-top-color: #999;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    z-index: 10;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 .slide {
@@ -185,25 +250,34 @@ main {
     height: 100%;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
+    z-index: 1;
 }
 
+/* 激活的图片显示 - 提高优先级 */
 .slide.active {
-    opacity: 1;
+    opacity: 1 !important;
+    z-index: 2;
 }
 
-.slide img {
+/* 初始状态的第一张图片立即显示，无过渡 */
+.slides:not([data-shuffled]) .slide:first-child {
+    opacity: 1 !important;
+    transition: none;
+}
+
+.slide img,
+.slide picture {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center center;
     display: block;
 }
 
-/* 第一张和最后一张图片特殊处理 */
-.slide:first-child img,
-.slide:last-child img {
-    object-position: center top;
+.slide img {
+    object-fit: cover !important;
+    object-position: center center !important;
 }
+
+/* 确保所有 slideshow 图片都居中覆盖，无特殊处理 */
 
 /* 轮播图导航按钮 */
 .slider-nav {

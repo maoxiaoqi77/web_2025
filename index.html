@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* TOP页面专属：全屏slideshow样式 */
         html {
@@ -333,8 +330,6 @@
         }
     </style>
     
-    <script src="js/perf.js" defer></script>
-    <script src="js/slideshow-loader.js" defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -371,46 +366,46 @@
         <div class="slider">
             <div class="slides">
                 <div class="slide active">
-                    <img src="images/02top/slide show/001_2540_basic_16x9_IMG_5824_02_000.webp" alt="Slide 001">
+                    <img src="images/02top/slide show/001_2540_basic_16x9_IMG_5824_02_000.webp" alt="Slide 001" fetchpriority="high" decoding="sync" data-priority="">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/004_2527_webvideo_stillsignwithwater.webp" alt="Slide 002" loading="lazy">
+                    <img data-src="images/02top/slide show/004_2527_webvideo_stillsignwithwater.webp" alt="Slide 002" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/003_2540_basic_16x9_IMG_1510_000.webp" alt="Slide 003" loading="lazy">
+                    <img data-src="images/02top/slide show/003_2540_basic_16x9_IMG_1510_000.webp" alt="Slide 003" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/004_2527_webpic_slideshow_IMG_5537_02.webp" alt="Slide 004" loading="lazy">
+                    <img data-src="images/02top/slide show/004_2527_webpic_slideshow_IMG_5537_02.webp" alt="Slide 004" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/006_2527_webvideo_sound_of_a_kettle.webp" alt="Slide 006" loading="lazy">
+                    <img data-src="images/02top/slide show/006_2527_webvideo_sound_of_a_kettle.webp" alt="Slide 006" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/007_2541_webvideo_006.webp" alt="Slide 007" loading="lazy">
+                    <img data-src="images/02top/slide show/007_2541_webvideo_006.webp" alt="Slide 007" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/008_2541_basic_16x9_IMG_3602_000.webp" alt="Slide 008" loading="lazy">
+                    <img data-src="images/02top/slide show/008_2541_basic_16x9_IMG_3602_000.webp" alt="Slide 008" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/009_2524_webvideo_004.webp" alt="Slide 009" loading="lazy">
+                    <img data-src="images/02top/slide show/009_2524_webvideo_004.webp" alt="Slide 009" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/010_2541_basic_16x9_IMG_9492_000.webp" alt="Slide 010" loading="lazy">
+                    <img data-src="images/02top/slide show/010_2541_basic_16x9_IMG_9492_000.webp" alt="Slide 010" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/011_2541_webpic_slideshow_sketch_aoikoya_basic_000.webp" alt="Slide 011" loading="lazy">
+                    <img data-src="images/02top/slide show/011_2541_webpic_slideshow_sketch_aoikoya_basic_000.webp" alt="Slide 011" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/012_2524_webvideo_018.webp" alt="Slide 012" loading="lazy">
+                    <img data-src="images/02top/slide show/012_2524_webvideo_018.webp" alt="Slide 012" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/013_2521_webpic_IMG_9146.webp" alt="Slide 013" loading="lazy">
+                    <img data-src="images/02top/slide show/013_2521_webpic_IMG_9146.webp" alt="Slide 013" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/014_2527_webpic_slideshow_IMG_0757_04.webp" alt="Slide 014" loading="lazy">
+                    <img data-src="images/02top/slide show/014_2527_webpic_slideshow_IMG_0757_04.webp" alt="Slide 014" loading="lazy">
                 </div>
                 <div class="slide">
-                    <img src="images/02top/slide show/015_2521_webpic_IMG_9145.webp" alt="Slide 015" loading="lazy">
+                    <img data-src="images/02top/slide show/015_2521_webpic_IMG_9145.webp" alt="Slide 015" loading="lazy">
                 </div>
             </div>
             <button class="slider-nav prev">
@@ -426,7 +421,7 @@
             <h2>News</h2>
             <div class="news-grid">
                 <article class="news-item">
-                    <img src="images/02top/news/001_La Isla Salon.webp" alt="News Image 1" loading="lazy">
+                    <picture><source srcset="images/_responsive/02top/news/001_La Isla Salon-400.webp 400w, images/_responsive/02top/news/001_La Isla Salon-960.webp 960w, images/_responsive/02top/news/001_La Isla Salon-1600.webp 1600w" type="image/webp"><img src="images/02top/news/001_La Isla Salon.webp" srcset="images/_responsive/02top/news/001_La Isla Salon-400.webp 400w, images/_responsive/02top/news/001_La Isla Salon-960.webp 960w, images/_responsive/02top/news/001_La Isla Salon-1600.webp 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 960px, 1600px" alt="News Image 1" loading="lazy" decoding="async"></picture>
                     <div class="news-content">
                         <h3>Showing our drawings in La Isla Salon</h3>
                         <time>26 March 2025</time>
@@ -440,7 +435,7 @@
                     </div>
                 </article>
                 <article class="news-item">
-                    <img src="images/02top/news/hallo mitsuko.webp" alt="News Image 2" loading="lazy">
+                    <picture><source srcset="images/_responsive/02top/news/hallo mitsuko-400.webp 400w, images/_responsive/02top/news/hallo mitsuko-960.webp 960w, images/_responsive/02top/news/hallo mitsuko-1600.webp 1600w" type="image/webp"><img src="images/02top/news/hallo mitsuko.webp" srcset="images/_responsive/02top/news/hallo mitsuko-400.webp 400w, images/_responsive/02top/news/hallo mitsuko-960.webp 960w, images/_responsive/02top/news/hallo mitsuko-1600.webp 1600w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 960px, 1600px" alt="News Image 2" loading="lazy" decoding="async"></picture>
                     <div class="news-content">
                         <h3>N.O.P in Castal Poběžovice</h3>
                         <time>11 June 2025</time>
@@ -483,6 +478,7 @@
         </div>
     </footer>
 
+    <!-- Skeleton screen controller -->
     <script src="js/script.js" defer></script>
     <script>
         // 监听滚动，当进入news区域时改变导航栏背景
@@ -508,5 +504,5 @@
         // 页面加载时也检查一次
         document.addEventListener('DOMContentLoaded', updateHeaderStyle);
     </script>
-</body>
-</html> 
+
+ </body></html>

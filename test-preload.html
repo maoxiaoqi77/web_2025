@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>预加载诊断工具</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+    .section {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #2196F3;
+    }
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .status.good { background: #4CAF50; color: white; }
+    .status.bad { background: #f44336; color: white; }
+    .status.warn { background: #ff9800; color: white; }
+    button {
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover {
+      background: #1976D2;
+    }
+    .log {
+      background: #000;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin: 10px 0;
+    }
+    .test-result {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 4px;
+    }
+    .test-pass { background: #c8e6c9; }
+    .test-fail { background: #ffcdd2; }
+    pre {
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 预加载诊断工具</h1>
+    
+    <div class="section">
+      <h2>1. sessionStorage 检查</h2>
+      <div id="sessionStorageCheck"></div>
+      <button onclick="checkSessionStorage()">刷新检查</button>
+    </div>
+
+    <div class="section">
+      <h2>2. 预加载脚本状态</h2>
+      <div id="scriptStatus"></div>
+    </div>
+
+    <div class="section">
+      <h2>3. 手动测试预加载</h2>
+      <button onclick="testPreloadHTML()">测试HTML预加载</button>
+      <button onclick="testPreloadImage()">测试图片预加载</button>
+      <button onclick="testPreloadTiming()">测试预加载时机</button>
+      <div id="testResults"></div>
+    </div>
+
+    <div class="section">
+      <h2>4. 实时日志</h2>
+      <button onclick="clearLog()">清除日志</button>
+      <div id="consoleLog" class="log"></div>
+    </div>
+
+    <div class="section">
+      <h2>5. Network 性能对比</h2>
+      <p>打开 DevTools -> Network，然后：</p>
+      <button onclick="navigateWithPreload()">有预加载：跳转到Installation</button>
+      <button onclick="navigateWithoutPreload()">无预加载：跳转到Installation</button>
+      <p><small>对比两次的总加载时间和首图出现时间</small></p>
+    </div>
+  </div>
+
+  <script>
+    // 劫持console.log
+    const originalLog = console.log;
+    const logContainer = document.getElementById('consoleLog');
+    
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      const message = args.map(arg => {
+        if (typeof arg === 'object') {
+          try {
+            return JSON.stringify(arg, null, 2);
+          } catch {
+            return String(arg);
+          }
+        }
+        return String(arg);
+      }).join(' ');
+      
+      const time = new Date().toLocaleTimeString();
+      logContainer.innerHTML += `<div>[${time}] ${message}</div>`;
+      logContainer.scrollTop = logContainer.scrollHeight;
+    };
+
+    function clearLog() {
+      logContainer.innerHTML = '';
+    }
+
+    // 检查sessionStorage
+    function checkSessionStorage() {
+      const container = document.getElementById('sessionStorageCheck');
+      let html = '<h3>已保存的slideshow首图:</h3>';
+      let foundCount = 0;
+      
+      const pages = [
+        '/index.html',
+        '/installation.html',
+        '/sculpture.html',
+        '/drawing.html',
+        '/project.html'
+      ];
+      
+      html += '<ul>';
+      pages.forEach(page => {
+        const key = 'slideshow_order_' + page + '_first';
+        const value = sessionStorage.getItem(key);
+        
+        if (value) {
+          foundCount++;
+          html += `<li><strong>${page}</strong>: ${value} <span class="status good">✓</span></li>`;
+        } else {
+          html += `<li><strong>${page}</strong>: <span class="status bad">未找到</span></li>`;
+        }
+      });
+      html += '</ul>';
+      
+      if (foundCount === 0) {
+        html += '<p class="test-fail">❌ 没有找到任何首图记录！可能需要先访问各个页面。</p>';
+      } else {
+        html += `<p class="test-pass">✓ 找到 ${foundCount} 个页面的首图记录</p>`;
+      }
+      
+      container.innerHTML = html;
+    }
+
+    // 检查脚本状态
+    function checkScriptStatus() {
+      const container = document.getElementById('scriptStatus');
+      let html = '';
+      
+      if (typeof window.preloadOptimizer !== 'undefined') {
+        html += '<div class="test-pass">✓ preloadOptimizer 已加载</div>';
+        
+        if (window.preloadOptimizer.preloadedPages) {
+          const preloaded = Array.from(window.preloadOptimizer.preloadedPages);
+          html += `<p>已预加载的页面: ${preloaded.length > 0 ? preloaded.join(', ') : '无'}</p>`;
+        }
+        
+        if (window.preloadOptimizer.preloadedImages) {
+          html += `<p>已预加载的图片数量: ${window.preloadOptimizer.preloadedImages.size}</p>`;
+        }
+      } else {
+        html += '<div class="test-fail">✗ preloadOptimizer 未加载！检查js/preload-optimizer.js是否正确引入。</div>';
+      }
+      
+      container.innerHTML = html;
+    }
+
+    // 测试HTML预加载
+    async function testPreloadHTML() {
+      const resultsContainer = document.getElementById('testResults');
+      resultsContainer.innerHTML = '<p>⏳ 测试中...</p>';
+      
+      const startTime = performance.now();
+      
+      try {
+        // 创建prefetch link
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = 'installation.html';
+        
+        await new Promise((resolve, reject) => {
+          link.onload = resolve;
+          link.onerror = reject;
+          setTimeout(reject, 5000); // 5秒超时
+          document.head.appendChild(link);
+        });
+        
+        const duration = (performance.now() - startTime).toFixed(0);
+        resultsContainer.innerHTML = `<div class="test-pass">✓ HTML预加载成功 (${duration}ms)</div>`;
+        console.log(`[Test] HTML预加载耗时: ${duration}ms`);
+      } catch (error) {
+        resultsContainer.innerHTML = '<div class="test-fail">✗ HTML预加载失败: ' + error + '</div>';
+      }
+    }
+
+    // 测试图片预加载
+    async function testPreloadImage() {
+      const resultsContainer = document.getElementById('testResults');
+      resultsContainer.innerHTML = '<p>⏳ 测试中...</p>';
+      
+      const testImage = 'images/02installation/00_SLIDESHOW/2524_webvideo_008.webp';
+      const startTime = performance.now();
+      
+      try {
+        const img = new Image();
+        
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+          setTimeout(reject, 10000); // 10秒超时
+          img.src = testImage;
+        });
+        
+        const duration = (performance.now() - startTime).toFixed(0);
+        const sizeKB = img.naturalWidth && img.naturalHeight 
+          ? `(${img.naturalWidth}x${img.naturalHeight})` 
+          : '';
+        
+        resultsContainer.innerHTML = `<div class="test-pass">✓ 图片预加载成功 ${sizeKB} (${duration}ms)</div>`;
+        console.log(`[Test] 图片预加载耗时: ${duration}ms, 尺寸: ${img.naturalWidth}x${img.naturalHeight}`);
+      } catch (error) {
+        resultsContainer.innerHTML = '<div class="test-fail">✗ 图片预加载失败: ' + error + '</div>';
+      }
+    }
+
+    // 测试预加载时机
+    function testPreloadTiming() {
+      const resultsContainer = document.getElementById('testResults');
+      let html = '<h3>加载时机测试:</h3>';
+      
+      html += '<ul>';
+      html += `<li>DOMContentLoaded: ${document.readyState === 'interactive' || document.readyState === 'complete' ? '✓已触发' : '✗未触发'}</li>`;
+      html += `<li>window.load: ${document.readyState === 'complete' ? '✓已触发' : '✗未触发'}</li>`;
+      html += `<li>当前时间: ${new Date().toLocaleTimeString()}</li>`;
+      html += '</ul>';
+      
+      if (typeof window.preloadOptimizer !== 'undefined') {
+        html += '<p class="test-pass">预加载脚本已就绪</p>';
+      } else {
+        html += '<p class="test-fail">预加载脚本未加载！</p>';
+      }
+      
+      resultsContainer.innerHTML = html;
+    }
+
+    // 带预加载跳转
+    function navigateWithPreload() {
+      console.log('[Nav] 开始预加载installation页面资源...');
+      
+      if (window.preloadOptimizer) {
+        // 手动触发预加载
+        const testPromises = [
+          window.preloadOptimizer.preloadHTML('installation.html'),
+          window.preloadOptimizer.preloadImage('images/02installation/00_SLIDESHOW/2524_webvideo_008.webp', 'test')
+        ];
+        
+        Promise.all(testPromises).then(() => {
+          console.log('[Nav] 预加载完成，1秒后跳转...');
+          setTimeout(() => {
+            console.log('[Nav] 开始跳转到installation.html');
+            window.location.href = 'installation.html';
+          }, 1000);
+        });
+      } else {
+        alert('预加载脚本未加载！');
+      }
+    }
+
+    // 不带预加载跳转
+    function navigateWithoutPreload() {
+      // 清除缓存？
+      if (confirm('是否清除sessionStorage？（模拟首次访问）')) {
+        sessionStorage.clear();
+      }
+      
+      console.log('[Nav] 直接跳转（无预加载）');
+      window.location.href = 'installation.html';
+    }
+
+    // 页面加载时自动检查
+    window.addEventListener('load', () => {
+      console.log('[Diagnostic] 页面加载完成，开始诊断...');
+      checkSessionStorage();
+      checkScriptStatus();
+    });
+
+    // 定时更新
+    setInterval(() => {
+      checkScriptStatus();
+    }, 2000);
+  </script>
+</body>
+</html>
+

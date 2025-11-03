@@ -1,0 +1,53 @@
+# FileZilla / FTP 上传排除列表
+# 这些文件和目录不需要上传到生产服务器
+
+# Node.js 依赖（开发工具，不需要上传）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git 相关（版本控制，不需要）
+.git/
+.gitignore
+.gitattributes
+
+# 日志文件
+logs/
+*.log
+
+# 备份目录
+backup_all_*/
+
+# 开发工具
+tools/
+verify.sh
+
+# 文档文件（可选，生产环境可不上传）
+*.md
+README*
+
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 临时文件
+*.swp
+*.tmp
+*.bak
+*~
+
+# 编辑器配置
+.vscode/
+.idea/
+*.sublime-*
+
+# 压缩报告
+compression_report_*.txt
+missing_sources_*.txt
+
+# 其他临时文件
+*.pid
+responsive-gen.pid
+
