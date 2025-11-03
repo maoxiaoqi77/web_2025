@@ -59,13 +59,50 @@ document.addEventListener('DOMContentLoaded', function() {
         thumbnailImage.style.marginBottom = '10px';
         thumbnailImage.style.overflow = 'hidden';
         
+        // 将原始图片路径转换为响应式图片路径
+        // 从 ../images/02installation/.../filename.webp
+        // 转换为 ../images/_responsive/02installation/.../filename-400.webp 和 filename-960.webp
+        const originalPath = item.thumbnail;
+        const pathParts = originalPath.split('/');
+        const filename = pathParts[pathParts.length - 1]; // 获取文件名，如 "00_2540_basic_16x9_IMG_8254.webp"
+        const filenameWithoutExt = filename.replace('.webp', ''); // 移除扩展名
+        
+        // 构建响应式图片路径
+        // 找到 "images" 在路径中的位置，替换为 "images/_responsive"
+        const imagesIndex = pathParts.findIndex(part => part === 'images');
+        const responsivePath = [...pathParts];
+        responsivePath[imagesIndex] = 'images/_responsive';
+        const responsiveDir = responsivePath.slice(0, -1).join('/'); // 目录路径，不含文件名
+        
+        // 创建 picture 元素
+        const picture = document.createElement('picture');
+        
+        // 创建 source 元素（WebP 格式）
+        const source = document.createElement('source');
+        source.type = 'image/webp';
+        // srcset: 400w 和 960w 版本（不使用 1600w，因为缩略图很小）
+        source.srcset = `${responsiveDir}/${filenameWithoutExt}-400.webp 400w, ${responsiveDir}/${filenameWithoutExt}-960.webp 960w`;
+        
+        // 创建 img 元素（fallback 和响应式）
         const img = document.createElement('img');
-        img.src = item.thumbnail;
+        img.src = originalPath; // fallback 使用原图
+        img.srcset = `${responsiveDir}/${filenameWithoutExt}-400.webp 400w, ${responsiveDir}/${filenameWithoutExt}-960.webp 960w`;
+        // sizes: 根据响应式布局设置
+        // - 手机（≤480px）：2列 → 50vw
+        // - 平板（≤992px）：3列 → 33vw
+        // - 中等（≤1200px）：4列 → 25vw
+        // - 桌面（>1200px）：5列 → 20vw，但设置为 200px 确保选择 400w
+        img.sizes = '(max-width: 480px) 50vw, (max-width: 992px) 33vw, (max-width: 1200px) 25vw, 200px';
         img.alt = item.title;
+        img.loading = 'lazy';
+        img.decoding = 'async';
         img.style.width = '100%';
         img.style.height = '100%';
         img.style.objectFit = 'cover';
         img.style.objectPosition = 'center center';
+        
+        picture.appendChild(source);
+        picture.appendChild(img);
         
         const title = document.createElement('p');
         title.className = 'thumbnail-title';
@@ -81,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         title.style.justifyContent = 'center';
         title.style.overflow = 'hidden';
         
-        thumbnailImage.appendChild(img);
+        thumbnailImage.appendChild(picture);
         thumbnailItem.appendChild(thumbnailImage);
         thumbnailItem.appendChild(title);
         grid.appendChild(thumbnailItem);

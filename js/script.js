@@ -12,20 +12,76 @@ document.addEventListener('DOMContentLoaded', function() {
     // 延迟加载图片（核心优化）
     function lazyLoadImage(slide, priority) {
         const img = slide.querySelector('img');
-        if (!img) return;
+        if (!img) {
+            console.log('[LazyLoad] 未找到img元素');
+            return;
+        }
         
         const dataSrc = img.getAttribute('data-src');
         const currentSrc = img.getAttribute('src');
+        const actualSrc = img.src; // 浏览器实际使用的src
         
-        // 如果有data-src但没有src，或者src为空，则加载
-        if (dataSrc && (!currentSrc || currentSrc === '')) {
-            // 只有真正需要显示时才加载
-            if (priority === 'high') {
-                img.setAttribute('fetchpriority', 'high');
-                img.setAttribute('loading', 'eager');
+        // 如果有data-src，检查是否需要加载
+        if (dataSrc) {
+            // 构建完整的URL用于比较（相对路径转绝对路径）
+            const dataSrcUrl = dataSrc.startsWith('http') ? dataSrc : 
+                              (dataSrc.startsWith('/') ? window.location.origin + dataSrc : 
+                               window.location.origin + '/' + dataSrc);
+            
+            // 检查actualSrc是否有效（不是空、不是当前页面、等于dataSrc）
+            // actualSrc可能是：空字符串、file://路径、当前页面URL、或实际的图片URL
+            const isEmptyOrPage = !actualSrc || 
+                                  actualSrc === '' || 
+                                  actualSrc === window.location.href ||
+                                  actualSrc.endsWith(window.location.pathname) ||
+                                  actualSrc.endsWith('/') ||
+                                  actualSrc.startsWith('file://') && actualSrc.endsWith('.html');
+            
+            const matchesDataSrc = actualSrc === dataSrc || actualSrc === dataSrcUrl;
+            
+            // 如果需要加载：空或页面URL，或者不匹配dataSrc
+            if (isEmptyOrPage || !matchesDataSrc) {
+                // 【关键修复】移除 loading="lazy" 属性，避免浏览器误判图片在视口外而阻止加载
+                // 问题：浏览器看到 opacity:0 + loading="lazy" 会认为图片在视口外，拒绝加载
+                if (img.hasAttribute('loading')) {
+                    img.removeAttribute('loading');
+                }
+                
+                // 设置优先级属性
+                if (priority === 'high') {
+                    img.setAttribute('fetchpriority', 'high');
+                    img.setAttribute('loading', 'eager');
+                } else {
+                    // 对于预加载的情况，也确保移除lazy，但不设置eager（让浏览器决定）
+                    // 可以设置fetchpriority为low，但先不设置loading属性
+                    img.setAttribute('fetchpriority', 'low');
+                }
+                
+                // 加载图片（设置src会触发浏览器加载）
+                img.src = dataSrc;
+                img.removeAttribute('data-src');
+                console.log('[LazyLoad] 加载图片:', dataSrc, 'Priority:', priority, '已移除loading="lazy"');
+            } else {
+                // 已经有正确的src，移除data-src避免重复加载
+                img.removeAttribute('data-src');
+                console.log('[LazyLoad] 图片已有src，跳过:', actualSrc);
             }
-            img.src = dataSrc;
-            img.removeAttribute('data-src');
+        } else if (currentSrc && currentSrc !== '') {
+            // 没有data-src但有src属性，确保图片正确显示
+            const currentSrcUrl = currentSrc.startsWith('http') ? currentSrc : 
+                                 (currentSrc.startsWith('/') ? window.location.origin + currentSrc : 
+                                  window.location.origin + '/' + currentSrc);
+            
+            const needsSet = !actualSrc || 
+                            actualSrc === '' || 
+                            actualSrc === window.location.href ||
+                            actualSrc.endsWith(window.location.pathname) ||
+                            actualSrc !== currentSrc && actualSrc !== currentSrcUrl;
+            
+            if (needsSet) {
+                img.src = currentSrc;
+                console.log('[LazyLoad] 设置src:', currentSrc, 'actualSrc was:', actualSrc);
+            }
         }
     }
 
@@ -108,8 +164,135 @@ document.addEventListener('DOMContentLoaded', function() {
             shuffle(staticImages);
             shuffle(videoImages);
             
-            // 合并：静态图片在前，视频在后（确保首张是静态图）
-            orderedSlides = [...staticImages, ...videoImages];
+            // 需求1：如果同时有图片和视频，静态图片在前，视频在后（确保首张是静态图）
+            // 需求2：如果全部是视频，优先选择较小的视频作为首张
+            if (staticImages.length > 0) {
+                // 有静态图片，直接合并：静态图片在前，视频在后
+                orderedSlides = [...staticImages, ...videoImages];
+                console.log('[Slideshow] 有静态图片，首张为静态图片');
+            } else if (videoImages.length > 0) {
+                // 全部是视频，需要优先选择较小的视频作为首张
+                
+                // 检查是否是installation页面
+                const isInstallationPage = /installation/i.test(window.location.pathname);
+                
+                let selectedIndex = 0;
+                
+                if (isInstallationPage) {
+                    // Installation页面特殊处理：从前三个最小的视频中随机选一个
+                    // 三个最小的视频（根据文件大小）：
+                    // 1. 2524_webvideo_008.webp (1.5 MB)
+                    // 2. 2524_webvideo_009.webp (1.9 MB)
+                    // 3. 2541_webvideo_009.webp (2 MB)
+                    const smallestVideoPatterns = [
+                        /2524_webvideo_008/i,
+                        /2524_webvideo_009/i,
+                        /2541_webvideo_009/i
+                    ];
+                    
+                    // 找到这三个视频的索引
+                    const smallestVideoIndices = [];
+                    videoImages.forEach((slide, idx) => {
+                        const img = slide.querySelector('img');
+                        if (!img) return;
+                        
+                        const src = img.getAttribute('src') || img.getAttribute('data-src') || '';
+                        if (smallestVideoPatterns.some(pattern => pattern.test(src))) {
+                            smallestVideoIndices.push(idx);
+                        }
+                    });
+                    
+                    if (smallestVideoIndices.length > 0) {
+                        // 从这三个最小的视频中随机选一个
+                        const randomIndex = Math.floor(Math.random() * smallestVideoIndices.length);
+                        selectedIndex = smallestVideoIndices[randomIndex];
+                        const selectedSrc = videoImages[selectedIndex].querySelector('img')?.getAttribute('src') || 
+                                          videoImages[selectedIndex].querySelector('img')?.getAttribute('data-src') || 'unknown';
+                        console.log('[Slideshow] Installation页面：从前三个最小的视频中随机选择了:', selectedSrc);
+                    } else {
+                        // 如果找不到这三个文件，使用通用策略
+                        console.log('[Slideshow] Installation页面：未找到指定的三个最小视频，使用通用策略');
+                        function getVideoPriority(slide) {
+                            const img = slide.querySelector('img');
+                            if (!img) return Infinity;
+                            
+                            const src = img.getAttribute('src') || img.getAttribute('data-src') || '';
+                            
+                            let priority = 1000;
+                            
+                            if (/compressed|small/i.test(src)) {
+                                priority -= 100;
+                            }
+                            
+                            const match = src.match(/_0*(\d+)/);
+                            if (match) {
+                                const num = parseInt(match[1]);
+                                priority += num;
+                            }
+                            
+                            return priority;
+                        }
+                        
+                        let bestPriority = getVideoPriority(videoImages[0]);
+                        for (let i = 1; i < videoImages.length; i++) {
+                            const priority = getVideoPriority(videoImages[i]);
+                            if (priority < bestPriority) {
+                                bestPriority = priority;
+                                selectedIndex = i;
+                            }
+                        }
+                    }
+                } else {
+                    // 其他页面使用通用策略
+                    function getVideoPriority(slide) {
+                        const img = slide.querySelector('img');
+                        if (!img) return Infinity;
+                        
+                        const src = img.getAttribute('src') || img.getAttribute('data-src') || '';
+                        
+                        // 优先级评分：分数越小优先级越高
+                        let priority = 1000;
+                        
+                        // 优先：包含"compressed"或"small"的文件
+                        if (/compressed|small/i.test(src)) {
+                            priority -= 100;
+                        }
+                        
+                        // 其次：文件名中包含较小数字编号的（如_001, _002, _008）
+                        const match = src.match(/_0*(\d+)/);
+                        if (match) {
+                            const num = parseInt(match[1]);
+                            priority += num; // 编号越小，priority越小
+                        }
+                        
+                        return priority;
+                    }
+                    
+                    // 找到优先级最高（priority最小）的视频
+                    let bestPriority = getVideoPriority(videoImages[0]);
+                    
+                    for (let i = 1; i < videoImages.length; i++) {
+                        const priority = getVideoPriority(videoImages[i]);
+                        if (priority < bestPriority) {
+                            bestPriority = priority;
+                            selectedIndex = i;
+                        }
+                    }
+                    
+                    const bestSrc = videoImages[selectedIndex].querySelector('img')?.getAttribute('src') || 
+                                   videoImages[selectedIndex].querySelector('img')?.getAttribute('data-src') || 'unknown';
+                    console.log('[Slideshow] 全部是视频，已优先选择较小的视频作为首张:', bestSrc);
+                }
+                
+                // 将选中的视频放到第一个位置，其他保持随机顺序
+                orderedSlides = [
+                    videoImages[selectedIndex],
+                    ...videoImages.slice(0, selectedIndex),
+                    ...videoImages.slice(selectedIndex + 1)
+                ];
+            } else {
+                orderedSlides = [];
+            }
             
             // 保存顺序到sessionStorage
             const orderArray = orderedSlides.map(slide => slide.dataset.slideId);
@@ -130,10 +313,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const fragment = document.createDocumentFragment();
         orderedSlides.forEach((slide, idx) => {
             slide.classList.remove('active');
-            // 第一张立即激活
-            if (idx === 0) {
-                slide.classList.add('active');
-                currentSlide = 0;
+            const img = slide.querySelector('img');
+            if (img) {
+                // 第一张保持src，其他清空src（只保留data-src用于懒加载）
+                if (idx === 0) {
+                    slide.classList.add('active');
+                    currentSlide = 0;
+                    // 确保第一张有src
+                    const firstSrc = img.getAttribute('src') || img.getAttribute('data-src');
+                    if (firstSrc) {
+                        // 同时设置HTML属性和DOM属性，确保图片能立即加载
+                        img.setAttribute('src', firstSrc);
+                        img.src = firstSrc; // 确保DOM属性也被设置
+                        img.removeAttribute('data-src');
+                        console.log('[Shuffle] 第一张slide设置src:', firstSrc);
+                    }
+                } else {
+                    // 非第一张：清空src（HTML属性和DOM属性都要清空），确保只有data-src
+                    const dataSrc = img.getAttribute('data-src');
+                    if (dataSrc) {
+                        // 清空HTML属性
+                        img.removeAttribute('src');
+                        // 清空DOM属性（重要！removeAttribute不会清空img.src）
+                        img.src = '';
+                        img.setAttribute('data-src', dataSrc);
+                        console.log('[Shuffle] 清空src，保留data-src:', dataSrc);
+                    }
+                }
             }
             fragment.appendChild(slide);
         });
@@ -151,16 +357,81 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 立即加载首张图片
         if (slides.length > 0) {
+            const firstImg = slides[0].querySelector('img');
             lazyLoadImage(slides[0], 'high');
             
-            // 预加载第2-3张
+            // 确保第一张slide立即显示（隐藏loading）
+            // 如果图片已加载，立即隐藏loading；否则等待加载完成
+            if (firstImg && firstImg.complete && firstImg.naturalHeight !== 0) {
+                slidesContainer.setAttribute('data-loaded', '1');
+            } else if (firstImg) {
+                firstImg.addEventListener('load', function() {
+                    slidesContainer.setAttribute('data-loaded', '1');
+                }, { once: true });
+                // 超时保护：3秒后强制隐藏loading
+                setTimeout(function() {
+                    slidesContainer.setAttribute('data-loaded', '1');
+                }, 3000);
+            } else {
+                // 没有图片，立即隐藏loading
+                slidesContainer.setAttribute('data-loaded', '1');
+            }
+            
+            // 预加载第2-3张（延迟稍长，确保shuffleSlides完全完成）
             if (slides.length > 1) {
-                setTimeout(function() { lazyLoadImage(slides[1], 'low'); }, 100);
+                setTimeout(function() { 
+                    const secondSlide = document.querySelectorAll('.slide')[1];
+                    if (secondSlide) {
+                        lazyLoadImage(secondSlide, 'low');
+                        console.log('[Preload] 预加载第2张图片');
+                    }
+                }, 300);
             }
             if (slides.length > 2) {
-                setTimeout(function() { lazyLoadImage(slides[2], 'low'); }, 200);
+                setTimeout(function() { 
+                    const thirdSlide = document.querySelectorAll('.slide')[2];
+                    if (thirdSlide) {
+                        lazyLoadImage(thirdSlide, 'low');
+                        console.log('[Preload] 预加载第3张图片');
+                    }
+                }, 400);
             }
         }
+        
+        // shuffleSlides后，重新绑定点击事件（因为innerHTML被清空，事件监听器丢失）
+        // 重新获取slides和按钮的引用
+        const newSlides = document.querySelectorAll('.slide');
+        const newPrevBtn = document.querySelector('.slider-nav.prev');
+        const newNextBtn = document.querySelector('.slider-nav.next');
+        
+        // 重新绑定按钮点击事件
+        if (newPrevBtn && newNextBtn && prevBtn && nextBtn) {
+            // 移除旧的事件监听器（如果有）
+            const newPrevClone = newPrevBtn.cloneNode(true);
+            newPrevBtn.parentNode.replaceChild(newPrevClone, newPrevBtn);
+            const newNextClone = newNextBtn.cloneNode(true);
+            newNextBtn.parentNode.replaceChild(newNextClone, newNextBtn);
+            
+            // 获取新的按钮引用
+            const finalPrevBtn = document.querySelector('.slider-nav.prev');
+            const finalNextBtn = document.querySelector('.slider-nav.next');
+            
+            if (finalPrevBtn && finalNextBtn) {
+                finalPrevBtn.addEventListener('click', function() {
+                    handleManualSlide('prev');
+                });
+                finalNextBtn.addEventListener('click', function() {
+                    handleManualSlide('next');
+                });
+            }
+        }
+        
+        // 重新绑定slide点击事件（点击slide切换到下一张）
+        newSlides.forEach(slide => {
+            slide.addEventListener('click', function() {
+                handleManualSlide('next');
+            });
+        });
     }
     
     // 页面加载后立即执行随机化
@@ -237,12 +508,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 显示指定索引的幻灯片
     function showSlide(index) {
-        // 动态获取最新的 slides
+        // 动态获取最新的 slides（每次切换时重新获取，确保获取到最新的DOM）
         const currentSlides = document.querySelectorAll('.slide');
         
         if (currentSlides.length === 0) return;
         
-        currentSlides.forEach(slide => slide.classList.remove('active'));
+        // 更新totalSlides
+        totalSlides = currentSlides.length;
+        
+        // 【关键修复】在给targetSlide加active之前，先把所有slide的行内样式重置，并移除active
+        // 问题：之前设置了行内style.opacity='1'，切换时没有清除，导致所有slide都保持opacity:1
+        // 解决：清除所有slide的行内样式，让CSS的.slide和.slide.active类来控制显示隐藏
+        currentSlides.forEach(s => {
+            s.classList.remove('active');
+            s.style.opacity = '';
+            s.style.zIndex = '';
+        });
         
         // 处理循环
         if (index >= totalSlides) {
@@ -255,10 +536,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 使用当前的 slides 引用
         if (currentSlides[currentSlide]) {
-            currentSlides[currentSlide].classList.add('active');
+            const targetSlide = currentSlides[currentSlide];
+            // 只给目标slide加active类，不再写任何行内opacity
+            // 显示隐藏统一交给CSS中的.slide和.slide.active来管理
+            targetSlide.classList.add('active');
             
             // 延迟加载当前图片
-            lazyLoadImage(currentSlides[currentSlide], 'high');
+            lazyLoadImage(targetSlide, 'high');
+            console.log('[ShowSlide] 切换到slide', currentSlide, '，加载图片');
+            
+            // 【已删除】不再设置行内style.opacity，由CSS类控制显示
+            // CSS: .slide { opacity: 0 } .slide.active { opacity: 1 !important; z-index: 2; }
+            
+            // 添加图片加载错误处理（不涉及显示控制）
+            const targetImg = targetSlide.querySelector('img');
+            if (targetImg && !targetImg.complete) {
+                targetImg.addEventListener('error', function() {
+                    console.error('[ShowSlide] 图片加载失败:', targetImg.src || targetImg.getAttribute('data-src'));
+                }, { once: true });
+            }
             
             // 预加载后续2-3张
             for (let i = 1; i <= 3; i++) {
@@ -271,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // 处理视频播放
-            handleVideoSlide(currentSlides[currentSlide]);
+            handleVideoSlide(targetSlide);
         }
     }
     
@@ -284,16 +580,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // 清除自动轮播定时器
-        clearInterval(slideInterval);
+        if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+        }
         
         // 检查当前幻灯片是否包含视频或动态webp
         const video = slide.querySelector('video');
         const img = slide.querySelector('img');
         
-        // 检测是否是动态webp（文件名包含video或文件较大）
+        // 检测是否是动态webp（文件名包含webvideo或路径包含webvideo）
         let isAnimatedWebp = false;
-        if (img && img.src && img.src.includes('webvideo')) {
-            isAnimatedWebp = true;
+        if (img) {
+            const imgSrc = img.getAttribute('src') || img.getAttribute('data-src') || img.src || '';
+            if (imgSrc && (imgSrc.includes('webvideo') || imgSrc.includes('_webvideo_'))) {
+                isAnimatedWebp = true;
+                console.log("检测到动态webp:", imgSrc);
+            }
         }
         
         // 暂停所有视频
@@ -330,7 +633,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             setTimeout(() => {
                                 video.play().catch(e2 => {
                                     console.error("视频重试播放也失败，恢复自动轮播", e2);
-                                    resetAutoSlide();
+                                    // 视频失败时，恢复6秒自动轮播
+                                    if (autoplayStarted) {
+                                        slideInterval = setInterval(nextSlide, 6000);
+                                    }
                                 });
                             }, 500);
                         });
@@ -344,23 +650,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     // 视频加载错误时处理
                     video.onerror = function() {
                         console.error("视频加载错误");
-                        resetAutoSlide();
+                        // 视频错误时，恢复6秒自动轮播
+                        if (autoplayStarted) {
+                            slideInterval = setInterval(nextSlide, 6000);
+                        }
                     };
                 }, 100); // 延迟100ms确保DOM渲染
                 
             } catch (e) {
                 console.error("处理视频时出错:", e);
-                resetAutoSlide();
+                // 出错时，恢复6秒自动轮播
+                if (autoplayStarted) {
+                    slideInterval = setInterval(nextSlide, 6000);
+                }
             }
         } else if (isAnimatedWebp) {
-            // 如果是动态webp，固定6秒切换
+            // 如果是动态webp，固定6秒切换（不启动自动轮播，用单独的定时器）
             console.log("检测到动态webp，将在6秒后切换");
             window.videoTimeout = setTimeout(() => {
                 nextSlide();
             }, 6000);
         } else {
-            // 如果不是视频幻灯片，恢复自动轮播
-            resetAutoSlide();
+            // 如果不是视频/动态webp幻灯片，恢复6秒自动轮播
+            if (autoplayStarted) {
+                slideInterval = setInterval(nextSlide, 6000);
+            }
         }
     }
 
@@ -398,15 +712,12 @@ document.addEventListener('DOMContentLoaded', function() {
             prevSlide();
         }
         
-        // 如果自动播放已启动，3秒后恢复
+        // 如果自动播放已启动，延迟后恢复（确保所有slide都使用6秒间隔）
         if (autoplayStarted) {
-            const currentSlides = document.querySelectorAll('.slide');
-            const currentSlideElement = currentSlides[currentSlide];
-            if (currentSlideElement && !currentSlideElement.classList.contains('video-slide')) {
-                setTimeout(() => {
-                    resetAutoSlide();
-                }, 3000);
-            }
+            // 统一使用6秒自动轮播，延迟3秒恢复（给用户时间查看当前slide）
+            setTimeout(() => {
+                resetAutoSlide();
+            }, 3000);
         }
     }
 
@@ -1316,8 +1627,9 @@ document.addEventListener('DOMContentLoaded', function() {
     galleryItems.forEach((item, index) => {
         const img = item.querySelector('img');
         if (img) {
-            // 处理懒加载图片，使用data-src属性或者src属性
-            const imgSrc = img.dataset.src || img.src;
+            // 优先使用 data-original-src（用于响应式图片的原图路径）
+            // 然后是 data-src（懒加载），最后是 src
+            const imgSrc = img.dataset.originalSrc || img.dataset.src || img.src;
             
             // 从onclick属性中提取索引
             let onclickMatch = img.getAttribute('onclick') ? img.getAttribute('onclick').match(/\d+/) : null;

@@ -969,13 +969,25 @@
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" alt="Sculpture" onclick="sculptureOpenLightbox(0)" loading="lazy">
+                    <picture>
+        <source srcset="images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5545-400.webp 400w, images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5545-960.webp 960w" type="image/webp">
+        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp" srcset="images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5545-400.webp 400w, images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5545-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Sculpture" onclick="sculptureOpenLightbox(0)" loading="lazy" data-original-src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp">
+    </picture>
+</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" alt="Sculpture" onclick="sculptureOpenLightbox(1)" loading="lazy">
+                    <picture>
+        <source srcset="images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5562-400.webp 400w, images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5562-960.webp 960w" type="image/webp">
+        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp" srcset="images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5562-400.webp 400w, images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5562-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Sculpture" onclick="sculptureOpenLightbox(1)" loading="lazy" data-original-src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5562.webp">
+    </picture>
+</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" alt="Sculpture" onclick="sculptureOpenLightbox(2)" loading="lazy">
+                    <picture>
+        <source srcset="images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5573-400.webp 400w, images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5573-960.webp 960w" type="image/webp">
+        <img src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp" srcset="images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5573-400.webp 400w, images/_responsive/02sculpture/01_images/S_2017/2527_webpic_IMG_5573-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Sculpture" onclick="sculptureOpenLightbox(2)" loading="lazy" data-original-src="images/02sculpture/01_images/S_2017/2527_webpic_IMG_5573.webp">
+    </picture>
+</div>
                 </div>
             </div>
         </section>
@@ -1134,135 +1146,6 @@
             } else {
                 console.error('Sculpture: 未找到菜单按钮或导航菜单', { menuBtn, navMobile });
             }
-            
-
-            // 随机化幻灯片顺序
-            function shuffleSlides() {
-                const slidesContainer = document.querySelector('.slides');
-                if (!slidesContainer || slides.length === 0) return;
-                
-                const slidesArray = Array.from(slides);
-                
-                // Fisher-Yates 洗牌算法
-                for (let i = slidesArray.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [slidesArray[i], slidesArray[j]] = [slidesArray[j], slidesArray[i]];
-                }
-                
-                // 清空并重新添加打乱顺序的幻灯片
-                slidesContainer.innerHTML = '';
-                slidesArray.forEach(slide => {
-                    slide.classList.remove('active');
-                    slidesContainer.appendChild(slide);
-                });
-                
-                // 显示第一张（现在是随机的第一张）
-                if (slidesArray.length > 0) {
-                    slidesArray[0].classList.add('active');
-                }
-            }
-
-            // 幻灯片处理
-            const slides = document.querySelectorAll('.slide');
-            const slidesArray = Array.from(slides);
-            const prevBtn = document.querySelector('.slider-nav.prev');
-            const nextBtn = document.querySelector('.slider-nav.next');
-            let currentIndex = 0;
-            let isTransitioning = false;
-            let autoSlideTimer = null;
-            
-            // 查找当前激活的幻灯片索引
-            slidesArray.forEach((slide, index) => {
-                if (slide.classList.contains('active')) {
-                    currentIndex = index;
-                }
-            });
-            
-            // 切换到指定幻灯片
-            function goToSlide(index) {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                
-                // 清除自动轮播定时器
-                clearTimeout(autoSlideTimer);
-                
-                // 处理循环
-                if (index >= slidesArray.length) {
-                    index = 0;
-                } else if (index < 0) {
-                    index = slidesArray.length - 1;
-                }
-                
-                // 移除当前幻灯片的激活状态
-                slidesArray[currentIndex].classList.remove('active');
-                
-                // 更新当前索引
-                currentIndex = index;
-                
-                // 添加新幻灯片的激活状态
-                const newSlide = slidesArray[currentIndex];
-                newSlide.classList.add('active');
-                
-                // 设置自动轮播
-                autoSlideTimer = setTimeout(() => {
-                    nextSlide();
-                }, 6000);
-                
-                // 延迟重置过渡状态
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 800);
-            }
-            
-            // 下一张幻灯片
-            function nextSlide() {
-                goToSlide(currentIndex + 1);
-            }
-            
-            // 上一张幻灯片
-            function prevSlide() {
-                goToSlide(currentIndex - 1);
-            }
-            
-            // 初始化
-            function init() {
-                // 随机化幻灯片顺序
-                if (slides.length > 0) {
-                    shuffleSlides();
-                }
-                
-                // 设置自动轮播
-                autoSlideTimer = setTimeout(() => {
-                    nextSlide();
-                }, 6000);
-                
-                // 绑定按钮事件
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        prevSlide();
-                    });
-                }
-                
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        nextSlide();
-                    });
-                }
-                
-                // 键盘导航
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowLeft') {
-                        prevSlide();
-                    } else if (e.key === 'ArrowRight') {
-                        nextSlide();
-                    }
-                });
-            }
-            
-            // 初始化
-            init();
 
             // Lightbox functionality - Updated 2025-10-31
             console.log('Sculpture artworks loaded - Version 2025-10-31');
