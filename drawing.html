@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Drawing - KIYOMI+TETSUHIRO UOZUMI</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
 
         /* Header 在 slideshow 上时的样式 */
@@ -160,15 +159,24 @@
             overflow: hidden;
             cursor: pointer;
             transition: opacity 0.3s;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-item:hover {
             opacity: 0.8;
         }
 
+        .gallery-item picture,
         .gallery-item img {
             width: 100%;
             height: 100%;
+            display: block;
+        }
+        
+        .gallery-item img {
             object-fit: cover;
             transition: opacity 0.3s ease;
         }
@@ -357,6 +365,7 @@
         @media (min-width: 768px) and (max-width: 1024px) {
             .gallery-grid {
                 grid-template-columns: repeat(4, 1fr);
+                padding: 40px 60px !important;
             }
 
             .lightbox {
@@ -445,6 +454,7 @@
         @media (max-width: 1200px) and (min-width: 1025px) {
             .gallery-grid {
                 grid-template-columns: repeat(4, 1fr);
+                padding: 40px 60px !important;
             }
 
             .lightbox {
@@ -521,19 +531,9 @@
             }
         }
 
-        /* 响应式设计 - 中等屏幕 */
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                padding: 40px 60px !important;
-            }
-        }
-        
         @media (max-width: 768px) {
             .gallery-grid {
                 padding: 30px 40px !important;
-            }
-            
-            .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
             }
@@ -606,12 +606,8 @@
         }
 
         @media (max-width: 480px) {
-            
             .gallery-grid {
                 padding: 20px 20px !important;
-            }
-            
-            .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -655,6 +651,7 @@
 
         /* Center images inside slideshow on drawing page (keep intrinsic ratio, no fill) */
         /* 保持position: absolute以维持层叠上下文，通过display:flex实现居中 */
+        /* 使用更具体的选择器确保只影响 slideshow，不影响 gallery */
         .slider .slides .slide {
             position: absolute; /* 保持absolute，不改为relative */
             display: flex;
@@ -671,6 +668,21 @@
             max-height: 100%;
             object-fit: none; /* keep natural ratio, do not force fill */
             object-position: center center;
+        }
+        
+        /* 确保 gallery-item 使用 flex 布局，不受 slideshow 样式影响 */
+        .gallery-section .gallery-item {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-section .gallery-item picture {
+            display: block !important;
+        }
+        
+        .gallery-section .gallery-item img {
+            display: block !important;
         }
     </style>
     
@@ -821,70 +833,60 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(0)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_01.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(1)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_02.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(2)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_03.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(3)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_04.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(4)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_05.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(5)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_06.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(6)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_07.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(7)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_08.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(8)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_09.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.webp" srcset="images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Swimmer drawing" onclick="openLightbox(9)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/01_dropping_swimmer/2505_ipad_2504_kiyomi_drawing_swimmer_10.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -898,196 +900,168 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(10)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_1.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(11)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_2.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(12)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_3.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(13)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_4.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(14)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_5.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(15)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_6.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(16)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_7.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(17)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_8.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(18)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_9.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(19)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_10.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(20)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_11.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(21)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_12.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(22)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_13.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(23)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_14.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(24)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_15.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(25)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_16.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(26)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_17.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(27)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_18.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(28)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_19.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(29)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_20.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(30)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_21.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(31)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_22.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(32)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_23.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(33)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_24.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(34)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_25.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(35)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_26.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(36)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_27.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28.webp" srcset="images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28-400.webp 400w, images/_responsive/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Object drawing" onclick="openLightbox(37)" loading="lazy" data-original-src="images/02drawing/01_images/D_2025/02_object/2504_ipad_kiyomi_drawing_object_28.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -1101,147 +1075,126 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8851-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8851-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8851.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8851-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8851-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(38)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8851.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8854-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8854-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8854.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8854-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8854-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(39)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8854.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8860-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8860-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8860.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8860-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8860-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(40)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8860.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8863-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8863-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8863.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8863-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8863-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(41)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8863.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8866-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8866-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8866.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8866-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8866-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(42)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8866.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8872-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8872-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8872.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8872-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8872-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(43)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8872.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8878-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8878-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8878.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8878-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8878-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(44)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8878.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8887-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8887-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8887.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8887-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8887-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(45)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8887.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8890-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8890-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8890.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8890-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2502_ipad_IMG_8890-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(46)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2502_ipad_IMG_8890.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9102-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9102-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9102.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9102-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9102-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(47)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9102.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9105-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9105-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9105.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9105-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9105-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(48)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9105.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9108-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9108-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9108.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9108-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9108-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(49)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9108.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9110-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9110-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9110.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9110-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9110-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(50)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9110.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9113-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9113-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9113.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9113-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9113-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(51)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9113.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9116-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9116-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9116.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9116-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9116-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(52)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9116.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9174-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9174-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9174.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9174-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9174-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(53)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9174.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9180-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9180-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9180.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9180-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9180-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(54)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9180.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9189-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9189-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9189.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9189-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9189-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(55)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9189.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9200-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9200-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9200.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9200-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9200-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(56)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9200.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9206-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9206-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9206.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9206-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9206-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(57)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9206.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9212-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9212-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9212.webp" srcset="images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9212-400.webp 400w, images/_responsive/02drawing/01_images/D_2024/2521_webpic_IMG_9212-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2024" onclick="openLightbox(58)" loading="lazy" data-original-src="images/02drawing/01_images/D_2024/2521_webpic_IMG_9212.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -1255,63 +1208,54 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(59)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_01.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(60)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_02.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(61)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_03.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(62)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_04.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(63)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_05.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(64)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2504_ipad_2351_drawing_06.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8727_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8727_02-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2501_web_IMG_8727_02.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8727_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8727_02-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(65)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2501_web_IMG_8727_02.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8721_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8721_02-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2501_web_IMG_8721_02.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8721_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8721_02-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(66)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2501_web_IMG_8721_02.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8733_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8733_02-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2023/2501_web_IMG_8733_02.webp" srcset="images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8733_02-400.webp 400w, images/_responsive/02drawing/01_images/D_2023/2501_web_IMG_8733_02-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2023" onclick="openLightbox(67)" loading="lazy" data-original-src="images/02drawing/01_images/D_2023/2501_web_IMG_8733_02.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -1325,35 +1269,30 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8710-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8710-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8710.webp" srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8710-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8710-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2022" onclick="openLightbox(71)" loading="lazy" data-original-src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8710.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8707-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8707-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8707.webp" srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8707-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8707-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2022" onclick="openLightbox(72)" loading="lazy" data-original-src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8707.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8712-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8712-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8712.webp" srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8712-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8712-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2022" onclick="openLightbox(73)" loading="lazy" data-original-src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8712.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8715-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8715-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8715.webp" srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8715-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8715-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2022" onclick="openLightbox(74)" loading="lazy" data-original-src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8715.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8652-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8652-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8652.webp" srcset="images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8652-400.webp 400w, images/_responsive/02drawing/01_images/D_2022/2521_webpic_IMG_8652-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2022" onclick="openLightbox(75)" loading="lazy" data-original-src="images/02drawing/01_images/D_2022/2521_webpic_IMG_8652.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -1367,21 +1306,18 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8612-400.webp 400w, images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8612-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8612.webp" srcset="images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8612-400.webp 400w, images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8612-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2021" onclick="openLightbox(76)" loading="lazy" data-original-src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8612.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8600-400.webp 400w, images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8600-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8600.webp" srcset="images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8600-400.webp 400w, images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8600-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2021" onclick="openLightbox(77)" loading="lazy" data-original-src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8600.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8608-400.webp 400w, images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8608-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8608.webp" srcset="images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8608-400.webp 400w, images/_responsive/02drawing/01_images/D_2021/2521_webpic_IMG_8608-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2021" onclick="openLightbox(78)" loading="lazy" data-original-src="images/02drawing/01_images/D_2021/2521_webpic_IMG_8608.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -1395,70 +1331,60 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7887-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7887-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7887.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7887-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7887-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(79)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7887.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7893-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7893-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7893.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7893-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7893-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(80)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7893.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7897-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7897-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7897.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7897-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7897-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(81)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7897.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7902-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7902-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7902.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7902-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7902-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(82)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7902.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7909-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7909-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7909.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7909-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7909-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(83)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7909.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7923-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7923-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7923.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7923-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7923-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(84)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7923.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7929-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7929-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7929.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7929-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1938_ipad_IMG_7929-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(85)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1938_ipad_IMG_7929.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7715-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7715-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7715.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7715-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7715-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(86)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7715.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7742-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7742-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7742.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7742-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7742-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(87)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7742.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7941-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7941-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7941.webp" srcset="images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7941-400.webp 400w, images/_responsive/02drawing/01_images/D_2019/1939_ipad_IMG_7941-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2019" onclick="openLightbox(88)" loading="lazy" data-original-src="images/02drawing/01_images/D_2019/1939_ipad_IMG_7941.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>
@@ -1472,14 +1398,12 @@
         <source srcset="images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891-400.webp 400w, images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891.webp" srcset="images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891-400.webp 400w, images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2016" onclick="openLightbox(97)" loading="lazy" data-original-src="images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3891.webp">
     </picture>
-</div>
                     </div>
                     <div class="gallery-item">
                         <picture>
         <source srcset="images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892-400.webp 400w, images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892-960.webp 960w" type="image/webp">
         <img src="images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892.webp" srcset="images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892-400.webp 400w, images/_responsive/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892-960.webp 960w" sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 200px" alt="Drawing 2016" onclick="openLightbox(98)" loading="lazy" data-original-src="images/02drawing/01_images/D_2016/2521_webpic_drawing_IMG_3892.webp">
     </picture>
-</div>
                     </div>
                 </div>
             </div>

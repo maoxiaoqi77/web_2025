@@ -22,15 +22,48 @@ backup_all_*/
 # 开发工具
 tools/
 verify.sh
+# 所有 Shell 脚本（开发工具）
+*.sh
+
+# Python 脚本（开发工具）
+*.py
+
+# 开发工具 JS 文件（根目录中的，不在 js/ 目录中）
+optimize-installation.js
+skeleton-loader.js
+fix-drawing-thumbnails.js
+
+# 配置文件示例
+nginx.conf.example
+*.example
 
 # 文档文件（可选，生产环境可不上传）
 *.md
 README*
+CLEANUP_GUIDE.md
+DEPLOY_CHECKLIST.md
+FINAL_SUMMARY.md
+RESPONSIVE_IMAGES*.md
+SERVER_OPTIMIZATION.md
+SKELETON_GUIDE.md
+TEST_RESULTS.md
+404_FIX_COMPLETE.md
+OPTIMIZATION*.md
+QUICK_START.md
+
+# 临时列表文件
+CLEANUP_LIST.txt
+
+# 测试文件
+test-*.html
 
 # macOS 系统文件
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# 其他系统文件
+.Rhistory
 
 # 临时文件
 *.swp

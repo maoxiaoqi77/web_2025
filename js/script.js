@@ -855,6 +855,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 查找所有gallery-item元素
 document.addEventListener('DOMContentLoaded', function() {
+    // 检查是否是 sculpture 页面，如果是则跳过通用 lightbox 逻辑
+    // sculpture 页面有自己的 lightbox 处理逻辑
+    if (window.location.pathname.includes('sculpture.html')) {
+        return;
+    }
+    
     const galleryItems = document.querySelectorAll('.gallery-item');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -862,22 +868,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let images = [];
     let indexMap = {}; // 用于存储onclick索引到images数组索引的映射
     
-    // Sculpture artwork信息
+    // Sculpture artwork信息（已移至 sculpture.html，此处保留用于其他可能的引用）
     const sculptureInfo = [
-        { 
-            src: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0757_03.webp",
-            title: "sound of kettle", 
-            year: "2020", 
-            medium: "kettle, sound, soundsystem", 
-            size: "W: 200mm, H: 600mm, D: 200mm" 
-        },
-        { 
-            src: "images/02sculpture/01_images/S_2022/2527_webpic_IMG_0772.webp",
-            title: "sound of a dog", 
-            year: "2020", 
-            medium: "mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)", 
-            size: "Variable Dimensions" 
-        },
         { 
             src: "images/02sculpture/01_images/S_2017/2527_webpic_IMG_5545.webp",
             title: "anonymous_bob with bangs", 
