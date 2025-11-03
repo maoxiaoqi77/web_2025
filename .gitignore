@@ -1,2 +1,6 @@
 images/*/*.mp4
 **/*_original.mp4
+
+# 忽略所有备份目录
+backup_*/
+**/backup_*/
