@@ -434,18 +434,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 页面加载后立即执行随机化
-    if (slides.length > 0) {
-        shuffleSlides();
-    }
-
-    // 如果没有幻灯片，不启动轮播
-    if (totalSlides === 0) return;
-
     // 等待首张图片加载完成后再启动自动轮播
     let slideInterval;
     let autoplayStarted = false;
     let firstImageLoadTime = 0;
+    let firstImageLoadStartTime = 0;
     
     function startAutoplay(delay = 0) {
         if (autoplayStarted) return;
@@ -467,43 +460,72 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // 检测首张图片是否已加载
-    const firstSlide = slidesContainer.querySelector('.slide.active');
-    if (firstSlide) {
-        const firstImg = firstSlide.querySelector('img');
-        if (firstImg) {
-            const startTime = Date.now();
-            
-            if (firstImg.complete && firstImg.naturalHeight !== 0) {
-                // 图片已加载完成，延迟3秒启动（让用户看清第一张）
-                console.log('First image already loaded');
-                startAutoplay(3000);
-            } else {
-                // 等待图片加载
-                firstImg.addEventListener('load', function() {
-                    const loadTime = Date.now() - startTime;
-                    console.log('First image loaded in', loadTime + 'ms');
+    // 检测首张图片加载并启动自动播放的函数
+    function checkFirstImageAndStartAutoplay() {
+        // 如果没有幻灯片，不启动轮播
+        if (totalSlides === 0) return;
+        
+        // 等待一小段时间，确保 shuffleSlides 完全完成
+        setTimeout(function() {
+            const firstSlide = slidesContainer.querySelector('.slide.active');
+            if (firstSlide) {
+                const firstImg = firstSlide.querySelector('img');
+                if (firstImg) {
+                    firstImageLoadStartTime = Date.now();
                     
-                    // 图片加载完成后，延迟3秒启动（让用户看清第一张）
-                    startAutoplay(3000);
-                });
-                
-                // 超时保护：最多等待 5 秒
-                setTimeout(function() {
-                    if (!autoplayStarted) {
-                        console.log('Timeout protection triggered after 5s');
-                        // 即使图片未加载完成，也延迟3秒启动，总计8秒
-                        startAutoplay(3000);
+                    // 检查图片是否已经加载完成
+                    if (firstImg.complete && firstImg.naturalHeight !== 0) {
+                        // 图片已加载完成
+                        firstImageLoadTime = Date.now() - firstImageLoadStartTime;
+                        console.log('First image already loaded, load time:', firstImageLoadTime + 'ms');
+                        
+                        // 确保第一张图片至少显示 5 秒（从图片加载完成开始计算）
+                        // 如果图片加载很快（<1秒），等待至少4秒再启动
+                        const minDisplayTime = 5000;
+                        const waitTime = Math.max(minDisplayTime - firstImageLoadTime, 4000);
+                        startAutoplay(waitTime);
+                    } else {
+                        // 等待图片加载
+                        firstImg.addEventListener('load', function() {
+                            firstImageLoadTime = Date.now() - firstImageLoadStartTime;
+                            console.log('First image loaded in', firstImageLoadTime + 'ms');
+                            
+                            // 确保第一张图片至少显示 5 秒（从图片加载完成开始计算）
+                            // 如果图片加载很快（<1秒），等待至少4秒再启动
+                            const minDisplayTime = 5000;
+                            const waitTime = Math.max(minDisplayTime - firstImageLoadTime, 4000);
+                            startAutoplay(waitTime);
+                        }, { once: true });
+                        
+                        // 超时保护：最多等待 8 秒，然后至少再等 4 秒
+                        setTimeout(function() {
+                            if (!autoplayStarted) {
+                                console.log('Timeout protection triggered after 8s');
+                                // 即使图片未加载完成，也至少等待4秒再启动
+                                startAutoplay(4000);
+                            }
+                        }, 8000);
                     }
-                }, 5000);
+                } else {
+                    // 没有图片，直接启动
+                    startAutoplay();
+                }
+            } else {
+                // 没有激活的 slide，直接启动
+                startAutoplay();
             }
-        } else {
-            // 没有图片，直接启动
-            startAutoplay();
-        }
+        }, 100); // 等待100ms确保DOM完全更新
+    }
+    
+    // 页面加载后立即执行随机化，然后检查第一张图片
+    if (slides.length > 0) {
+        shuffleSlides();
+        // shuffleSlides 完成后，检查第一张图片并启动自动播放
+        checkFirstImageAndStartAutoplay();
     } else {
-        // 没有激活的 slide，直接启动
-        startAutoplay();
+        // 没有幻灯片，不启动轮播
+        if (totalSlides === 0) return;
+        checkFirstImageAndStartAutoplay();
     }
 
     // 显示指定索引的幻灯片
