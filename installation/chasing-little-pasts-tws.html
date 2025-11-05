@@ -195,6 +195,10 @@
 
         .video-item {
             width: 100%;
+            position: relative;
+            z-index: 1;
+            pointer-events: auto;
+            -webkit-touch-callout: none;
         }
 
         .video-item video {
@@ -203,6 +207,25 @@
             max-height: 70vh;
             object-fit: contain;
             display: block;
+            pointer-events: auto !important;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            position: relative;
+            z-index: 1;
+            background-color: #000;
+        }
+        
+        /* 确保视频 controls 始终可见且可交互 */
+        .video-item video::-webkit-media-controls {
+            display: flex !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        
+        .video-item video::-webkit-media-controls-enclosure {
+            pointer-events: auto !important;
         }
 
         /* 画廊网格 */
@@ -305,6 +328,36 @@
             .thumbnails-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+            
+            /* iPad 视频 controls 修复 */
+            .video-item {
+                pointer-events: auto !important;
+                z-index: 10;
+            }
+            
+            .video-item video {
+                pointer-events: auto !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-appearance: none;
+                z-index: 10;
+            }
+            
+            /* 确保视频 controls 可以点击 */
+            .video-item video::-webkit-media-controls-panel {
+                pointer-events: auto !important;
+            }
+            
+            .video-item video::-webkit-media-controls-play-button {
+                -webkit-appearance: media-play-button;
+                display: block;
+                pointer-events: auto !important;
+                z-index: 11;
+            }
+            
+            .video-item video::-webkit-media-controls {
+                pointer-events: auto !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -403,7 +456,7 @@
                 <div class="video-section">
                     <div class="videos-grid">
                         <div class="video-item">
-                            <video controls="" preload="metadata">
+                            <video controls="" preload="metadata" playsinline webkit-playsinline>
                                 <source src="../images/02installation/02_027_charsing_little_pasts_TWS /chasingalittlepast_2_compressed.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -636,21 +689,44 @@
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
                 
+                // 保存原始状态
+                const wasPlaying = !video.paused;
+                const originalTime = video.currentTime;
+                
                 // 设置视频当前时间为 0（第一帧）
-                video.currentTime = 0;
+                video.currentTime = 0.1; // 使用 0.1 而不是 0，避免某些浏览器的问题
             }, { once: true });
             
             video.addEventListener('seeked', function() {
-                // 绘制第一帧到 canvas
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                
-                // 将 canvas 转换为 data URL 并设置为 poster
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-                video.poster = dataUrl;
-                
-                // 重置视频当前时间
-                video.currentTime = 0;
+                try {
+                    // 绘制第一帧到 canvas
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    
+                    // 将 canvas 转换为 data URL 并设置为 poster
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                    video.poster = dataUrl;
+                    
+                    // 确保视频 controls 仍然可用（特别是 iPad）
+                    video.style.pointerEvents = 'auto';
+                    video.style.touchAction = 'manipulation';
+                    
+                    // 重置视频到开始，但不影响 controls
+                    setTimeout(function() {
+                        video.currentTime = 0;
+                        // 再次确保 controls 可用
+                        video.style.pointerEvents = 'auto';
+                        video.style.touchAction = 'manipulation';
+                    }, 100);
+                } catch (e) {
+                    console.log('提取视频第一帧失败:', e);
+                }
             }, { once: true });
+            
+            // 添加错误处理，确保即使提取失败，视频仍可播放
+            video.addEventListener('error', function() {
+                video.style.pointerEvents = 'auto';
+                video.style.touchAction = 'manipulation';
+            });
         }
     
         // Gallery item click handler - 为gallery-item添加点击事件
@@ -666,6 +742,21 @@
             // 为所有视频提取第一帧作为 poster
             const videos = document.querySelectorAll('video');
             videos.forEach(function(video) {
+                // 确保视频可以交互（特别是 iPad）
+                video.style.pointerEvents = 'auto';
+                video.style.touchAction = 'manipulation';
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('playsinline', '');
+                
+                // 确保视频 controls 可以点击
+                if (video.controls) {
+                    video.addEventListener('loadedmetadata', function() {
+                        // 确保 controls 可以交互
+                        video.style.pointerEvents = 'auto';
+                        video.style.touchAction = 'manipulation';
+                    }, { once: true });
+                }
+                
                 if (!video.poster) {
                     extractVideoFirstFrame(video);
                 }

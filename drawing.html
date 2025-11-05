@@ -361,22 +361,24 @@
             }
         }
 
-        /* iPad横屏优化 - 包括iPad Pro 12.9英寸 (768px及以上横屏) */
-        @media (min-width: 768px) and (orientation: landscape) {
+        /* iPad Pro 横屏优化 - 只针对 iPad Pro 尺寸范围，避免影响桌面端 */
+        /* iPad Pro 12.9" 横屏: 1366×1024, iPad Pro 11" 横屏: 1194×834 */
+        @media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
             .lightbox-content {
                 width: 98%;
                 max-width: none;
                 max-height: 95vh;
+                height: auto; /* 覆盖 base 样式中的固定 height: 700px */
                 margin: 20px auto;
             }
 
             .lightbox-image-section {
-                min-height: 80vh;
-                padding: 40px;
+                min-height: 75vh;
+                padding: 30px;
             }
             
             .lightbox-image-section img {
-                max-height: 85vh;
+                max-height: 80vh;
             }
         }
 
