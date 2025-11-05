@@ -361,6 +361,24 @@
             }
         }
 
+        /* iPad横屏优化 - 更大的lightbox */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .lightbox-content {
+                width: 98%;
+                max-width: none;
+                max-height: 95vh;
+            }
+
+            .lightbox-image-section {
+                min-height: 80vh;
+                padding: 40px;
+            }
+            
+            .lightbox-image-section img {
+                max-height: 85vh;
+            }
+        }
+
         /* iPad和平板优化 (768px - 1024px) */
         @media (min-width: 768px) and (max-width: 1024px) {
             .gallery-grid {
@@ -382,12 +400,12 @@
             }
 
             .lightbox-content {
-                width: 95%;
-                max-width: 1000px;
+                width: 98%;
+                max-width: none;
                 height: auto;
-                max-height: none;
+                max-height: 95vh;
                 flex-direction: column;
-                margin: 40px auto 40px;
+                margin: 20px auto;
                 overflow-y: visible;
                 box-sizing: border-box;
             }
@@ -397,8 +415,8 @@
                 width: 100%;
                 max-height: none;
                 overflow-y: visible;
-                padding: 20px;
-                min-height: 70vh;
+                padding: 30px;
+                min-height: 75vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -406,7 +424,7 @@
             
             .lightbox-image-section img {
                 max-width: 100%;
-                max-height: 75vh;
+                max-height: 80vh;
                 width: auto;
                 height: auto;
                 object-fit: contain;
@@ -470,11 +488,12 @@
             }
 
             .lightbox-content {
-                width: 95%;
+                width: 98%;
+                max-width: none;
                 height: auto;
-                max-height: none;
+                max-height: 95vh;
                 flex-direction: column;
-                margin: 60px auto 40px;
+                margin: 20px auto;
                 overflow-y: visible;
                 box-sizing: border-box;
             }
@@ -484,7 +503,8 @@
                 width: 100%;
                 max-height: none;
                 overflow-y: visible;
-                padding: 15px;
+                padding: 30px;
+                min-height: 75vh;
             }
 
             .lightbox-info-section {

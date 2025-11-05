@@ -460,12 +460,12 @@
             }
 
             .lightbox-content {
-                width: 95%;
-                max-width: 1000px;
+                width: 98%;
+                max-width: none;
                 height: auto;
-                max-height: none;
+                max-height: 95vh;
                 flex-direction: column;
-                margin: 40px auto 40px;
+                margin: 20px auto;
                 overflow-y: visible;
                 box-sizing: border-box;
             }
@@ -475,8 +475,8 @@
                 width: 100%;
                 max-height: none;
                 overflow-y: visible;
-                padding: 20px;
-                min-height: 70vh;
+                padding: 30px;
+                min-height: 75vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -484,7 +484,7 @@
             
             .lightbox-image-section img {
                 max-width: 100%;
-                max-height: 75vh;
+                max-height: 80vh;
                 width: auto;
                 height: auto;
                 object-fit: contain;
@@ -529,6 +529,24 @@
             }
         }
 
+        /* iPad横屏优化 - 更大的lightbox */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .lightbox-content {
+                width: 98%;
+                max-width: none;
+                max-height: 95vh;
+            }
+
+            .lightbox-image-section {
+                min-height: 80vh;
+                padding: 40px;
+            }
+            
+            .lightbox-image-section img {
+                max-height: 85vh;
+            }
+        }
+
         @media (max-width: 1200px) and (min-width: 1025px) {
             .gallery-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -547,11 +565,12 @@
             }
 
             .lightbox-content {
-                width: 95%;
+                width: 98%;
+                max-width: none;
                 height: auto;
-                max-height: none;
+                max-height: 95vh;
                 flex-direction: column;
-                margin: 60px auto 40px;
+                margin: 20px auto;
                 overflow-y: visible;
                 box-sizing: border-box;
             }
@@ -561,7 +580,8 @@
                 width: 100%;
                 max-height: none;
                 overflow-y: visible;
-                padding: 15px;
+                padding: 30px;
+                min-height: 75vh;
             }
 
             .lightbox-info-section {
@@ -1095,7 +1115,7 @@
                 function handleMenuClick(event) {
                     console.log('Sculpture: 菜单按钮被点击');
                     event.preventDefault();
-                    event.stopPropagation();
+                    event.stopPropagation(); // 阻止事件冒泡到 document
                     
                     const isActive = navMobile.classList.contains('active');
                     console.log('Sculpture: 当前状态', isActive);
@@ -1134,14 +1154,23 @@
                 }, { passive: false });
                 
                 // 点击页面其他区域关闭菜单
+                // 使用捕获阶段，并在点击菜单按钮时阻止冒泡
                 document.addEventListener('click', function(event) {
                     const finalNavMobile = document.querySelector('.nav-mobile');
                     const btn = document.querySelector('.menu-btn');
-                    if (btn && finalNavMobile && !btn.contains(event.target) && !finalNavMobile.contains(event.target)) {
+                    
+                    // 如果点击的是菜单按钮或菜单本身，不关闭
+                    if (btn && finalNavMobile && 
+                        (btn.contains(event.target) || finalNavMobile.contains(event.target))) {
+                        return;
+                    }
+                    
+                    // 只有当菜单是打开状态时才关闭
+                    if (btn && finalNavMobile && finalNavMobile.classList.contains('active')) {
                         finalNavMobile.classList.remove('active');
                         btn.classList.remove('active');
                     }
-                });
+                }, true); // 使用捕获阶段，确保在其他事件之前处理
             } else {
                 console.error('Sculpture: 未找到菜单按钮或导航菜单', { menuBtn, navMobile });
             }

@@ -802,6 +802,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 移动端菜单功能
 document.addEventListener('DOMContentLoaded', function() {
+    // 检查是否是 sculpture 页面，如果是则跳过（sculpture 页面有自己的菜单处理逻辑）
+    if (window.location.pathname.includes('sculpture.html')) {
+        return;
+    }
+    
     const menuBtn = document.querySelector('.menu-btn');
     const navMobile = document.querySelector('.nav-mobile');
     
