@@ -23,7 +23,7 @@ const installationData = [
     {
         id: "chasing-a-little-past-kanazawa",
         title: "chasing little pasts_KANAZAWA",
-        thumbnail: "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/00_2540_basic_16x9_18EA_kioku_MG_8228_installation_000.webp",
+        thumbnail: "../images/02installation/02_036_chasing_a_little_past_KANAZAWA/2540_basic_18EA_kioku_MG_8228_installation_000.webp",
         year: "2018"
     },
     {

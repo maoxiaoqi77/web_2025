@@ -331,7 +331,7 @@
         .lightbox-nav {
             position: fixed;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(calc(-50% - 2px)); /* 向上移动 2px，补偿箭头偏下的问题 */
             color: white;
             font-size: clamp(32px, 3vw, 40px);
             cursor: pointer;
@@ -343,6 +343,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            line-height: 1;
+            padding: 0;
             transition: all 0.3s ease;
             z-index: 1001;
             opacity: 0.8;
@@ -377,6 +379,14 @@
             .lightbox-nav {
                 border-radius: 50%;
                 background: rgba(0, 0, 0, 0.5);
+                /* 确保箭头在圆形中完全居中 */
+                text-align: center;
+                vertical-align: middle;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* 微调箭头字符在圆圈内的对齐，如果箭头偏下，使用负 margin-top 向上调整 */
+                line-height: 0.9; /* 减小行高，使箭头向上移动 */
             }
             
             .lightbox-nav:hover {
