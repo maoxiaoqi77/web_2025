@@ -531,7 +531,8 @@
 
         /* iPad Pro 横屏优化 - 只针对 iPad Pro 尺寸范围，避免影响桌面端 */
         /* iPad Pro 12.9" 横屏: 1366×1024, iPad Pro 11" 横屏: 1194×834 */
-        @media (min-width: 1024px) and (max-width: 1368px) and (orientation: landscape) {
+        /* 请求桌面网站模式下宽度可能是 1368-1370px，所以设置 max-width: 1370px */
+        @media (min-width: 1024px) and (max-width: 1370px) and (orientation: landscape) {
             .lightbox-content {
                 width: 98%;
                 max-width: none;
