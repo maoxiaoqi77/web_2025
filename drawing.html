@@ -237,14 +237,15 @@
 
         .lightbox-content {
             max-width: 90%;
-            max-height: 90%;
-            width: 1200px;
-            height: 700px;
+            max-height: 95vh;
+            width: min(96vw, 1200px);
+            height: auto;
             position: relative;
             background: white;
             display: flex;
             border-radius: 8px;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
         .lightbox-image-section {
@@ -254,6 +255,7 @@
             justify-content: center;
             background: #f8f8f8;
             padding: 20px;
+            min-height: 0;
         }
 
         .lightbox-content img {
@@ -269,6 +271,7 @@
             flex-direction: column;
             justify-content: center;
             background: white;
+            min-height: 0;
         }
 
         .artwork-title {
@@ -361,16 +364,13 @@
             }
         }
 
-        /* iPad Pro 横屏优化 - 只针对 iPad Pro 尺寸范围，避免影响桌面端 */
+        /* iPad Pro 横屏优化 - 只做微调（边距、最大高度等），不再依赖它矫正尺寸 */
         /* iPad Pro 12.9" 横屏: 1366×1024, iPad Pro 11" 横屏: 1194×834 */
-        /* 请求桌面网站模式下宽度可能是 1368-1370px，所以设置 max-width: 1370px */
+        /* 请求桌面网站模式下宽度可能是 1368-1370px */
         @media (min-width: 1024px) and (max-width: 1370px) and (orientation: landscape) {
             .lightbox-content {
-                width: 98%;
-                max-width: none;
-                max-height: 95vh;
-                height: auto; /* 覆盖 base 样式中的固定 height: 700px */
                 margin: 20px auto;
+                max-height: 95vh;
             }
 
             .lightbox-image-section {
@@ -552,7 +552,7 @@
                 background: rgba(0, 0, 0, 0.8);
             }
         }
-
+        
         @media (max-width: 768px) {
             .gallery-grid {
                 padding: 30px 40px !important;
