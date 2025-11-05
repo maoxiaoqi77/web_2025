@@ -532,22 +532,30 @@
             }
         }
 
-        /* iPad Pro 横屏优化 - 只做微调（边距、最大高度等），不再依赖它矫正尺寸 */
+        /* iPad Pro 横屏优化 - 确保横向布局，覆盖其他可能影响的规则 */
         /* iPad Pro 12.9" 横屏: 1366×1024, iPad Pro 11" 横屏: 1194×834 */
         /* 请求桌面网站模式下宽度可能是 1368-1370px */
         @media (min-width: 1024px) and (max-width: 1370px) and (orientation: landscape) {
             .lightbox-content {
-                margin: 20px auto;
+                width: min(96vw, 1200px) !important; /* 覆盖 width: 95% */
+                max-width: 90% !important;
                 max-height: 95vh;
+                flex-direction: row !important; /* 确保横向布局 */
+                margin: 20px auto;
             }
 
             .lightbox-image-section {
+                flex: 2 !important; /* 确保使用 flex 比例 */
                 min-height: 75vh;
                 padding: 30px;
             }
             
             .lightbox-image-section img {
                 max-height: 80vh;
+            }
+            
+            .lightbox-info-section {
+                flex: 1 !important; /* 确保使用 flex 比例 */
             }
         }
 
