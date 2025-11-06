@@ -10,8 +10,8 @@
 const installationData = [
     {
         id: "leading-to-k-shoppingstreat-kanazawa",
-        title: "leading to K shoppingstreat_KANAZAWA",
-        thumbnail: "../images/02installation/02_038_leading_to_K_shoppingstreat_KANAZAWA/00_2540_basic_16x9_IMG_8254.webp",
+        title: "the alley to K-shopping street_KANAZAWA",
+        thumbnail: "../images/02installation/02_038_leading_to_K_shoppingstreat_KANAZAWA/2543_basic_16x9_IMG_8254.webp",
         year: "2020"
     },
     {
