@@ -439,22 +439,32 @@ document.addEventListener('DOMContentLoaded', function() {
     let autoplayStarted = false;
     let firstImageLoadTime = 0;
     let firstImageLoadStartTime = 0;
+    let firstTransitionTimeout = null;
+    let waitingForFirstTransition = false;
     
     function startAutoplay(delay = 0) {
         if (autoplayStarted) return;
-        
-        // 如果有延迟，延迟启动
+
+        autoplayStarted = true;
+        slidesContainer.setAttribute('data-loaded', '1');
+
+        // 如果需要延迟首轮切换，则等待后再开始常规轮播
         if (delay > 0) {
-            setTimeout(function() {
-                if (autoplayStarted) return; // 防止重复启动
-                autoplayStarted = true;
-                slidesContainer.setAttribute('data-loaded', '1');
-                slideInterval = setInterval(nextSlide, 6000);
-                console.log('Autoplay started with delay:', delay + 'ms');
+            waitingForFirstTransition = true;
+            firstTransitionTimeout = setTimeout(function() {
+                waitingForFirstTransition = false;
+                firstTransitionTimeout = null;
+                nextSlide();
+                // 对于首轮切换后的常规轮播，交由handleVideoSlide中统一设置
             }, delay);
+            console.log('Autoplay first transition scheduled after:', delay + 'ms');
         } else {
-            autoplayStarted = true;
-            slidesContainer.setAttribute('data-loaded', '1');
+            waitingForFirstTransition = false;
+            if (firstTransitionTimeout) {
+                clearTimeout(firstTransitionTimeout);
+                firstTransitionTimeout = null;
+            }
+            if (slideInterval) clearInterval(slideInterval);
             slideInterval = setInterval(nextSlide, 6000);
             console.log('Autoplay started immediately');
         }
@@ -479,10 +489,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         firstImageLoadTime = Date.now() - firstImageLoadStartTime;
                         console.log('First image already loaded, load time:', firstImageLoadTime + 'ms');
                         
-                        // 确保第一张图片至少显示 5 秒（从图片加载完成开始计算）
-                        // 如果图片加载很快（<1秒），等待至少4秒再启动
-                        const minDisplayTime = 5000;
-                        const waitTime = Math.max(minDisplayTime - firstImageLoadTime, 4000);
+                        // 确保第一张图片在加载完成后至少展示 6 秒
+                        const desiredDisplayTime = 6000;
+                        const waitTime = Math.max(0, desiredDisplayTime - firstImageLoadTime);
                         startAutoplay(waitTime);
                     } else {
                         // 等待图片加载
@@ -490,10 +499,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             firstImageLoadTime = Date.now() - firstImageLoadStartTime;
                             console.log('First image loaded in', firstImageLoadTime + 'ms');
                             
-                            // 确保第一张图片至少显示 5 秒（从图片加载完成开始计算）
-                            // 如果图片加载很快（<1秒），等待至少4秒再启动
-                            const minDisplayTime = 5000;
-                            const waitTime = Math.max(minDisplayTime - firstImageLoadTime, 4000);
+                            // 确保第一张图片在加载完成后至少展示 6 秒
+                            const desiredDisplayTime = 6000;
+                            const waitTime = Math.max(0, desiredDisplayTime - firstImageLoadTime);
                             startAutoplay(waitTime);
                         }, { once: true });
                         
@@ -501,8 +509,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         setTimeout(function() {
                             if (!autoplayStarted) {
                                 console.log('Timeout protection triggered after 8s');
-                                // 即使图片未加载完成，也至少等待4秒再启动
-                                startAutoplay(4000);
+                                // 即使图片未加载完成，也给予短暂缓冲后启动
+                                startAutoplay(3000);
                             }
                         }, 8000);
                     }
@@ -606,6 +614,10 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(slideInterval);
             slideInterval = null;
         }
+        if (firstTransitionTimeout) {
+            clearTimeout(firstTransitionTimeout);
+            firstTransitionTimeout = null;
+        }
         
         // 检查当前幻灯片是否包含视频或动态webp
         const video = slide.querySelector('video');
@@ -695,6 +707,12 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // 如果不是视频/动态webp幻灯片，恢复6秒自动轮播
             if (autoplayStarted) {
+                if (waitingForFirstTransition) {
+                    return;
+                }
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                }
                 slideInterval = setInterval(nextSlide, 6000);
             }
         }
@@ -713,7 +731,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // 重置自动轮播
     function resetAutoSlide() {
         if (!autoplayStarted) return; // 如果还没启动，不重置
-        if (slideInterval) clearInterval(slideInterval);
+        if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+        }
+        if (firstTransitionTimeout) {
+            clearTimeout(firstTransitionTimeout);
+            firstTransitionTimeout = null;
+        }
+        waitingForFirstTransition = false;
         slideInterval = setInterval(nextSlide, 6000);
     }
 
@@ -721,6 +747,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleManualSlide(direction) {
         // 清除自动轮播
         if (slideInterval) clearInterval(slideInterval);
+        if (firstTransitionTimeout) {
+            clearTimeout(firstTransitionTimeout);
+            firstTransitionTimeout = null;
+        }
+        waitingForFirstTransition = false;
         
         // 清除视频定时器
         if (window.videoTimeout) {

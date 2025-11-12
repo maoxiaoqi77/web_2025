@@ -439,15 +439,6 @@ This work creates an immersive environment where light becomes a metaphor for co
             <button class="optimized-lightbox-nav optimized-lightbox-prev" onclick="changeImage(-1)">‹</button>
             <img id="lightbox-img" src="" alt="">
             <button class="optimized-lightbox-nav optimized-lightbox-next" onclick="changeImage(1)">›</button>
-            
-            <div class="optimized-lightbox-info-section">
-                <div class="optimized-lightbox-artwork-title" id="artwork-title">chasing little pasts</div>
-                <div class="optimized-lightbox-artwork-details">
-                    <div><span class="label">Year:</span> <span id="artwork-year">2020</span></div>
-                    <div><span class="label">Material:</span> <span id="artwork-medium">mixed media (cotton, glue, sound, soundsystem, lamp, sound-synchronized lighting)</span></div>
-                    <div><span class="label">Size:</span> <span id="artwork-size">Variable Dimensions</span></div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -478,7 +469,7 @@ This work creates an immersive environment where light becomes a metaphor for co
             "../images/02installation/02_030_blink3_to_forget_NAKANOJYO/2523_webpic_IMG_3255.webp"
         ];
 
-                let currentImageIndex = 0;
+        let currentImageIndex = 0;
         const imageCache = {}; // 图片缓存
 
         // 预加载图片
@@ -524,10 +515,6 @@ This work creates an immersive environment where light becomes a metaphor for co
             const nextIndex = (currentImageIndex + 1) % images.length;
             preloadImage(images[prevIndex]);
             preloadImage(images[nextIndex]);
-        } else if (currentImageIndex >= images.length) {
-                currentImageIndex = 0;
-            }
-            document.getElementById('lightbox-img').src = images[currentImageIndex];
         }
 
         // Keyboard navigation

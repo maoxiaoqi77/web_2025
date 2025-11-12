@@ -533,10 +533,6 @@
             const nextIndex = (currentImageIndex + 1) % images.length;
             preloadImage(images[prevIndex]);
             preloadImage(images[nextIndex]);
-        } else if (currentImageIndex >= images.length) {
-                currentImageIndex = 0;
-            }
-            document.getElementById('lightbox-img').src = images[currentImageIndex];
         }
 
         // Keyboard navigation
